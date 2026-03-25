@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSD Locations — Wireframe v2</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN SYSTEM — CSS VARIABLES
+       ============================================================ */
+    :root {
+      --color-bg:         #F4F4F4;
+      --color-bg-warm:    #E8E8E8;
+      --color-navy:       #1A1A1A;
+      --color-navy-light: #2D2D2D;
+      --color-teal:       #444444;
+      --color-teal-light: #DEDEDE;
+      --color-amber:      #2B2B2B;
+      --color-amber-bg:   #E4E4E4;
+      --color-sage:       #555555;
+      --color-sage-light: #E4E4E4;
+      --color-text:       #1A1A1A;
+      --color-text-muted: #5C5C5C;
+      --color-border:     #C0C0C0;
+      --color-white:      #FFFFFF;
+
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, -apple-system, sans-serif;
+
+      --space-xs:  0.5rem;
+      --space-sm:  1rem;
+      --space-md:  1.5rem;
+      --space-lg:  2.5rem;
+      --space-xl:  4rem;
+      --space-2xl: 6rem;
+      --space-3xl: 8rem;
+
+      --max-width: 1200px;
+      --radius-sm: 3px;
+      --radius-md: 4px;
+      --radius-lg: 6px;
+      --radius-xl: 8px;
+
+      --transition: 0.25s ease;
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--color-text);
+      background-color: var(--color-bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+
+    /* ============================================================
+       ACCESSIBILITY
+       ============================================================ */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      padding: 0.75rem 1.25rem;
+      background: var(--color-navy);
+      color: var(--color-white);
+      font-family: var(--font-body);
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      z-index: 9999;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    :focus-visible {
+      outline: 3px solid #555555;
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .fade-in { opacity: 1 !important; transform: none !important; }
+    }
+
+    /* ============================================================
+       TYPOGRAPHY
+       ============================================================ */
+    .eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-teal);
+    }
+    .eyebrow--light { color: rgba(255,255,255,0.88); }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
+    h2 { font-size: clamp(1.8rem, 3.5vw, 2.75rem); }
+    h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); }
+
+    .lead {
+      font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+      line-height: 1.7;
+      color: var(--color-text-muted);
+    }
+
+    /* ============================================================
+       LAYOUT
+       ============================================================ */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+    }
+
+    .section { padding-block: var(--space-3xl); }
+    .section--sm { padding-block: var(--space-2xl); }
+
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.875rem 1.75rem;
+      min-height: 48px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), transform var(--transition);
+      border: 2px solid transparent;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-primary {
+      background: #2B2B2B;
+      color: #FFFFFF;
+      border-color: #2B2B2B;
+    }
+    .btn-primary:hover {
+      background: #444444;
+      border-color: #444444;
+      color: #FFFFFF;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-navy);
+      border-color: var(--color-navy);
+    }
+    .btn-outline:hover {
+      background: var(--color-navy);
+      color: var(--color-white);
+    }
+
+    .btn-outline--light {
+      background: transparent;
+      color: var(--color-white);
+      border-color: rgba(255,255,255,0.5);
+    }
+    .btn-outline--light:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: var(--color-white);
+    }
+
+    .btn-sm {
+      padding: 0.55rem 1.1rem;
+      font-size: 0.85rem;
+      min-height: 38px;
+    }
+
+    /* ============================================================
+       FPO IMAGE PLACEHOLDERS
+       ============================================================ */
+    .fpo {
+      background: var(--color-teal-light);
+      border: 2px dashed var(--color-teal);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--color-teal);
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-align: center;
+      padding: 1.5rem;
+      overflow: hidden;
+    }
+    .fpo__label {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+    .fpo__desc {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-navy);
+    }
+    .fpo svg { opacity: 0.4; }
+
+    /* ============================================================
+       SCROLL ANIMATIONS
+       ============================================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in--delay-1 { transition-delay: 0.1s; }
+    .fade-in--delay-2 { transition-delay: 0.2s; }
+    .fade-in--delay-3 { transition-delay: 0.3s; }
+    .fade-in--delay-4 { transition-delay: 0.4s; }
+    .fade-in--delay-5 { transition-delay: 0.5s; }
+    .fade-in--delay-6 { transition-delay: 0.6s; }
+
+    /* ============================================================
+       WIREFRAME BADGE
+       ============================================================ */
+    .wireframe-badge {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 999;
+      font-family: var(--font-body);
+    }
+
+    .wireframe-badge__toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--color-navy);
+      color: var(--color-white);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+
+    .wireframe-badge__toggle:hover,
+    .wireframe-badge.is-open .wireframe-badge__toggle {
+      opacity: 1;
+    }
+
+    .wireframe-badge__toggle svg {
+      transition: transform 0.2s ease;
+    }
+
+    .wireframe-badge.is-open .wireframe-badge__toggle svg {
+      transform: rotate(180deg);
+    }
+
+    .wireframe-badge__menu {
+      position: absolute;
+      bottom: calc(100% + 0.5rem);
+      right: 0;
+      background: var(--color-navy);
+      border-radius: 10px;
+      padding: 0.35rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.15rem;
+      min-width: 160px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .wireframe-badge.is-open .wireframe-badge__menu {
+      display: flex;
+    }
+
+    .wireframe-badge__item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.65rem;
+      border-radius: 7px;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .wireframe-badge__item:hover {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+
+    .wireframe-badge__item.is-current {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+    }
+
+    .wireframe-badge__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      flex-shrink: 0;
+    }
+
+    .wireframe-badge__item.is-current .wireframe-badge__dot {
+      background: var(--color-teal, #5EC6C6);
+    }
+
+    .wireframe-badge__home {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 0.15rem;
+      padding-top: 0.3rem;
+    }
+
+    .wireframe-badge__home a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.65rem;
+      border-radius: 7px;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .wireframe-badge__home a:hover {
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      gap: var(--space-md);
+    }
+
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .nav__logo-mark {
+      width: 44px;
+      height: 44px;
+      background: var(--color-navy);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+    .nav__logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .nav__logo-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--color-navy);
+    }
+    .nav__logo-sub {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+    .nav__links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      transition: color var(--transition);
+      padding-block: 0.25rem;
+    }
+    .nav__links a:hover { color: var(--color-navy); }
+    .nav__links a[aria-current="page"] {
+      color: var(--color-navy);
+      font-weight: 600;
+      border-bottom: 2px solid currentColor;
+    }
+
+    .nav__right {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-shrink: 0;
+    }
+    .nav__phone {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-teal);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .nav__phone:hover { color: var(--color-navy); }
+
+    /* More / Mega Menu */
+    .nav__more-wrap { position: relative; }
+    .nav__more-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding-block: 0.25rem;
+      font-family: var(--font-body);
+      transition: color var(--transition);
+    }
+    .nav__more-btn:hover,
+    .nav__more-btn[aria-expanded="true"] { color: var(--color-navy); }
+    .nav__more-chevron { transition: transform 0.2s ease; }
+    .nav__more-btn[aria-expanded="true"] .nav__more-chevron { transform: rotate(180deg); }
+
+    .nav__mega {
+      display: none;
+      position: absolute;
+      top: calc(100% + 1rem);
+      right: -1rem;
+      width: 580px;
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      z-index: 200;
+    }
+    .nav__mega.is-open {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+    }
+    .nav__mega-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.7rem 0.75rem;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: background var(--transition);
+    }
+    .nav__mega-item:hover { background: var(--color-bg); }
+    .nav__mega-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--color-bg-warm);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-teal);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .nav__mega-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-navy);
+      line-height: 1.3;
+    }
+    .nav__mega-desc {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      line-height: 1.4;
+      margin-top: 0.15rem;
+    }
+
+    /* Hamburger */
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      padding: 0 10px;
+      flex-shrink: 0;
+    }
+    .nav__hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--color-navy);
+      border-radius: 2px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .nav__hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav__hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav__hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .nav__drawer {
+      display: none;
+      position: fixed;
+      inset: 72px 0 0 0;
+      background: var(--color-white);
+      z-index: 150;
+      overflow-y: auto;
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-md);
+    }
+    .nav__drawer.is-open { display: block; }
+    .nav__drawer-links {
+      list-style: none;
+      margin: 0 0 var(--space-md) 0;
+      padding: 0;
+    }
+    .nav__drawer-links li a {
+      display: block;
+      padding: 0.85rem 0;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--color-navy);
+      border-bottom: 1px solid var(--color-border);
+      text-decoration: none;
+    }
+    .nav__drawer-links li a:hover { color: var(--color-teal); }
+    .nav__drawer-section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin: var(--space-sm) 0 var(--space-xs);
+    }
+    .nav__drawer-more {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-md);
+    }
+    .nav__drawer-more a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 0.75rem;
+      background: var(--color-bg);
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--color-navy);
+      text-decoration: none;
+      border: 1px solid var(--color-border);
+    }
+    .nav__drawer-more a:hover { background: var(--color-bg-warm); }
+    .nav__drawer-cta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      padding-top: var(--space-sm);
+      border-top: 1px solid var(--color-border);
+    }
+    .nav__drawer-cta .btn { width: 100%; justify-content: center; }
+
+    @media (max-width: 768px) {
+      .nav__links, .nav__phone { display: none; }
+      .nav__hamburger { display: flex; }
+    }
+
+    /* ============================================================
+       HERO — CINEMATIC FULL-WIDTH
+       ============================================================ */
+    .hero {
+      background: var(--color-bg);
+      padding-top: var(--space-3xl);
+      padding-bottom: var(--space-3xl);
+    }
+
+    .hero__split {
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .hero h1 {
+      color: var(--color-navy);
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .hero__right {
+      padding-bottom: 0.5rem;
+    }
+
+    .hero__sub {
+      font-size: clamp(1rem, 1.3vw, 1.15rem);
+      color: var(--color-text-muted);
+      line-height: 1.65;
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero__stat-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--color-navy);
+      border-radius: 999px;
+      padding: 0.5rem 1.25rem 0.5rem 0.75rem;
+      color: var(--color-white);
+    }
+    .hero__stat-chip-number {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .hero__stat-chip-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      opacity: 0.85;
+    }
+
+    .hero__image-wrap {
+      position: relative;
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+      margin-top: var(--space-xl);
+    }
+
+    .hero__image-wrap .fpo {
+      width: 100%;
+      height: 380px;
+      border-radius: var(--radius-xl);
+    }
+
+    @media (max-width: 768px) {
+      .hero__split {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+      .hero h1 { font-size: clamp(2.2rem, 8vw, 3rem); }
+      .hero__image-wrap .fpo { height: 260px; }
+    }
+
+    /* ============================================================
+       STATE OVERVIEW GRID
+       ============================================================ */
+    .state-overview {
+      background: var(--color-white);
+    }
+    .state-overview__header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+    .state-overview__header h2 {
+      color: var(--color-navy);
+      margin-bottom: var(--space-xs);
+    }
+    .state-overview__header p {
+      color: var(--color-text-muted);
+      font-size: 1.05rem;
+    }
+    .state-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+    .state-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: transform var(--transition), border-color var(--transition);
+      text-decoration: none;
+      color: inherit;
+    }
+    .state-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--color-navy);
+    }
+    .state-card__icon {
+      width: 40px;
+      height: 40px;
+      background: var(--color-teal-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-teal);
+      flex-shrink: 0;
+    }
+    .state-card__name {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-navy);
+    }
+    .state-card__count {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .state-card__desc {
+      font-size: 0.87rem;
+      color: var(--color-text-muted);
+      line-height: 1.55;
+      flex-grow: 1;
+    }
+    .state-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-teal);
+      margin-top: auto;
+    }
+    .state-card:hover .state-card__link { color: var(--color-navy); }
+
+    .state-card--last {
+      grid-column: 2 / 3;
+    }
+
+    @media (max-width: 900px) {
+      .state-cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .state-card--last { grid-column: auto; }
+    }
+    @media (max-width: 640px) {
+      .state-cards-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       SEARCH / FILTER BAR
+       ============================================================ */
+    .search-bar {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      max-width: 560px;
+      margin: 0 auto var(--space-xl);
+    }
+    .search-bar__icon {
+      color: var(--color-text-muted);
+      flex-shrink: 0;
+    }
+    .search-bar__input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--color-text);
+      background: transparent;
+    }
+    .search-bar__input::placeholder {
+      color: var(--color-text-muted);
+    }
+    .search-bar__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.5rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-white);
+      background: var(--color-navy);
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .search-bar__btn:hover { background: var(--color-teal); }
+
+    /* ============================================================
+       STATE DETAIL SECTIONS
+       ============================================================ */
+    .state-detail {
+      scroll-margin-top: 90px;
+      padding-block: var(--space-2xl);
+    }
+    .state-detail--alt { background: var(--color-bg); }
+    .state-detail--white { background: var(--color-white); }
+
+    .state-detail__header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: var(--space-xs);
+    }
+    .state-detail__icon {
+      width: 36px;
+      height: 36px;
+      background: var(--color-teal-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-teal);
+      flex-shrink: 0;
+    }
+    .state-detail__name {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 600;
+      color: var(--color-navy);
+    }
+    .state-detail__desc {
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+      max-width: 640px;
+      line-height: 1.65;
+      margin-bottom: var(--space-lg);
+    }
+
+    /* Location cards — horizontal layout */
+    .loc-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+    }
+    .loc-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: transform var(--transition), border-color var(--transition);
+    }
+    .loc-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--color-navy);
+    }
+    .state-detail--alt .loc-card {
+      background: var(--color-white);
+    }
+
+    .loc-card__city {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 1.5vw, 1.15rem);
+      font-weight: 600;
+      color: var(--color-navy);
+      margin-bottom: 0.15rem;
+    }
+    .loc-card__address {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      line-height: 1.55;
+      margin-bottom: 0.25rem;
+    }
+    .loc-card__phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-teal);
+      white-space: nowrap;
+    }
+    .loc-card__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--color-border);
+    }
+    .loc-card__action {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-teal);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color var(--transition);
+    }
+    .loc-card__action:hover { color: var(--color-navy); }
+    .loc-card__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      background: var(--color-bg);
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid var(--color-border);
+    }
+
+    @media (max-width: 900px) {
+      .loc-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .loc-card {
+        border-top: 1px solid var(--color-border);
+      }
+    }
+
+    /* ============================================================
+       CTA BANNER — 2-COL
+       ============================================================ */
+    .cta-banner {
+      background: var(--color-bg-warm);
+    }
+    .cta-banner__inner {
+      display: grid;
+      grid-template-columns: 1fr 0.8fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    .cta-banner__text h2 {
+      color: var(--color-navy);
+      margin-bottom: var(--space-sm);
+    }
+    .cta-banner__sub {
+      font-size: clamp(1rem, 1.5vw, 1.1rem);
+      color: var(--color-text-muted);
+      max-width: 480px;
+      margin-bottom: var(--space-lg);
+      line-height: 1.7;
+    }
+    .cta-banner__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+    .cta-banner__image .fpo {
+      height: 320px;
+      border-radius: var(--radius-xl);
+    }
+
+    @media (max-width: 768px) {
+      .cta-banner__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .cta-banner__sub { margin-inline: auto; }
+      .cta-banner__actions { justify-content: center; }
+      .cta-banner__image { order: -1; }
+      .cta-banner__image .fpo { height: 240px; }
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .site-footer {
+      background: #1A1A1A;
+      color: rgba(255,255,255,0.7);
+    }
+    .footer__top {
+      padding-block: var(--space-2xl);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap: var(--space-xl);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer__brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: var(--space-md);
+    }
+    .footer__logo-mark {
+      width: 44px;
+      height: 44px;
+      background: #444444;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .footer__logo-text {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-white);
+      line-height: 1.2;
+    }
+    .footer__logo-sub {
+      font-family: var(--font-body);
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      display: block;
+    }
+    .footer__tagline {
+      font-size: 0.87rem;
+      line-height: 1.6;
+      margin-bottom: var(--space-md);
+      color: rgba(255,255,255,0.55);
+    }
+    .footer__contact a {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.35rem;
+      transition: color var(--transition);
+    }
+    .footer__contact a:hover { color: var(--color-white); }
+    .footer__badges {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: var(--space-md);
+    }
+    .footer__badge-fpo {
+      background: rgba(255,255,255,0.06);
+      border: 1px dashed rgba(255,255,255,0.2);
+      border-radius: var(--radius-sm);
+      padding: 0.35rem 0.6rem;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.4);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .footer__col-heading {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: var(--space-sm);
+    }
+    .footer__col-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .footer__col-links a {
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.6);
+      transition: color var(--transition);
+    }
+    .footer__col-links a:hover { color: var(--color-white); }
+    .footer__social {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: var(--space-sm);
+    }
+    .footer__social-btn {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.07);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      transition: background var(--transition), color var(--transition);
+      text-decoration: none;
+    }
+    .footer__social-btn:hover {
+      background: #444444;
+      color: var(--color-white);
+    }
+    .footer__bottom {
+      padding-block: var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .footer__copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer__legal-links { display: flex; gap: var(--space-md); }
+    .footer__legal-links a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      transition: color var(--transition);
+    }
+    .footer__legal-links a:hover { color: rgba(255,255,255,0.7); }
+
+    @media (max-width: 900px) {
+      .footer__top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 540px) {
+      .footer__top { grid-template-columns: 1fr; }
+    }
+
+    /* Screen-reader-only */
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Grayscale overrides */
+    * { box-shadow: none !important; }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <!-- Wireframe version switcher -->
+  <div class="wireframe-badge" id="wireframe-badge">
+    <div class="wireframe-badge__menu">
+      <a href="/wireframes/v3/csd-locations-wireframe.html" class="wireframe-badge__item"><span class="wireframe-badge__dot"></span>Version 3</a>
+      <a href="/wireframes/v2/csd-locations-wireframe.html" class="wireframe-badge__item is-current"><span class="wireframe-badge__dot"></span>Version 2</a>
+      <a href="/wireframes/v1/csd-locations-wireframe.html" class="wireframe-badge__item"><span class="wireframe-badge__dot"></span>Version 1</a>
+      <div class="wireframe-badge__home"><a href="/"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Project Home</a></div>
+    </div>
+    <button class="wireframe-badge__toggle" aria-label="Switch wireframe version">
+      V2.0
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+  </div>
+  <script>
+  (function() {
+    var badge = document.getElementById('wireframe-badge');
+    var toggle = badge.querySelector('.wireframe-badge__toggle');
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      badge.classList.toggle('is-open');
+    });
+    document.addEventListener('click', function() {
+      badge.classList.remove('is-open');
+    });
+    badge.querySelector('.wireframe-badge__menu').addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+  })();
+  </script>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <header class="site-header" role="banner">
+    <nav class="nav container" aria-label="Main navigation">
+
+      <a href="/" class="nav__logo" aria-label="Center for Social Dynamics — Home">
+        <div class="nav__logo-mark" aria-hidden="true"></div>
+        <div class="nav__logo-text">
+          <span class="nav__logo-name">Center for Social Dynamics</span>
+          <span class="nav__logo-sub">Autism &amp; ABA Therapy</span>
+        </div>
+      </a>
+
+      <ul class="nav__links" role="list">
+        <li><a href="csd-homepage-wireframe.html">Home</a></li>
+        <li><a href="csd-careers-wireframe.html">Careers</a></li>
+        <li><a href="csd-locations-wireframe.html" aria-current="page">Locations</a></li>
+        <li class="nav__more-wrap">
+          <button class="nav__more-btn" aria-expanded="false" aria-controls="nav-mega" id="nav-more-btn">
+            More
+            <svg class="nav__more-chevron" aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="nav__mega" id="nav-mega" role="region" aria-label="More navigation links">
+            <a href="javascript:void(0)" class="nav__mega-item">
+              <div class="nav__mega-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <div>
+                <div class="nav__mega-label">Resources for Families</div>
+                <div class="nav__mega-desc">Blog, guides &amp; support articles</div>
+              </div>
+            </a>
+            <a href="javascript:void(0)" class="nav__mega-item">
+              <div class="nav__mega-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div>
+                <div class="nav__mega-label">For Referring Providers</div>
+                <div class="nav__mega-desc">Partner referral tools &amp; info</div>
+              </div>
+            </a>
+            <a href="javascript:void(0)" class="nav__mega-item">
+              <div class="nav__mega-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div>
+                <div class="nav__mega-label">For Health Plans</div>
+                <div class="nav__mega-desc">Coverage &amp; payer partnerships</div>
+              </div>
+            </a>
+            <a href="javascript:void(0)" class="nav__mega-item">
+              <div class="nav__mega-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <div>
+                <div class="nav__mega-label">For School Districts</div>
+                <div class="nav__mega-desc">School-based program resources</div>
+              </div>
+            </a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav__right">
+        <a href="tel:+18779106538" class="nav__phone" aria-label="Call us: 877-910-6538">
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+          (877) 910-6538
+        </a>
+        <a href="javascript:void(0)" class="btn btn-primary btn-sm">Get Started</a>
+
+        <button class="nav__hamburger" id="nav-hamburger" aria-expanded="false" aria-controls="nav-drawer" aria-label="Open navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="nav__drawer" id="nav-drawer" role="dialog" aria-label="Mobile navigation">
+      <ul class="nav__drawer-links" role="list">
+        <li><a href="csd-homepage-wireframe.html">Home</a></li>
+        <li><a href="csd-careers-wireframe.html">Careers</a></li>
+        <li><a href="csd-locations-wireframe.html">Locations</a></li>
+      </ul>
+      <p class="nav__drawer-section-label">More</p>
+      <div class="nav__drawer-more">
+        <a href="javascript:void(0)">Resources for Families</a>
+        <a href="javascript:void(0)">Referring Providers</a>
+        <a href="javascript:void(0)">Health Plans</a>
+        <a href="javascript:void(0)">School Districts</a>
+      </div>
+      <div class="nav__drawer-cta">
+        <a href="tel:+18779106538" class="btn btn-outline">(877) 910-6538</a>
+        <a href="javascript:void(0)" class="btn btn-primary">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       MAIN CONTENT
+       ============================================================ -->
+  <main id="main-content">
+
+    <!-- ======================== HERO ======================== -->
+    <section class="hero" aria-labelledby="hero-heading">
+
+      <div class="hero__split fade-in">
+        <div class="hero__left">
+          <h1 id="hero-heading">Find a CSD Near You</h1>
+        </div>
+        <div class="hero__right">
+          <p class="hero__sub">
+            With centers, in-home, and virtual services across seven states, quality ABA therapy is closer than you think. We serve families wherever they are.
+          </p>
+          <div class="hero__stat-chip">
+            <span class="hero__stat-chip-number">7</span>
+            <span class="hero__stat-chip-label">States Served</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__image-wrap fade-in fade-in--delay-1">
+        <div class="fpo" role="img" aria-label="FPO: CSD center exterior or map — welcoming, modern facility">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="8.5" cy="8.5" r="2.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span class="fpo__label">FPO — Hero Image</span>
+          <span class="fpo__desc">CSD center exterior or map — welcoming, modern facility</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ======================== STATE OVERVIEW GRID ======================== -->
+    <section class="state-overview section" aria-labelledby="overview-heading">
+      <div class="container">
+        <div class="state-overview__header fade-in">
+          <h2 id="overview-heading">Browse by State</h2>
+          <p>Select a state to view centers, addresses, and contact details.</p>
+        </div>
+        <div class="state-cards-grid">
+          <a href="#california" class="state-card fade-in fade-in--delay-1">
+            <div class="state-card__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3 class="state-card__name">California</h3>
+            <span class="state-card__count">13 Locations</span>
+            <p class="state-card__desc">Our largest footprint with centers from the Bay Area to SoCal, plus virtual and in-home throughout the state.</p>
+            <span class="state-card__link">View Locations <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></span>
+          </a>
+          <a href="#arizona" class="state-card fade-in fade-in--delay-2">
+            <div class="state-card__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3 class="state-card__name">Arizona</h3>
+            <span class="state-card__count">Virtual Only</span>
+            <p class="state-card__desc">Serving most counties with virtual and in-home ABA therapy. Physical center coming soon.</p>
+            <span class="state-card__link">View Locations <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></span>
+          </a>
+          <a href="#colorado" class="state-card fade-in fade-in--delay-3">
+            <div class="state-card__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3 class="state-card__name">Colorado</h3>
+            <span class="state-card__count">1 Location</span>
+            <p class="state-card__desc">Boulder center with services available throughout the entire state of Colorado.</p>
+            <span class="state-card__link">View Locations <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></span>
+          </a>
+          <a href="#hawaii" class="state-card fade-in fade-in--delay-4">
+            <div class="state-card__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3 class="state-card__name">Hawaii</h3>
+            <span class="state-card__count">1 Location</span>
+            <p class="state-card__desc">Honolulu center bringing quality ABA services to island families.</p>
+            <span class="state-card__link">View Locations <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></span>
+          </a>
+          <a href="#new-mexico" class="state-card fade-in fade-in--delay-5">
+            <div class="state-card__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3 class="state-card__name">New Mexico</h3>
+            <span class="state-card__count">2 Locations</span>
+            <p class="state-card__desc">Centers in Alamogordo and Aztec serving families in the Land of Enchantment.</p>
+            <span class="state-card__link">View Locations <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></span>
+          </a>
+          <a href="#oregon" class="state-card fade-in fade-in--delay-6">
+            <div class="state-card__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3 class="state-card__name">Oregon</h3>
+            <span class="state-card__count">2 Locations</span>
+            <p class="state-card__desc">Portland and Beaverton centers supporting Oregon families with ABA therapy.</p>
+            <span class="state-card__link">View Locations <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></span>
+          </a>
+          <a href="#washington" class="state-card state-card--last fade-in fade-in--delay-6">
+            <div class="state-card__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3 class="state-card__name">Washington</h3>
+            <span class="state-card__count">1 Location</span>
+            <p class="state-card__desc">Tumwater center serving families in the Pacific Northwest.</p>
+            <span class="state-card__link">View Locations <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== SEARCH BAR ======================== -->
+    <div class="container" style="padding-top: var(--space-xl);">
+      <div class="search-bar fade-in">
+        <div class="search-bar__icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <input type="text" class="search-bar__input" placeholder="Search by city or state..." aria-label="Search locations by city or state" disabled />
+        <button class="search-bar__btn" type="button" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          Filter
+        </button>
+      </div>
+    </div>
+
+    <!-- ======================== STATE DETAIL: CALIFORNIA ======================== -->
+    <section id="california" class="state-detail state-detail--white" aria-labelledby="detail-california">
+      <div class="container">
+        <div class="state-detail__header fade-in">
+          <div class="state-detail__icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h2 class="state-detail__name" id="detail-california">California</h2>
+        </div>
+        <p class="state-detail__desc fade-in">Our largest service area with 13 locations spanning the Bay Area, Central Valley, Sacramento, and Southern California. Virtual and in-home services available statewide.</p>
+        <div class="loc-grid">
+          <div class="loc-card fade-in"><h3 class="loc-card__city">Gilroy</h3><p class="loc-card__address">7800 Arroyo Cir. Unit B, Gilroy, CA 95020</p><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a><a href="javascript:void(0)" class="loc-card__action"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Directions</a></div></div>
+          <div class="loc-card fade-in"><h3 class="loc-card__city">Martinez</h3><p class="loc-card__address">1330 Arnold Dr. Suite 148, Martinez, CA 94553</p><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a><a href="javascript:void(0)" class="loc-card__action"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Directions</a></div></div>
+          <div class="loc-card fade-in"><h3 class="loc-card__city">Modesto</h3><p class="loc-card__address">2401 East Orangeberg Ave. Ste. 675-243, Modesto, CA 95355</p><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a><a href="javascript:void(0)" class="loc-card__action"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Directions</a></div></div>
+          <div class="loc-card fade-in"><h3 class="loc-card__city">Monterey</h3><p class="loc-card__address">395 Del Monte Center #233, Monterey, CA 93940</p><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a><a href="javascript:void(0)" class="loc-card__action"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Directions</a></div></div>
+          <div class="loc-card fade-in"><h3 class="loc-card__city">Oakland</h3><p class="loc-card__address">6001 Telegraph Ave. Oakland, CA 94609</p><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a><a href="javascript:void(0)" class="loc-card__action"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Directions</a></div></div>
+          <div class="loc-card fade-in"><h3 class="loc-card__city">OC, LA &amp; Inland Empire</h3><p class="loc-card__address">No physical center. Services via virtual and in-home sessions.</p><span class="loc-card__badge" style="margin-top:0.5rem"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Virtual &amp; In-Home Only</span></div><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a></div></div>
+          <div class="loc-card fade-in"><h3 class="loc-card__city">Rohnert Park</h3><p class="loc-card__address">2 Padre Pkwy. Ste. 101, Rohnert Park, CA 94928</p><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a><a href="javascript:void(0)" class="loc-card__action"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Directions</a></div></div>
+          <div class="loc-card fade-in"><h3 class="loc-card__city">Santa Clara</h3><p class="loc-card__address">3170 De La Cruz Blv Ste 111, Santa Clara, CA 95054</p><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a><a href="javascript:void(0)" class="loc-card__action"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Directions</a></div></div>
+          <div class="loc-card fade-in"><h3 class="loc-card__city">San Jose</h3><p class="loc-card__address">1045 Willow St. San Jose, CA 95125</p><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a><a href="javascript:void(0)" class="loc-card__action"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Directions</a></div></div>
+          <div class="loc-card fade-in"><h3 class="loc-card__city">Santa Cruz</h3><p class="loc-card__address">325 Soquel Ave. Ste. 2, Santa Cruz, CA 95076</p><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a><a href="javascript:void(0)" class="loc-card__action"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Directions</a></div></div>
+          <div class="loc-card fade-in"><h3 class="loc-card__city">Sacramento</h3><p class="loc-card__address">10390 Coloma Rd. Suite A, Rancho Cordova, CA 95670</p><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a><a href="javascript:void(0)" class="loc-card__action"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Directions</a></div></div>
+          <div class="loc-card fade-in"><h3 class="loc-card__city">San Bruno</h3><p class="loc-card__address">1001 Sneath Lane #200, San Bruno, CA 94066</p><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a><a href="javascript:void(0)" class="loc-card__action"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Directions</a></div></div>
+          <div class="loc-card fade-in"><h3 class="loc-card__city">Vallejo</h3><p class="loc-card__address">150 Glen Cove Marina Rd. #102, Vallejo, CA 94591</p><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a><a href="javascript:void(0)" class="loc-card__action"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Directions</a></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== STATE DETAIL: ARIZONA ======================== -->
+    <section id="arizona" class="state-detail state-detail--alt" aria-labelledby="detail-arizona">
+      <div class="container">
+        <div class="state-detail__header fade-in"><div class="state-detail__icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><h2 class="state-detail__name" id="detail-arizona">Arizona</h2></div>
+        <p class="state-detail__desc fade-in">Serving most Arizona counties with virtual and in-home ABA therapy. Physical center coming soon.</p>
+        <div class="loc-grid">
+          <div class="loc-card fade-in"><h3 class="loc-card__city">Coming Soon</h3><p class="loc-card__address">Serving most Arizona counties with virtual and in-home ABA therapy.</p><span class="loc-card__badge" style="margin-top:0.5rem"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Center Coming Soon</span></div><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== STATE DETAIL: COLORADO ======================== -->
+    <section id="colorado" class="state-detail state-detail--white" aria-labelledby="detail-colorado">
+      <div class="container">
+        <div class="state-detail__header fade-in"><div class="state-detail__icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><h2 class="state-detail__name" id="detail-colorado">Colorado</h2></div>
+        <p class="state-detail__desc fade-in">Boulder center with services available throughout all of Colorado.</p>
+        <div class="loc-grid">
+          <div class="loc-card fade-in"><h3 class="loc-card__city">Boulder</h3><p class="loc-card__address">2500 Arapahoe Ave. Suite 230, Boulder, CO 80302</p><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a><a href="javascript:void(0)" class="loc-card__action"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Directions</a></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== STATE DETAIL: HAWAII ======================== -->
+    <section id="hawaii" class="state-detail state-detail--alt" aria-labelledby="detail-hawaii">
+      <div class="container">
+        <div class="state-detail__header fade-in"><div class="state-detail__icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><h2 class="state-detail__name" id="detail-hawaii">Hawaii</h2></div>
+        <p class="state-detail__desc fade-in">Bringing quality ABA services to island families with our Honolulu center.</p>
+        <div class="loc-grid">
+          <div class="loc-card fade-in"><h3 class="loc-card__city">Honolulu</h3><p class="loc-card__address">7 Waterfront Plaza, 500 Ala Moana Blvd, Suite 400, Honolulu, HI 96813</p><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a><a href="javascript:void(0)" class="loc-card__action"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Directions</a></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== STATE DETAIL: NEW MEXICO ======================== -->
+    <section id="new-mexico" class="state-detail state-detail--white" aria-labelledby="detail-newmexico">
+      <div class="container">
+        <div class="state-detail__header fade-in"><div class="state-detail__icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><h2 class="state-detail__name" id="detail-newmexico">New Mexico</h2></div>
+        <p class="state-detail__desc fade-in">Two centers in the Land of Enchantment, serving families in Alamogordo and Aztec.</p>
+        <div class="loc-grid">
+          <div class="loc-card fade-in"><h3 class="loc-card__city">Alamogordo</h3><p class="loc-card__address">1408 8th St. Alamogordo, NM 88310</p><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a><a href="javascript:void(0)" class="loc-card__action"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Directions</a></div></div>
+          <div class="loc-card fade-in"><h3 class="loc-card__city">Aztec</h3><p class="loc-card__address">100 Gossett Drive Suite B, Aztec, NM 87410</p><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a><a href="javascript:void(0)" class="loc-card__action"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Directions</a></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== STATE DETAIL: OREGON ======================== -->
+    <section id="oregon" class="state-detail state-detail--alt" aria-labelledby="detail-oregon">
+      <div class="container">
+        <div class="state-detail__header fade-in"><div class="state-detail__icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><h2 class="state-detail__name" id="detail-oregon">Oregon</h2></div>
+        <p class="state-detail__desc fade-in">Two centers in the Portland metro area supporting Oregon families with comprehensive ABA therapy.</p>
+        <div class="loc-grid">
+          <div class="loc-card fade-in"><h3 class="loc-card__city">Beaverton</h3><p class="loc-card__address">9725 SW Beaverton Hillside Hwy, Suite 100, Beaverton, OR 97005</p><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a><a href="javascript:void(0)" class="loc-card__action"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Directions</a></div></div>
+          <div class="loc-card fade-in"><h3 class="loc-card__city">Portland</h3><p class="loc-card__address">5847 NE 122nd Ave. Suite 200, Portland, OR 97203</p><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a><a href="javascript:void(0)" class="loc-card__action"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Directions</a></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== STATE DETAIL: WASHINGTON ======================== -->
+    <section id="washington" class="state-detail state-detail--white" aria-labelledby="detail-washington">
+      <div class="container">
+        <div class="state-detail__header fade-in"><div class="state-detail__icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><h2 class="state-detail__name" id="detail-washington">Washington</h2></div>
+        <p class="state-detail__desc fade-in">Serving Pacific Northwest families from our Tumwater center.</p>
+        <div class="loc-grid">
+          <div class="loc-card fade-in"><h3 class="loc-card__city">Tumwater</h3><p class="loc-card__address">6330 Capitol Blvd. SE, Tumwater, WA 98501</p><span class="loc-card__phone"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</span><div class="loc-card__actions"><a href="javascript:void(0)" class="loc-card__action">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></a><a href="javascript:void(0)" class="loc-card__action"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Directions</a></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== CTA BANNER ======================== -->
+    <section class="cta-banner section" aria-labelledby="cta-heading">
+      <div class="container">
+        <div class="cta-banner__inner fade-in">
+          <div class="cta-banner__text">
+            <h2 id="cta-heading">Don't See Your Area?</h2>
+            <p class="cta-banner__sub">
+              We're growing fast. Contact us to discuss services in your region.
+            </p>
+            <div class="cta-banner__actions">
+              <a href="tel:+18779106538" class="btn btn-primary">
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+                (877) 910-6538
+              </a>
+              <a href="javascript:void(0)" class="btn btn-outline">Contact Us</a>
+            </div>
+          </div>
+          <div class="cta-banner__image">
+            <div class="fpo" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="8.5" cy="8.5" r="2.5"/><path d="m21 15-5-5L5 21"/></svg>
+              <span class="fpo__label">FPO Image</span>
+              <span class="fpo__desc">Family or team photo — warm, inviting</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <div class="footer__brand-logo">
+            <div class="footer__logo-mark" aria-hidden="true">CSD</div>
+            <div>
+              <span class="footer__logo-text">Center for Social Dynamics</span>
+              <span class="footer__logo-sub">Autism &amp; ABA Therapy</span>
+            </div>
+          </div>
+          <p class="footer__tagline">Opening a world of possibilities—by making the world possible—for children with autism and their families.</p>
+          <address class="footer__contact" style="font-style:normal">
+            <a href="tel:+18779106538" aria-label="Phone: 877-910-6538"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg> (877) 910-6538</a>
+            <a href="mailto:info@csdautismservices.com"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> info@csdautismservices.com</a>
+          </address>
+          <div class="footer__badges" aria-label="Accreditation and certification badges (placeholders)">
+            <div class="footer__badge-fpo">BACB Accredited</div>
+            <div class="footer__badge-fpo">BHCOE Certified</div>
+            <div class="footer__badge-fpo">CARF</div>
+          </div>
+        </div>
+        <nav aria-label="Services navigation">
+          <h2 class="footer__col-heading">Services</h2>
+          <ul class="footer__col-links" role="list">
+            <li><a href="javascript:void(0)">Virtual &amp; VR Therapy</a></li>
+            <li><a href="javascript:void(0)">In-Home Therapy</a></li>
+            <li><a href="javascript:void(0)">Center-Based Therapy</a></li>
+            <li><a href="javascript:void(0)">School-Based Therapy</a></li>
+            <li><a href="javascript:void(0)">Request Services</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Company navigation">
+          <h2 class="footer__col-heading">Company</h2>
+          <ul class="footer__col-links" role="list">
+            <li><a href="javascript:void(0)">About CSD</a></li>
+            <li><a href="csd-careers-wireframe.html">Careers</a></li>
+            <li><a href="csd-locations-wireframe.html">Locations</a></li>
+            <li><a href="javascript:void(0)">Contact</a></li>
+            <li><a href="javascript:void(0)">Newsroom</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2 class="footer__col-heading">Connect</h2>
+          <ul class="footer__col-links" role="list">
+            <li><a href="javascript:void(0)">Family Resources</a></li>
+            <li><a href="javascript:void(0)">Insurance &amp; Coverage</a></li>
+            <li><a href="javascript:void(0)">CSD University</a></li>
+            <li><a href="javascript:void(0)">Referral Partners</a></li>
+          </ul>
+          <div class="footer__social" aria-label="CSD Social Media">
+            <a href="javascript:void(0)" class="footer__social-btn" aria-label="CSD on Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="javascript:void(0)" class="footer__social-btn" aria-label="CSD on Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="javascript:void(0)" class="footer__social-btn" aria-label="CSD on LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="javascript:void(0)" class="footer__social-btn" aria-label="CSD on YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2025 Center for Social Dynamics. All rights reserved.</p>
+        <nav class="footer__legal-links" aria-label="Legal navigation">
+          <a href="javascript:void(0)">Privacy Policy</a>
+          <a href="javascript:void(0)">Notice of Privacy Practices</a>
+          <a href="javascript:void(0)">Accessibility</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <script>
+    // ---- Mega menu ----
+    const moreBtn = document.getElementById('nav-more-btn');
+    const megaMenu = document.getElementById('nav-mega');
+
+    function openMega() {
+      megaMenu.classList.add('is-open');
+      moreBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeMega() {
+      megaMenu.classList.remove('is-open');
+      moreBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    moreBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      megaMenu.classList.contains('is-open') ? closeMega() : openMega();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!moreBtn.contains(e.target) && !megaMenu.contains(e.target)) closeMega();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMega();
+    });
+
+    // ---- Mobile hamburger ----
+    const hamburger = document.getElementById('nav-hamburger');
+    const drawer = document.getElementById('nav-drawer');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = drawer.classList.toggle('is-open');
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+      hamburger.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    drawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        drawer.classList.remove('is-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open navigation menu');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ---- Fade-in observer ----
+    const fadeObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            fadeObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -60px 0px' }
+    );
+
+    document.querySelectorAll('.fade-in').forEach((el) => {
+      fadeObserver.observe(el);
+    });
+  </script>
+
+</body>
+</html>

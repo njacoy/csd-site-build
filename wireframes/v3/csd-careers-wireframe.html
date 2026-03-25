@@ -1,0 +1,3160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Careers — Center for Social Dynamics (Wireframe)</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN SYSTEM — CSS VARIABLES
+       ============================================================ */
+    :root {
+      /* Colors */
+      --color-bg:         #FAFAF7;
+      --color-bg-warm:    #F5F0E8;
+      --color-navy:       #0B2D48;
+      --color-navy-light: #143D5E;
+      --color-teal:       #0E7490;
+      --color-teal-light: #E0F2F7;
+      --color-amber:      #D97706;
+      --color-amber-bg:   #FEF3C7;
+      --color-sage:       #3A7D5B;
+      --color-sage-light: #D1FAE5;
+      --color-text:       #1C2B3A;
+      --color-text-muted: #4A5568;
+      --color-border:     #D4CBBF;
+      --color-white:      #FFFFFF;
+
+      /* Typography */
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, -apple-system, sans-serif;
+
+      /* Spacing */
+      --space-xs:  0.5rem;
+      --space-sm:  1rem;
+      --space-md:  1.5rem;
+      --space-lg:  2.5rem;
+      --space-xl:  4rem;
+      --space-2xl: 6rem;
+      --space-3xl: 8rem;
+
+      /* Layout — flatter radius for wireframe feel */
+      --max-width: 1200px;
+      --radius-sm: 3px;
+      --radius-md: 4px;
+      --radius-lg: 6px;
+      --radius-xl: 8px;
+
+      /* Transitions */
+      --transition: 0.25s ease;
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--color-text);
+      background-color: var(--color-bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    /* ============================================================
+       ACCESSIBILITY
+       ============================================================ */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      padding: 0.75rem 1.25rem;
+      background: var(--color-navy);
+      color: var(--color-white);
+      font-family: var(--font-body);
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      z-index: 9999;
+      transition: top 0.2s;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--color-amber);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .fade-in {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    /* ============================================================
+       TYPOGRAPHY UTILITIES
+       ============================================================ */
+    .eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-teal);
+    }
+
+    .eyebrow--light {
+      color: rgba(255,255,255,0.88);
+    }
+
+    .eyebrow--amber {
+      color: var(--color-amber);
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
+    h2 { font-size: clamp(1.8rem, 3.5vw, 2.75rem); }
+    h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); }
+
+    .lead {
+      font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+      line-height: 1.7;
+      color: var(--color-text-muted);
+    }
+
+    /* ============================================================
+       LAYOUT UTILITIES
+       ============================================================ */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+    }
+
+    .section {
+      padding-block: var(--space-3xl);
+    }
+
+    .section--sm {
+      padding-block: var(--space-2xl);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+    }
+
+    @media (max-width: 900px) {
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.875rem 1.75rem;
+      min-height: 48px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
+      border: 2px solid transparent;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary {
+      background: var(--color-amber);
+      color: var(--color-navy);
+      border-color: var(--color-amber);
+    }
+
+    .btn-primary:hover {
+      background: #B45309;
+      border-color: #B45309;
+      color: var(--color-white);
+      box-shadow: 0 6px 20px rgba(217,119,6,0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-navy);
+      border-color: var(--color-navy);
+    }
+
+    .btn-outline:hover {
+      background: var(--color-navy);
+      color: var(--color-white);
+    }
+
+    .btn-outline--light {
+      background: transparent;
+      color: var(--color-white);
+      border-color: rgba(255,255,255,0.5);
+    }
+
+    .btn-outline--light:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: var(--color-white);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-teal);
+      border-color: transparent;
+      padding-inline: 0;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .btn-ghost:hover {
+      color: var(--color-navy);
+      transform: none;
+    }
+
+    /* ============================================================
+       FPO IMAGE PLACEHOLDERS
+       ============================================================ */
+    .fpo {
+      background: var(--color-teal-light);
+      border: 2px dashed var(--color-teal);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--color-teal);
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-align: center;
+      padding: 1.5rem;
+      overflow: hidden;
+    }
+
+    .fpo__label {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    .fpo__desc {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-navy);
+    }
+
+    .fpo svg {
+      opacity: 0.4;
+    }
+
+    /* ============================================================
+       SCROLL ANIMATIONS
+       ============================================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in--delay-1 { transition-delay: 0.1s; }
+    .fade-in--delay-2 { transition-delay: 0.2s; }
+    .fade-in--delay-3 { transition-delay: 0.3s; }
+    .fade-in--delay-4 { transition-delay: 0.4s; }
+
+    /* ============================================================
+       WIREFRAME ANNOTATION BADGE
+       ============================================================ */
+    .wireframe-badge {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 999;
+      font-family: var(--font-body);
+    }
+
+    .wireframe-badge__toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--color-navy);
+      color: var(--color-white);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+
+    .wireframe-badge__toggle:hover,
+    .wireframe-badge.is-open .wireframe-badge__toggle {
+      opacity: 1;
+    }
+
+    .wireframe-badge__toggle svg {
+      transition: transform 0.2s ease;
+    }
+
+    .wireframe-badge.is-open .wireframe-badge__toggle svg {
+      transform: rotate(180deg);
+    }
+
+    .wireframe-badge__menu {
+      position: absolute;
+      bottom: calc(100% + 0.5rem);
+      right: 0;
+      background: var(--color-navy);
+      border-radius: 10px;
+      padding: 0.35rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.15rem;
+      min-width: 160px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .wireframe-badge.is-open .wireframe-badge__menu {
+      display: flex;
+    }
+
+    .wireframe-badge__item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.65rem;
+      border-radius: 7px;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .wireframe-badge__item:hover {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+
+    .wireframe-badge__item.is-current {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+    }
+
+    .wireframe-badge__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      flex-shrink: 0;
+    }
+
+    .wireframe-badge__item.is-current .wireframe-badge__dot {
+      background: var(--color-teal, #5EC6C6);
+    }
+
+    .wireframe-badge__home {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 0.15rem;
+      padding-top: 0.3rem;
+    }
+
+    .wireframe-badge__home a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.65rem;
+      border-radius: 7px;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .wireframe-badge__home a:hover {
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ============================================================
+       1. NAVIGATION
+       ============================================================ */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: 0 1px 12px rgba(11,45,72,0.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      gap: var(--space-md);
+    }
+
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav__logo-mark {
+      width: 44px;
+      height: 44px;
+      background: var(--color-navy);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+
+    .nav__logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .nav__logo-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--color-navy);
+    }
+
+    .nav__logo-sub {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+
+    .nav__links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      transition: color var(--transition);
+      padding-block: 0.25rem;
+    }
+
+    .nav__links a:hover {
+      color: var(--color-navy);
+    }
+
+    .nav__links a[aria-current="page"] {
+      color: var(--color-navy);
+      font-weight: 600;
+      border-bottom: 2px solid currentColor;
+    }
+
+    .nav__right {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-shrink: 0;
+    }
+
+    .nav__phone {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-teal);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .nav__phone:hover {
+      color: var(--color-navy);
+    }
+
+    /* Mobile hamburger */
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: var(--radius-sm);
+      transition: background var(--transition);
+    }
+
+    .nav__hamburger:hover {
+      background: var(--color-teal-light);
+    }
+
+    .nav__hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--color-navy);
+      border-radius: 2px;
+      transition: transform var(--transition), opacity var(--transition);
+    }
+
+    /* Mobile drawer */
+    .nav__drawer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+    }
+
+    .nav__drawer.open {
+      display: block;
+    }
+
+    .nav__drawer-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(11,45,72,0.5);
+    }
+
+    .nav__drawer-panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: min(320px, 90vw);
+      height: 100%;
+      background: var(--color-white);
+      padding: 2rem 1.5rem;
+      overflow-y: auto;
+      box-shadow: -8px 0 32px rgba(11,45,72,0.15);
+    }
+
+    .nav__drawer-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 44px;
+      height: 44px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      color: var(--color-navy);
+      font-size: 1.5rem;
+      transition: background var(--transition);
+    }
+
+    .nav__drawer-close:hover {
+      background: var(--color-teal-light);
+    }
+
+    .nav__drawer-links {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .nav__drawer-links a {
+      display: block;
+      padding: 0.75rem 0.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--color-text);
+      border-bottom: 1px solid var(--color-border);
+      transition: color var(--transition);
+    }
+
+    .nav__drawer-links a:hover {
+      color: var(--color-teal);
+    }
+
+    .nav__drawer-cta {
+      margin-top: 1.5rem;
+    }
+
+    /* More mega-menu */
+    .nav__more-wrap {
+      position: relative;
+    }
+
+    .nav__more-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding-block: 0.25rem;
+      font-family: var(--font-body);
+      transition: color var(--transition);
+    }
+
+    .nav__more-btn:hover,
+    .nav__more-btn[aria-expanded="true"] {
+      color: var(--color-navy);
+    }
+
+    .nav__more-chevron {
+      transition: transform 0.2s ease;
+    }
+
+    .nav__more-btn[aria-expanded="true"] .nav__more-chevron {
+      transform: rotate(180deg);
+    }
+
+    .nav__mega {
+      display: none;
+      position: absolute;
+      top: calc(100% + 1rem);
+      right: -1rem;
+      width: 580px;
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      z-index: 200;
+    }
+
+    .nav__mega.is-open {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+    }
+
+    .nav__mega-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.7rem 0.75rem;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: background var(--transition);
+    }
+
+    .nav__mega-item:hover {
+      background: var(--color-bg);
+    }
+
+    .nav__mega-item:focus-visible {
+      outline: none;
+      background: var(--color-bg);
+    }
+
+    .nav__mega-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--color-bg-warm);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-teal);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .nav__mega-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-navy);
+      line-height: 1.3;
+    }
+
+    .nav__mega-desc {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      line-height: 1.4;
+      margin-top: 0.15rem;
+    }
+
+    .nav__mega-item--full {
+      grid-column: 1 / -1;
+      border-top: 1px solid var(--color-border);
+      margin-top: var(--space-xs);
+      padding-top: calc(var(--space-xs) + 0.5rem);
+    }
+
+    @media (max-width: 768px) {
+      .nav__links, .nav__phone, .nav__more-wrap { display: none; }
+      .nav__hamburger { display: flex; }
+      .nav__logo-text { display: none; }
+      .nav__right .btn { display: none; }
+    }
+
+    /* ============================================================
+       2. HERO
+       ============================================================ */
+    .careers-hero {
+      background: var(--color-bg);
+      padding-block: var(--space-3xl) var(--space-2xl);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .careers-hero::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -200px;
+      width: 750px;
+      height: 750px;
+      background: radial-gradient(circle, rgba(14,116,144,0.07) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    .careers-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(217,119,6,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .careers-hero__inner {
+      display: grid;
+      grid-template-columns: 1fr 0.85fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .careers-hero__content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .careers-hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--color-teal-light);
+      color: var(--color-teal);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: var(--space-md);
+    }
+
+    .careers-hero__headline {
+      color: var(--color-navy);
+      margin-bottom: var(--space-md);
+    }
+
+    .careers-hero__subhead {
+      font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-lg);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    .careers-hero__secondary {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-teal);
+      margin-bottom: var(--space-lg);
+    }
+
+    .careers-hero__ctas {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .careers-hero__media {
+      position: relative;
+      z-index: 1;
+    }
+
+    .careers-hero__image-wrap {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+
+    .careers-hero__image-wrap .fpo {
+      height: 500px;
+      border-radius: var(--radius-xl);
+    }
+
+    .careers-hero__float-chip {
+      position: absolute;
+      bottom: 2rem;
+      left: -2rem;
+      background: var(--color-white);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      box-shadow: 0 8px 32px rgba(11,45,72,0.15);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      z-index: 2;
+      min-width: 200px;
+      border: 1px solid var(--color-border);
+    }
+
+    .careers-hero__float-chip-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--color-sage-light);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .careers-hero__float-chip-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .careers-hero__float-chip-stat {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      line-height: 1;
+    }
+
+    .careers-hero__float-chip-label {
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+      font-weight: 500;
+      line-height: 1.3;
+      margin-top: 0.15rem;
+    }
+
+    @media (max-width: 900px) {
+      .careers-hero__inner { grid-template-columns: 1fr; }
+      .careers-hero__media { order: -1; }
+      .careers-hero__image-wrap .fpo { height: 300px; }
+      .careers-hero__float-chip { left: 1rem; bottom: 1rem; }
+    }
+
+    /* ============================================================
+       3. WHY WORK WITH US
+       ============================================================ */
+    .why-work {
+      background: var(--color-bg-warm);
+    }
+
+    .why-work__header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .why-work__heading {
+      color: var(--color-navy);
+      margin-top: var(--space-xs);
+    }
+
+    .why-work__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+    }
+
+    @media (max-width: 640px) {
+      .why-work__grid { grid-template-columns: 1fr; }
+    }
+
+    .pillar-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
+    }
+
+    .pillar-card:hover {
+      box-shadow: 0 8px 32px rgba(11,45,72,0.1);
+      transform: translateY(-3px);
+      border-color: var(--color-teal);
+    }
+
+    .pillar-card__icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .pillar-card__icon--1 { background: var(--color-teal-light); color: var(--color-teal); }
+    .pillar-card__icon--2 { background: var(--color-amber-bg); color: var(--color-amber); }
+    .pillar-card__icon--3 { background: var(--color-sage-light); color: var(--color-sage); }
+    .pillar-card__icon--4 { background: #EDE9FE; color: #7C3AED; }
+
+    .pillar-card__title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--color-navy);
+    }
+
+    .pillar-card__body {
+      font-size: 0.92rem;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    /* ============================================================
+       4. OUR PROMISE
+       ============================================================ */
+    .our-promise {
+      background: var(--color-navy);
+      color: var(--color-white);
+    }
+
+    .our-promise__header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .our-promise__heading {
+      color: var(--color-white);
+      margin-top: var(--space-xs);
+      max-width: 800px;
+      margin-inline: auto;
+    }
+
+    .our-promise__list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      max-width: 820px;
+      margin-inline: auto;
+    }
+
+    .promise-item {
+      display: flex;
+      gap: var(--space-md);
+      align-items: flex-start;
+      padding: var(--space-md) var(--space-lg);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-md);
+      transition: background var(--transition), border-color var(--transition);
+    }
+
+    .promise-item:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .promise-item__icon {
+      width: 44px;
+      height: 44px;
+      background: var(--color-teal);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .promise-item__text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.88);
+    }
+
+    .promise-item__text strong {
+      color: var(--color-white);
+      font-weight: 600;
+    }
+
+    /* ============================================================
+       CSD UNIVERSITY — BENTO GRID
+       ============================================================ */
+    .bento {
+      background: var(--color-bg);
+    }
+
+    .bento__header {
+      margin-bottom: var(--space-xl);
+      text-align: center;
+    }
+
+    .bento__header .lead {
+      margin-inline: auto;
+    }
+
+    .bento__header-heading {
+      color: var(--color-navy);
+      margin-top: var(--space-xs);
+    }
+
+    .bento__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: var(--space-md);
+    }
+
+    .bento__card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .bento__card--main {
+      grid-row: auto;
+      background: none;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      position: sticky;
+      top: calc(var(--space-3xl) + 60px);
+      align-self: start;
+    }
+
+    .bento__card--stat {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      text-align: left;
+      background: #1A1A1A;
+      color: #FFFFFF;
+      padding: var(--space-lg);
+    }
+
+    .bento__stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1;
+      color: #FFFFFF;
+      margin-bottom: 0.35rem;
+    }
+
+    .bento__stat-label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 0.2rem;
+    }
+
+    .bento__stat-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.5;
+    }
+
+    .bento__card--video .fpo {
+      height: 200px;
+      border-radius: var(--radius-md);
+    }
+
+    .bento__card--cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: var(--space-sm);
+      background: var(--color-bg-warm);
+    }
+
+    /* CTA Banner (cloned from homepage, adapted for light bg) */
+    .dream-cta {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+    .dream-cta__body {
+      padding: var(--space-xl) var(--space-2xl);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: var(--space-lg);
+    }
+    .dream-cta__headline {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-navy);
+      line-height: 1.35;
+      margin: 0;
+    }
+    .dream-cta__sub {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      margin: 0.4rem 0 0;
+      max-width: 520px;
+    }
+    .dream-cta__btn {
+      flex-shrink: 0;
+    }
+    @media (max-width: 900px) {
+      .dream-cta__body {
+        padding: var(--space-lg);
+      }
+      .dream-cta__btn { width: 100%; text-align: center; }
+    }
+
+    .bento__subheading {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--color-navy);
+      line-height: 1.15;
+    }
+
+    .bento__body {
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+      line-height: 1.75;
+    }
+
+    .bento__detail-row {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      background: var(--color-bg);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+    }
+
+    .bento__detail-item {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .bento__detail-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-teal);
+      white-space: nowrap;
+      margin-top: 0.15rem;
+      flex-shrink: 0;
+    }
+
+    .bento__detail-text {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 768px) {
+      .bento__grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+      .bento__card--main {
+        grid-row: auto;
+      }
+    }
+
+    /* ============================================================
+       5. TEAM TESTIMONIALS
+       ============================================================ */
+    .team-testimonials {
+      background: var(--color-bg);
+    }
+
+    .team-testimonials__header {
+      text-align: left;
+      margin-bottom: var(--space-xl);
+    }
+
+    .team-testimonials__heading {
+      color: var(--color-navy);
+      margin-top: var(--space-xs);
+      margin-bottom: var(--space-sm);
+    }
+
+    .team-testimonials__subhead {
+      color: var(--color-text-muted);
+      max-width: 680px;
+      margin-inline: 0;
+    }
+
+    .team-testimonials__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .video-fpo-wrap {
+      position: relative;
+    }
+
+    .video-fpo-wrap .fpo {
+      height: 420px;
+      background: var(--color-navy);
+      border-color: rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.6);
+      border-radius: var(--radius-lg);
+    }
+
+    .video-fpo-wrap .fpo .fpo__desc {
+      color: rgba(255,255,255,0.85);
+    }
+
+    .video-play-badge {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      background: var(--color-amber);
+      color: var(--color-navy);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+
+    .ceo-message {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ceo-message__heading {
+      color: var(--color-navy);
+    }
+
+    .ceo-message__subhead {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      font-style: italic;
+    }
+
+    .ceo-message__photo {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .ceo-message__photo .fpo {
+      height: 100%;
+      min-height: 260px;
+    }
+
+    @media (max-width: 900px) {
+      .team-testimonials__inner { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       6. CAREER PATHWAYS
+       ============================================================ */
+    .career-pathways {
+      background: var(--color-bg-warm);
+    }
+
+    .career-pathways__header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .career-pathways__heading {
+      color: var(--color-navy);
+      margin-top: var(--space-xs);
+      margin-bottom: var(--space-sm);
+    }
+
+    .career-pathways__subhead {
+      color: var(--color-text-muted);
+      max-width: 680px;
+      margin-inline: auto;
+    }
+
+    .pathways-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+    }
+
+    @media (max-width: 768px) {
+      .pathways-grid { grid-template-columns: 1fr; }
+    }
+
+    .pathway-card {
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      min-height: 520px;
+      position: relative;
+      overflow: hidden;
+    }
+
+
+    .pathway-card--direct {
+      background: var(--color-teal);
+    }
+
+    .pathway-card--admin {
+      background: var(--color-navy);
+    }
+
+    .pathway-card__icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(255,255,255,0.15);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+    }
+
+    .pathway-card__heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 600;
+      color: var(--color-white);
+      line-height: 1.2;
+    }
+
+    .pathway-card__subtitle {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .pathway-card__divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      margin-block: 0.5rem;
+    }
+
+    .pathway-card__label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.4rem;
+    }
+
+    .pathway-card__mission {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.7;
+      margin-bottom: var(--space-xs);
+    }
+
+    .pathway-card__why {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.65;
+    }
+
+    .pathway-card__cta {
+      margin-top: auto;
+      padding-top: var(--space-sm);
+    }
+
+    /* ============================================================
+       7. DREAM ACADEMY
+       ============================================================ */
+    .dream-academy {
+      background: var(--color-bg);
+      overflow: hidden;
+    }
+
+    .dream-academy__inner {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: var(--space-2xl);
+      align-items: center;
+    }
+
+    .dream-academy__media {
+      position: relative;
+    }
+
+    .dream-academy__media .fpo {
+      height: 520px;
+      background: linear-gradient(135deg, var(--color-teal-light), var(--color-sage-light));
+      border-color: var(--color-teal);
+      border-radius: var(--radius-xl);
+    }
+
+    .dream-academy__accent-block {
+      position: absolute;
+      bottom: -24px;
+      right: -24px;
+      width: 160px;
+      height: 160px;
+      background: var(--color-amber-bg);
+      border-radius: var(--radius-lg);
+      border: 2px solid var(--color-amber);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+      padding: 1rem;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .dream-academy__accent-block-number {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      line-height: 1;
+    }
+
+    .dream-academy__accent-block-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      letter-spacing: 0.04em;
+      line-height: 1.35;
+    }
+
+    .dream-academy__content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .dream-academy__subheading {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 2vw, 1.6rem);
+      font-weight: 600;
+      color: var(--color-navy);
+      line-height: 1.25;
+    }
+
+    .dream-academy__body {
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+      line-height: 1.75;
+    }
+
+    .dream-academy__detail-row {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      background: var(--color-bg-warm);
+      border-radius: var(--radius-md);
+      padding: var(--space-md) var(--space-lg);
+      border-left: 4px solid var(--color-teal);
+    }
+
+    .dream-academy__detail-item {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .dream-academy__detail-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-teal);
+      white-space: nowrap;
+      margin-top: 0.15rem;
+      flex-shrink: 0;
+    }
+
+    .dream-academy__detail-text {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 900px) {
+      .dream-academy__inner { grid-template-columns: 1fr; }
+      .dream-academy__media .fpo { height: 320px; }
+      .dream-academy__accent-block { display: none; }
+    }
+
+    /* ============================================================
+       8. VALUES / OUR NORTH STAR
+       ============================================================ */
+    .values {
+      background: var(--color-bg-warm);
+    }
+
+    .values__header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .values__heading {
+      color: var(--color-navy);
+      margin-top: var(--space-xs);
+      margin-bottom: var(--space-sm);
+    }
+
+    .values__subhead {
+      color: var(--color-text-muted);
+      max-width: 600px;
+      margin-inline: auto;
+    }
+
+    .mission-callout {
+      background: var(--color-navy);
+      color: var(--color-white);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl) var(--space-2xl);
+      margin-bottom: var(--space-xl);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mission-callout::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(14,116,144,0.12);
+      pointer-events: none;
+    }
+
+    .mission-callout__label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-amber);
+      margin-bottom: var(--space-sm);
+    }
+
+    .mission-callout__text {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(255,255,255,0.92);
+      line-height: 1.65;
+      max-width: 860px;
+    }
+
+    @media (max-width: 768px) {
+      .mission-callout { padding: var(--space-lg); }
+    }
+
+    .values__grid-label {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--color-navy);
+      margin-bottom: var(--space-md);
+      text-align: center;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+
+    @media (max-width: 900px) {
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 540px) {
+      .values-grid { grid-template-columns: 1fr; }
+    }
+
+    .value-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      border-top: 3px solid var(--color-teal);
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+
+    .value-card:nth-child(2) { border-top-color: var(--color-amber); }
+    .value-card:nth-child(3) { border-top-color: var(--color-sage); }
+    .value-card:nth-child(4) { border-top-color: #7C3AED; }
+    .value-card:nth-child(5) { border-top-color: #0891B2; }
+    .value-card:nth-child(6) { border-top-color: var(--color-navy-light); }
+
+    .value-card:hover {
+      box-shadow: 0 6px 24px rgba(11,45,72,0.1);
+      transform: translateY(-2px);
+    }
+
+    .value-card__icon {
+      width: 40px;
+      height: 40px;
+      background: var(--color-teal-light);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-teal);
+    }
+
+    .value-card:nth-child(2) .value-card__icon { background: var(--color-amber-bg); color: var(--color-amber); }
+    .value-card:nth-child(3) .value-card__icon { background: var(--color-sage-light); color: var(--color-sage); }
+    .value-card:nth-child(4) .value-card__icon { background: #EDE9FE; color: #7C3AED; }
+    .value-card:nth-child(5) .value-card__icon { background: #E0F2FE; color: #0891B2; }
+    .value-card:nth-child(6) .value-card__icon { background: var(--color-teal-light); color: var(--color-navy); }
+
+    .value-card__title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--color-navy);
+    }
+
+    .value-card__body {
+      font-size: 0.87rem;
+      color: var(--color-text-muted);
+      line-height: 1.65;
+    }
+
+    .values__cta-area {
+      text-align: center;
+      margin-top: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .values__cta-text {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--color-navy);
+    }
+
+    /* ── Services cards (within values section) ── */
+    .services__scroll-track {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      padding-block: var(--space-xl);
+    }
+
+    .service-scroll-card {
+      width: clamp(300px, 52%, 520px);
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      box-shadow: 0 4px 24px rgba(11,45,72,0.07);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .service-scroll-card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .service-scroll-card--1 { align-self: flex-start; }
+    .service-scroll-card--2 { align-self: flex-end; }
+    .service-scroll-card--3 { align-self: flex-start; }
+    .service-scroll-card--4 { align-self: flex-end; }
+
+    .service-scroll-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .service-scroll-card__icon--virtual { background: var(--color-teal-light); color: var(--color-teal); }
+    .service-scroll-card__icon--home    { background: var(--color-amber-bg);   color: #92400E; }
+    .service-scroll-card__icon--center  { background: var(--color-sage-light); color: #166534; }
+    .service-scroll-card__icon--school  { background: #E4E4E4;                 color: #444; }
+
+    .service-scroll-card__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-weight: 600;
+      color: var(--color-navy);
+    }
+
+    .service-scroll-card__body {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .service-scroll-card {
+        width: 100%;
+        align-self: stretch !important;
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* ============================================================
+       9. FINAL CTA
+       ============================================================ */
+    .final-cta {
+      background: #F59E0B;
+      padding-block: var(--space-3xl);
+    }
+
+    .final-cta__inner {
+      text-align: center;
+      max-width: 720px;
+      margin-inline: auto;
+    }
+
+    .final-cta__heading {
+      color: var(--color-navy);
+      margin-bottom: var(--space-sm);
+    }
+
+    .final-cta__subhead {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--color-navy);
+      margin-bottom: var(--space-sm);
+      opacity: 0.85;
+    }
+
+    .final-cta__body {
+      font-size: 1rem;
+      color: var(--color-navy);
+      margin-bottom: var(--space-lg);
+      opacity: 0.8;
+    }
+
+    .final-cta .btn-navy {
+      background: var(--color-navy);
+      color: var(--color-white);
+      border-color: var(--color-navy);
+      font-size: 1.05rem;
+      padding: 1rem 2.25rem;
+    }
+
+    .final-cta .btn-navy:hover {
+      background: var(--color-navy-light);
+      border-color: var(--color-navy-light);
+      box-shadow: 0 6px 24px rgba(11,45,72,0.3);
+    }
+
+    /* ============================================================
+       10. FOOTER
+       ============================================================ */
+    .site-footer {
+      background: #071B2C;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .footer__top {
+      padding-block: var(--space-2xl);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap: var(--space-xl);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer__brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: var(--space-md);
+    }
+
+    .footer__logo-mark {
+      width: 44px;
+      height: 44px;
+      background: var(--color-teal);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .footer__logo-text {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-white);
+      line-height: 1.2;
+    }
+
+    .footer__logo-sub {
+      font-family: var(--font-body);
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      display: block;
+    }
+
+    .footer__tagline {
+      font-size: 0.87rem;
+      line-height: 1.6;
+      margin-bottom: var(--space-md);
+      color: rgba(255,255,255,0.55);
+    }
+
+    .footer__contact a {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.35rem;
+      transition: color var(--transition);
+    }
+
+    .footer__contact a:hover {
+      color: var(--color-white);
+    }
+
+    .footer__badges {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: var(--space-md);
+    }
+
+    .footer__badge-fpo {
+      background: rgba(255,255,255,0.06);
+      border: 1px dashed rgba(255,255,255,0.2);
+      border-radius: var(--radius-sm);
+      padding: 0.35rem 0.6rem;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.4);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .footer__col-heading {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: var(--space-sm);
+    }
+
+    .footer__col-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer__col-links a {
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.6);
+      transition: color var(--transition);
+    }
+
+    .footer__col-links a:hover {
+      color: var(--color-white);
+    }
+
+    .footer__social {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: var(--space-sm);
+    }
+
+    .footer__social-btn {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.07);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      transition: background var(--transition), color var(--transition);
+      text-decoration: none;
+    }
+
+    .footer__social-btn:hover {
+      background: var(--color-teal);
+      color: var(--color-white);
+    }
+
+    .footer__bottom {
+      padding-block: var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .footer__copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .footer__legal-links {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    .footer__legal-links a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      transition: color var(--transition);
+    }
+
+    .footer__legal-links a:hover {
+      color: rgba(255,255,255,0.7);
+    }
+
+    @media (max-width: 900px) {
+      .footer__top { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 540px) {
+      .footer__top { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       WIREFRAME OVERRIDES
+       ============================================================ */
+
+    /* Override all color variables to grayscale */
+    :root {
+      --color-bg:         #F4F4F4;
+      --color-bg-warm:    #E8E8E8;
+      --color-navy:       #1A1A1A;
+      --color-navy-light: #2A2A2A;
+      --color-teal:       #444444;
+      --color-teal-light: #D8D8D8;
+      --color-amber:      #2B2B2B;
+      --color-amber-bg:   #E0E0E0;
+      --color-sage:       #555555;
+      --color-sage-light: #DCDCDC;
+      --color-text:       #1A1A1A;
+      --color-text-muted: #555555;
+      --color-border:     #C0C0C0;
+      --color-white:      #FFFFFF;
+    }
+
+    /* Remove all box-shadows */
+    * { box-shadow: none !important; }
+
+    /* Body & general backgrounds */
+    body { background-color: #F4F4F4; }
+
+    /* Navigation */
+    .site-header {
+      background: #FFFFFF;
+      border-bottom-color: #C0C0C0;
+    }
+
+    .nav__logo-mark {
+      background: #1A1A1A;
+    }
+
+    .nav__links a:hover,
+    .nav__links a[aria-current="page"] {
+      border-bottom-color: #2B2B2B;
+      color: #1A1A1A;
+    }
+
+    /* Hero */
+    .careers-hero {
+      background: #F4F4F4;
+    }
+
+    .careers-hero::before,
+    .careers-hero::after {
+      display: none;
+    }
+
+    .careers-hero__eyebrow {
+      background: #D8D8D8;
+      color: #444444;
+    }
+
+    .careers-hero__headline { color: #1A1A1A; }
+    .careers-hero__secondary { color: #444444; }
+
+    /* Primary buttons → dark grayscale */
+    .btn-primary {
+      background: #2B2B2B;
+      color: #FFFFFF;
+      border-color: #2B2B2B;
+    }
+
+    .btn-primary:hover {
+      background: #1A1A1A;
+      border-color: #1A1A1A;
+      color: #FFFFFF;
+    }
+
+    /* Outline buttons */
+    .btn-outline {
+      color: #1A1A1A;
+      border-color: #1A1A1A;
+    }
+
+    .btn-outline:hover {
+      background: #1A1A1A;
+      color: #FFFFFF;
+    }
+
+    .btn-outline--light {
+      color: #FFFFFF;
+      border-color: rgba(255,255,255,0.5);
+    }
+
+    .btn-outline--light:hover {
+      background: rgba(255,255,255,0.15);
+    }
+
+    /* Ghost button */
+    .btn-ghost { color: #444444; }
+    .btn-ghost:hover { color: #1A1A1A; }
+
+    /* FPO placeholders */
+    .fpo {
+      background: #D8D8D8;
+      border-color: #888888;
+      color: #555555;
+    }
+
+    .fpo__desc { color: #1A1A1A; }
+
+    /* Why Work With Us */
+    .why-work { background: #E8E8E8; }
+
+    .pillar-card {
+      background: #FFFFFF;
+      border-color: #C0C0C0;
+    }
+
+    .pillar-card:hover {
+      border-color: #444444;
+    }
+
+    .pillar-card__icon--1 { background: #D8D8D8; color: #444444; }
+    .pillar-card__icon--2 { background: #D8D8D8; color: #444444; }
+    .pillar-card__icon--3 { background: #D8D8D8; color: #555555; }
+    .pillar-card__icon--4 { background: #D8D8D8; color: #444444; }
+
+    .pillar-card__title { color: #1A1A1A; }
+    .pillar-card__body { color: #555555; }
+
+    /* Our Promise — dark sections → #1A1A1A */
+    .our-promise { background: #1A1A1A; }
+
+    .promise-item {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .promise-item__icon { background: #444444; }
+
+    /* Testimonials */
+    .team-testimonials { background: #F4F4F4; }
+
+    .team-testimonials__heading { color: #1A1A1A; }
+
+    .video-fpo-wrap .fpo {
+      background: #2B2B2B;
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .video-play-badge {
+      background: #2B2B2B;
+      color: #FFFFFF;
+    }
+
+    .ceo-message__heading { color: #1A1A1A; }
+
+    /* Career Pathways */
+    .career-pathways { background: #E8E8E8; }
+
+    .pathway-card--direct { background: #2B2B2B; }
+    .pathway-card--admin  { background: #3A3A3A; }
+
+    /* Dream Academy */
+    .dream-academy { background: #F4F4F4; }
+
+    .dream-academy__media .fpo {
+      background: #D8D8D8;
+      border-color: #888888;
+    }
+
+    .dream-academy__accent-block {
+      background: #E0E0E0;
+      border-color: #888888;
+    }
+
+    .dream-academy__accent-block-number { color: #1A1A1A; }
+    .dream-academy__accent-block-label  { color: #555555; }
+
+    .dream-academy__detail-row {
+      background: #E8E8E8;
+      border-left: none;
+    }
+
+    .dream-academy__detail-label { color: #444444; }
+    .dream-academy__subheading   { color: #1A1A1A; }
+
+    /* Values */
+    .values { background: #E8E8E8; }
+
+    .values__heading  { color: #1A1A1A; }
+    .values__subhead  { color: #555555; }
+
+    .mission-callout {
+      background: #1A1A1A;
+    }
+
+    .mission-callout::before { display: none; }
+
+    .mission-callout__label { color: #AAAAAA; }
+
+    .values__grid-label { color: #1A1A1A; }
+    .values__cta-text   { color: #1A1A1A; }
+
+    /* Value cards */
+    .value-card {
+      background: #FFFFFF;
+      border: 1px solid #C0C0C0;
+    }
+
+    .value-card:nth-child(2),
+    .value-card:nth-child(3),
+    .value-card:nth-child(4),
+    .value-card:nth-child(5),
+    .value-card:nth-child(6) { border-top-color: #C0C0C0; }
+
+    .value-card__icon { background: #D8D8D8; color: #444444; }
+    .value-card:nth-child(2) .value-card__icon { background: #D8D8D8; color: #555555; }
+    .value-card:nth-child(3) .value-card__icon { background: #D8D8D8; color: #444444; }
+    .value-card:nth-child(4) .value-card__icon { background: #D8D8D8; color: #3A3A3A; }
+    .value-card:nth-child(5) .value-card__icon { background: #D8D8D8; color: #4A4A4A; }
+    .value-card:nth-child(6) .value-card__icon { background: #D8D8D8; color: #2A2A2A; }
+
+    .value-card__title { color: #1A1A1A; }
+    .value-card__body  { color: #555555; }
+
+    /* Final CTA → amber overridden to mid-gray */
+    .final-cta { background: #555555; }
+
+    .final-cta__heading  { color: #FFFFFF; }
+    .final-cta__subhead  { color: rgba(255,255,255,0.85); }
+    .final-cta__body     { color: rgba(255,255,255,0.75); }
+
+    .final-cta .btn-navy {
+      background: #FFFFFF;
+      color: #1A1A1A;
+      border-color: #FFFFFF;
+    }
+
+    .final-cta .btn-navy:hover {
+      background: #E8E8E8;
+      border-color: #E8E8E8;
+      color: #1A1A1A;
+    }
+
+    /* Footer */
+    .site-footer { background: #111111; }
+
+    .footer__logo-mark { background: #444444; }
+
+    .footer__social-btn:hover {
+      background: #444444;
+    }
+
+    /* Mega menu */
+    .nav__mega-icon {
+      background: #D8D8D8;
+      color: #444444;
+    }
+
+    .nav__mega-label { color: #1A1A1A; }
+    .nav__mega-desc  { color: #555555; }
+
+    /* Wireframe badge override to stay dark */
+    .wireframe-badge__toggle {
+      background: #1A1A1A;
+      color: #FFFFFF;
+      opacity: 0.85;
+    }
+
+    .wireframe-badge__menu {
+      background: #1A1A1A;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Skip navigation for keyboard/screen reader users -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Wireframe version switcher -->
+  <div class="wireframe-badge" id="wireframe-badge">
+    <div class="wireframe-badge__menu">
+      <a href="/wireframes/v3/csd-careers-wireframe.html" class="wireframe-badge__item is-current"><span class="wireframe-badge__dot"></span>Version 3</a>
+      <a href="/wireframes/v2/csd-careers-wireframe.html" class="wireframe-badge__item"><span class="wireframe-badge__dot"></span>Version 2</a>
+      <a href="/wireframes/v1/csd-careers-wireframe.html" class="wireframe-badge__item"><span class="wireframe-badge__dot"></span>Version 1</a>
+      <div class="wireframe-badge__home"><a href="/"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Project Home</a></div>
+    </div>
+    <button class="wireframe-badge__toggle" aria-label="Switch wireframe version">
+      V3.0
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+  </div>
+  <script>
+  (function() {
+    var badge = document.getElementById('wireframe-badge');
+    var toggle = badge.querySelector('.wireframe-badge__toggle');
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      badge.classList.toggle('is-open');
+    });
+    document.addEventListener('click', function() {
+      badge.classList.remove('is-open');
+    });
+    badge.querySelector('.wireframe-badge__menu').addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+  })();
+  </script>
+
+  <!-- ============================================================
+       1. NAVIGATION
+       ============================================================ -->
+  <header class="site-header" role="banner">
+    <nav class="nav container" aria-label="Main navigation">
+
+      <a href="/" class="nav__logo" aria-label="Center for Social Dynamics — Home">
+        <div class="nav__logo-mark" aria-hidden="true"></div>
+        <div class="nav__logo-text">
+          <span class="nav__logo-name">Center for Social Dynamics</span>
+          <span class="nav__logo-sub">Autism &amp; ABA Therapy</span>
+        </div>
+      </a>
+
+      <ul class="nav__links" role="list">
+        <li><a href="csd-homepage-wireframe.html">Home</a></li>
+        <li><a href="csd-careers-wireframe.html" aria-current="page">Careers</a></li>
+        <li><a href="csd-locations-wireframe.html">Locations</a></li>
+        <li class="nav__more-wrap">
+          <button class="nav__more-btn" id="nav-more-btn" aria-expanded="false" aria-controls="nav-mega">
+            More
+            <svg class="nav__more-chevron" aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="nav__mega" id="nav-mega" role="region" aria-label="More navigation links">
+            <a href="#" class="nav__mega-item">
+              <div class="nav__mega-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <div>
+                <div class="nav__mega-label">Resources for Families</div>
+                <div class="nav__mega-desc">Blog, guides &amp; support articles</div>
+              </div>
+            </a>
+            <a href="#" class="nav__mega-item">
+              <div class="nav__mega-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div>
+                <div class="nav__mega-label">For Referring Providers</div>
+                <div class="nav__mega-desc">Partner referral tools &amp; info</div>
+              </div>
+            </a>
+            <a href="#" class="nav__mega-item">
+              <div class="nav__mega-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div>
+                <div class="nav__mega-label">For Health Plans</div>
+                <div class="nav__mega-desc">Coverage &amp; payer partnerships</div>
+              </div>
+            </a>
+            <a href="#" class="nav__mega-item">
+              <div class="nav__mega-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <div>
+                <div class="nav__mega-label">For School Districts</div>
+                <div class="nav__mega-desc">School-based program resources</div>
+              </div>
+            </a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav__right">
+        <a href="tel:+18779106538" class="nav__phone" aria-label="Call us: 877-910-6538">
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+          (877) 910-6538
+        </a>
+        <a href="#apply" class="btn btn-primary">Apply Now</a>
+        <button class="nav__hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-drawer" id="hamburger-btn">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+
+    </nav>
+  </header>
+
+  <!-- Mobile drawer -->
+  <div class="nav__drawer" id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <div class="nav__drawer-overlay" id="drawer-overlay"></div>
+    <div class="nav__drawer-panel">
+      <button class="nav__drawer-close" id="drawer-close-btn" aria-label="Close navigation menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <nav class="nav__drawer-links" aria-label="Mobile navigation links">
+        <a href="csd-homepage-wireframe.html">Home</a>
+        <a href="csd-homepage-wireframe.html#services">Services</a>
+        <a href="csd-homepage-wireframe.html">About</a>
+        <a href="csd-careers-wireframe.html" aria-current="page">Careers</a>
+        <a href="csd-locations-wireframe.html">Locations</a>
+        <a href="/csd-university">CSD University</a>
+        <a href="/newsroom">Newsroom</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <div class="nav__drawer-cta">
+        <a href="#apply" class="btn btn-primary" style="width: 100%; justify-content: center;">Apply Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MAIN CONTENT
+       ============================================================ -->
+  <main id="main-content">
+
+    <!-- ============================================================
+         2. HERO
+         ============================================================ -->
+    <section class="careers-hero section" aria-labelledby="careers-hero-heading">
+      <div class="container">
+        <div class="careers-hero__inner">
+
+          <div class="careers-hero__content fade-in">
+            <div class="careers-hero__eyebrow" aria-hidden="true">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><circle cx="5" cy="5" r="5"/></svg>
+              Join Our CSD Family
+            </div>
+            <h1 class="careers-hero__headline" id="careers-hero-heading">
+              Maximize Your Impact and Accelerate Your Growth
+            </h1>
+            <p class="careers-hero__subhead">
+              CSD's culture of collaboration, purpose, and care for the whole person extends to our team members. Join us to make a difference in the world and unlock possibilities in your own career.
+            </p>
+            <div class="careers-hero__ctas">
+              <a href="#pathways" class="btn btn-primary">Browse Open Roles and Apply Now</a>
+            </div>
+          </div>
+
+          <div class="careers-hero__media fade-in fade-in--delay-2">
+            <div class="careers-hero__image-wrap">
+              <div class="fpo" role="img" aria-label="FPO: CSD team member smiling, working with a child — warm, energetic, clinical setting">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span class="fpo__label">FPO — Hero Image</span>
+                <span class="fpo__desc">CSD team member smiling,<br/>working with a child</span>
+              </div>
+            </div>
+            <div class="careers-hero__float-chip" aria-label="96 percent team member satisfaction rate">
+              <div class="careers-hero__float-chip-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+              <div class="careers-hero__float-chip-text">
+                <div class="careers-hero__float-chip-stat">96%</div>
+                <div class="careers-hero__float-chip-label">Team member<br/>satisfaction rate</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. WHY WORK WITH US
+         ============================================================ -->
+    <section class="why-work section" aria-labelledby="why-work-heading">
+      <div class="container">
+
+        <header class="why-work__header fade-in">
+          <p class="eyebrow">Why Work With Us</p>
+          <h2 class="why-work__heading" id="why-work-heading">Why Work With Us?</h2>
+        </header>
+
+        <div class="why-work__grid" role="list">
+
+          <article class="pillar-card fade-in fade-in--delay-1" role="listitem">
+            <div class="pillar-card__icon pillar-card__icon--1" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <h3 class="pillar-card__title">Raising the Bar for ABA Excellence</h3>
+            <p class="pillar-card__body">CSD is not just another ABA provider. We are the architects of possibility for children and teens with autism and ASD—and the clinicians and therapists who serve them. We stand at the intersection of compassion and evidence, where human connection meets clinical excellence.</p>
+          </article>
+
+          <article class="pillar-card fade-in fade-in--delay-2" role="listitem">
+            <div class="pillar-card__icon pillar-card__icon--2" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            </div>
+            <h3 class="pillar-card__title">Where Innovation Meets Passion</h3>
+            <p class="pillar-card__body">In an industry known for burnout and turnover, we do things differently. We care about you as much as our clients. We invest in you—the person who delivers life-changing breakthroughs on a daily basis, creating a professional community where innovation meets compassion, and your voice matters.</p>
+          </article>
+
+          <article class="pillar-card fade-in fade-in--delay-3" role="listitem">
+            <div class="pillar-card__icon pillar-card__icon--3" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <h3 class="pillar-card__title">Advocating for Diversity in Everything We Do</h3>
+            <p class="pillar-card__body">As champions for neurodivergent children, we practice what we preach. Our CSD family is diverse, and our Neurodivergent Advisory Board made up of team members deeply influences how we work.</p>
+          </article>
+
+          <article class="pillar-card fade-in fade-in--delay-4" role="listitem">
+            <div class="pillar-card__icon pillar-card__icon--4" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <h3 class="pillar-card__title">Free College</h3>
+            <p class="pillar-card__body">Yes! We invest in you to grow your career potential, and promote your success—100% funding your college degree through our exclusive partnerships with Strayer University and Capella University.</p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. OUR PROMISE
+         ============================================================ -->
+    <section class="our-promise section" aria-labelledby="promise-heading">
+      <div class="container">
+
+        <header class="our-promise__header fade-in">
+          <p class="eyebrow eyebrow--light">Our Commitment</p>
+          <h2 class="our-promise__heading" id="promise-heading">Our Core Promise to You—and Every CSD Team Member</h2>
+        </header>
+
+        <ul class="our-promise__list" role="list">
+
+          <li class="promise-item fade-in fade-in--delay-1">
+            <div class="promise-item__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <p class="promise-item__text"><strong>You will be supported:</strong> We prioritize self-care and professional development.</p>
+          </li>
+
+          <li class="promise-item fade-in fade-in--delay-2">
+            <div class="promise-item__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <p class="promise-item__text"><strong>You will grow:</strong> We offer 100% paid education, mentorship, and clear career pathways—prioritizing promotion from within our CSD family.</p>
+          </li>
+
+          <li class="promise-item fade-in fade-in--delay-3">
+            <div class="promise-item__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <p class="promise-item__text"><strong>You will feel purpose:</strong> Every day, you'll be an integral part of our mission to ensure no family waits for the care their child needs.</p>
+          </li>
+
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. TEAM TESTIMONIALS
+         ============================================================ -->
+    <section class="team-testimonials section" aria-labelledby="testimonials-heading">
+      <div class="container">
+
+        <header class="team-testimonials__header fade-in">
+          <p class="eyebrow">Don't Just Take Our Word</p>
+          <h2 class="team-testimonials__heading" id="testimonials-heading">Hear from Our Team</h2>
+          <p class="team-testimonials__subhead lead">
+            Here's what our BCBAs, RBTs, therapists, clinicians, and operational team members have to say.
+          </p>
+        </header>
+
+        <div class="team-testimonials__inner">
+
+          <!-- Left: Video FPO -->
+          <div class="video-fpo-wrap fade-in fade-in--delay-1">
+            <div class="fpo" role="img" aria-label="FPO: Video thumbnail — CSD team member testimonial" style="height: 420px; border-radius: var(--radius-lg);">
+              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none" opacity="0.5"/></svg>
+              <span class="fpo__label">FPO — Video Testimonial</span>
+              <span class="fpo__desc">CSD team member testimonial<br/>video placeholder</span>
+            </div>
+            <div class="video-play-badge" aria-hidden="true">Your dedication changes lives. We're here to support YOU.</div>
+          </div>
+
+          <!-- Right: CEO Message -->
+          <div class="ceo-message fade-in fade-in--delay-2">
+            <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px;">
+              <p class="eyebrow">A Message from Our CEO</p>
+              <h3 class="ceo-message__heading">Why You Matter to Us</h3>
+            </div>
+            <div class="ceo-message__photo" style="flex: 1;">
+              <div class="fpo" role="img" aria-label="FPO: CSD CEO headshot — warm, approachable, professional" style="height: 100%; min-height: 260px;">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span class="fpo__label">FPO — CEO Photo</span>
+                <span class="fpo__desc">CSD CEO headshot<br/>Warm, approachable, professional</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6. CAREER PATHWAYS
+         ============================================================ -->
+    <section class="career-pathways section" id="pathways" aria-labelledby="pathways-heading">
+      <div class="container">
+
+        <header class="career-pathways__header fade-in">
+          <p class="eyebrow">Career Pathways</p>
+          <h2 class="career-pathways__heading" id="pathways-heading">Your Career Pathway at CSD</h2>
+          <p class="career-pathways__subhead lead">
+            We're looking for passionate, growth-focused individuals ready to make a deep impact as a Clinician, BCBA, or essential Administrative Professional.
+          </p>
+        </header>
+
+        <div class="pathways-grid">
+
+          <!-- Direct Care Card -->
+          <article class="pathway-card pathway-card--direct fade-in fade-in--delay-1">
+            <div class="pathway-card__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3 class="pathway-card__heading">Direct Care Roles</h3>
+            <p class="pathway-card__subtitle">Clinicians, BCBAs, BCaBAs, ABA Therapists</p>
+            <hr class="pathway-card__divider" aria-hidden="true" />
+            <div class="pathway-card__label">Your Mission</div>
+            <p class="pathway-card__mission">To partner with families, designing custom-crafted ABA journeys to success that make learning feel like an adventure, leading to real-life breakthroughs.</p>
+            <div class="pathway-card__label">Why CSD</div>
+            <p class="pathway-card__why">Receive top-tier clinical supervision and enjoy autonomy, competitive compensation, and the support necessary to deliver evidence-based, fun, and effective care.</p>
+            <div class="pathway-card__cta">
+              <a href="#apply" class="btn btn-outline--light">View Open Direct Care Roles</a>
+            </div>
+          </article>
+
+          <!-- Admin & Ops Card -->
+          <article class="pathway-card pathway-card--admin fade-in fade-in--delay-2">
+            <div class="pathway-card__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3 class="pathway-card__heading">Administrative &amp; Operations Roles</h3>
+            <hr class="pathway-card__divider" aria-hidden="true" />
+            <div class="pathway-card__label">Your Mission</div>
+            <p class="pathway-card__mission">To be the essential support that ensures every family and clinician has a smooth, compassionate experience—making exceptional care accessible and efficient.</p>
+            <div class="pathway-card__label">Why CSD</div>
+            <p class="pathway-card__why">Be part of the team driving our sophisticated yet heart-centered operations, helping scale quality and accessibility nationwide.</p>
+            <div class="pathway-card__cta">
+              <a href="#apply" class="btn btn-outline--light">View Open Operational Roles</a>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CSD UNIVERSITY — BENTO GRID
+         ============================================================ -->
+    <section class="bento section" aria-labelledby="bento-heading">
+      <div class="container">
+
+        <header class="bento__header fade-in">
+          <p class="eyebrow">CSD University</p>
+          <h2 class="bento__header-heading" id="bento-heading">The CSD "Dream Academy" Advantage</h2>
+          <p class="lead" style="max-width: 680px;">Your education is our investment. We offer engaging and robust programs designed to help you reach your highest professional potential.</p>
+
+          <div class="bento__callouts" style="display: grid; grid-template-columns: 1fr 1px 1fr; gap: 0; margin-top: var(--space-xl); text-align: left;">
+            <div style="padding: var(--space-md) var(--space-lg); display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <div style="flex-shrink: 0; margin-top: 0.1rem;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.5;"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              </div>
+              <div>
+                <div style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--color-navy); margin-bottom: 0.25rem;">Your education is our investment</div>
+                <div style="font-size: 0.87rem; color: var(--color-text-muted); line-height: 1.5;">We offer engaging and robust programs designed to help you reach your highest professional potential.</div>
+              </div>
+            </div>
+            <div style="background: var(--color-border); margin-block: var(--space-sm);" aria-hidden="true"></div>
+            <div style="padding: var(--space-md) var(--space-lg); display: flex; align-items: flex-start; gap: var(--space-sm);">
+              <div style="flex-shrink: 0; margin-top: 0.1rem;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.5;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <div style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--color-navy); margin-bottom: 0.25rem;">We promote from within.</div>
+                <div style="font-size: 0.87rem; color: var(--color-text-muted); line-height: 1.5;">Industry-leading mentorship and financial support to thrive as a Board Certified Behavior Analyst.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fpo" role="img" aria-label="FPO: CSD Dream Academy — clinicians in training" style="width:100%; height:320px; margin-top: var(--space-xl); border-radius: var(--radius-lg); background: rgba(0,0,0,0.06); border: 1px dashed rgba(0,0,0,0.15); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem;">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="opacity:0.25;" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; color:rgba(0,0,0,0.3);">FPO — Section Image</span>
+            <strong style="font-size:0.75rem; color:rgba(0,0,0,0.4); font-weight:600;">Clinicians in training, mentorship, or graduation setting</strong>
+          </div>
+        </header>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); align-items: start;">
+
+          <!-- Left: Main content -->
+          <div class="bento__card bento__card--main fade-in">
+            <h3 class="bento__subheading">Dream Big, Launch Your BCBA Career</h3>
+            <p class="bento__body">We are fiercely committed to promoting from within and helping our team advance their clinical education. Learn about our industry-leading pathway that offers financial support and mentorship to become a Board Certified Behavior Analyst (BCBA).</p>
+
+          </div>
+
+          <!-- Right: Stat + stacked testimonials -->
+          <div class="fade-in fade-in--delay-1" style="display: flex; flex-direction: column; gap: var(--space-sm);">
+
+            <div class="bento__card bento__card--stat" style="flex-shrink: 0;">
+              <div class="bento__stat-number">100%</div>
+              <div class="bento__stat-label">College Funded by CSD</div>
+              <div class="bento__stat-desc">Tuition, books, and fees fully covered through the Dreams Come TRUE program.</div>
+            </div>
+
+            <div style="background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-md);">
+              <p style="font-family: var(--font-display); font-size: 0.95rem; font-style: italic; color: var(--color-text-muted); line-height: 1.55; margin-bottom: 0.75rem;">"Receiving the Dreams Come TRUE tuition benefit felt like a huge weight had been lifted off my shoulders."</p>
+              <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: #E0E0E0; flex-shrink: 0; display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                <div><div style="font-weight: 600; font-size: 0.8rem; color: var(--color-navy);">Team Member Name</div><div style="font-size: 0.7rem; color: var(--color-text-muted);">BCBA</div></div>
+              </div>
+            </div>
+
+            <!-- HOW card -->
+            <div class="bento__card bento__card--stat">
+              <div class="bento__stat-number" style="font-size: clamp(1.5rem, 3vw, 2rem);">How It Works</div>
+              <div class="bento__stat-label">Full Financial Backing</div>
+              <div class="bento__stat-desc">Achieve your certification and advanced degree with the full support and financial backing of CSD.</div>
+            </div>
+
+            <div style="background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-md);">
+              <p style="font-family: var(--font-display); font-size: 0.95rem; font-style: italic; color: var(--color-text-muted); line-height: 1.55; margin-bottom: 0.75rem;">"Dreams Come True has helped me pay for my classes... Financially, it has been a huge relief."</p>
+              <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: #E0E0E0; flex-shrink: 0; display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                <div><div style="font-weight: 600; font-size: 0.8rem; color: var(--color-navy);">Team Member Name</div><div style="font-size: 0.7rem; color: var(--color-text-muted);">Operations Manager</div></div>
+              </div>
+            </div>
+
+            <!-- WHY card -->
+            <div class="bento__card bento__card--stat">
+              <div class="bento__stat-number" style="font-size: clamp(1.5rem, 3vw, 2rem);">Why We Do It</div>
+              <div class="bento__stat-label">Investing in People Who Care</div>
+              <div class="bento__stat-desc">In an industry plagued by burnout and high turnover, we invest in compassionate people who care about helping children with autism light up and learn.</div>
+            </div>
+
+            <div style="background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-md);">
+              <p style="font-family: var(--font-display); font-size: 0.95rem; font-style: italic; color: var(--color-text-muted); line-height: 1.55; margin-bottom: 0.75rem;">"The generosity of the Dreams Come True program has allowed me to grow professionally from Special Education into a Clinical Leader."</p>
+              <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: #E0E0E0; flex-shrink: 0; display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                <div><div style="font-weight: 600; font-size: 0.8rem; color: var(--color-navy);">Team Member Name</div><div style="font-size: 0.7rem; color: var(--color-text-muted);">Clinical Leader</div></div>
+              </div>
+            </div>
+
+            <!-- Video testimonial FPO -->
+            <div class="fpo" role="img" aria-label="FPO: Dreams Come TRUE video testimonial" style="height: 220px; border-radius: var(--radius-lg);">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none" opacity="0.5"/></svg>
+              <span class="fpo__label">FPO — Video</span>
+              <span class="fpo__desc">Dreams Come TRUE testimonial<br/>video embed</span>
+            </div>
+
+            <div style="background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-md);">
+              <p style="font-family: var(--font-display); font-size: 0.95rem; font-style: italic; color: var(--color-text-muted); line-height: 1.55; margin-bottom: 0.75rem;">"The partnership between National University and CSD has enabled me to enter into a graduate level program and become the first in my family to graduate with a Master of Science."</p>
+              <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: #E0E0E0; flex-shrink: 0; display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                <div><div style="font-weight: 600; font-size: 0.8rem; color: var(--color-navy);">Team Member Name</div><div style="font-size: 0.7rem; color: var(--color-text-muted);">Clinical Leader</div></div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7b. VIDEO + DREAM ACADEMY TESTIMONIALS
+         ============================================================ -->
+    <section class="dream-testimonials section" aria-labelledby="dream-testimonials-heading">
+      <div class="container">
+        <div class="dream-cta fade-in" style="margin-bottom: var(--space-2xl);">
+          <div class="dream-cta__body">
+            <div>
+              <p class="dream-cta__headline">Ready to invest in your future?</p>
+              <p class="dream-cta__sub">Your education is our investment. Learn how the Dreams Come TRUE program can fund your degree.</p>
+            </div>
+            <a href="javascript:void(0)" class="btn btn-primary dream-cta__btn">Yes, I'm Interested in a Degree Program</a>
+          </div>
+        </div>
+
+
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. VALUES / OUR NORTH STAR
+         ============================================================ -->
+    <section class="values section" aria-labelledby="values-heading">
+      <div class="container">
+
+        <header class="values__header fade-in">
+          <p class="eyebrow">CSD's Values</p>
+          <h2 class="values__heading" id="values-heading">Our North Star</h2>
+          <p class="values__subhead lead">
+            It's not just about what you do. It's who you are and the impact you make that set you apart.
+          </p>
+        </header>
+
+        <div class="mission-callout fade-in" role="complementary" aria-label="CSD Mission Statement">
+          <div class="mission-callout__label">Our Mission</div>
+          <p class="mission-callout__text">
+            CSD opens a world of possibilities—by making the world possible—for children with autism and their families. We do this through compassionate, individually tailored, evidence-based care that meets you exactly where you are, guiding your child to success on an innovative, breakthrough ABA journey to successful skill building.
+          </p>
+        </div>
+
+        <h3 class="values__grid-label fade-in">CSD's Guiding Principles</h3>
+
+        <div class="services__scroll-track">
+          <article class="service-scroll-card service-scroll-card--1" aria-label="Resilience through support">
+            <div class="service-scroll-card__icon service-scroll-card__icon--virtual" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h4 class="service-scroll-card__title">Resilience through support</h4>
+            <p class="service-scroll-card__body">We know this work is hard. That's why we invest in our clinicians' growth, well-being, and professional development.</p>
+          </article>
+
+          <article class="service-scroll-card service-scroll-card--2" aria-label="Partnership over prescription">
+            <div class="service-scroll-card__icon service-scroll-card__icon--home" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h4 class="service-scroll-card__title">Partnership over prescription</h4>
+            <p class="service-scroll-card__body">Families are the true experts about their children. Our role is to listen and co-create ABA therapy plans for every family's goals, culture, and values.</p>
+          </article>
+
+          <article class="service-scroll-card service-scroll-card--3" aria-label="Innovation rooted in humanity">
+            <div class="service-scroll-card__icon service-scroll-card__icon--center" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            </div>
+            <h4 class="service-scroll-card__title">Innovation rooted in humanity</h4>
+            <p class="service-scroll-card__body">We push the boundaries of what ABA therapy can be, but never lose sight of the human moments that matter most.</p>
+          </article>
+
+          <article class="service-scroll-card service-scroll-card--4" aria-label="Science meets heart">
+            <div class="service-scroll-card__icon service-scroll-card__icon--school" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h4 class="service-scroll-card__title">Science meets heart</h4>
+            <p class="service-scroll-card__body">Data guides us. Empathy drives us. Every therapy plan is evidence-based and deeply personal.</p>
+          </article>
+
+          <article class="service-scroll-card service-scroll-card--1" aria-label="Access as a right">
+            <div class="service-scroll-card__icon service-scroll-card__icon--virtual" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <h4 class="service-scroll-card__title">Access as a right, not a privilege</h4>
+            <p class="service-scroll-card__body">We design our program around one question: How do we bring exceptional care to every child who needs it—regardless of where they are, who they are, or their culture?</p>
+          </article>
+
+          <article class="service-scroll-card service-scroll-card--2" aria-label="Humility in practice">
+            <div class="service-scroll-card__icon service-scroll-card__icon--home" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            </div>
+            <h4 class="service-scroll-card__title">Humility in practice</h4>
+            <p class="service-scroll-card__body">Our commitment to continuous improvement makes us better practitioners, advocates, and care providers.</p>
+          </article>
+        </div>
+
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         9. FINAL CTA
+         ============================================================ -->
+    <section class="final-cta" id="apply" aria-labelledby="final-cta-heading">
+      <div class="container">
+        <div class="final-cta__inner fade-in">
+          <h2 class="final-cta__heading" id="final-cta-heading">Ready to Join Our Change-Making CSD Family?</h2>
+          <p class="final-cta__subhead">Grow your career. Evolve your education. Celebrate breakthroughs.</p>
+          <p class="final-cta__body">Apply in minutes and take the first step towards a fulfilling, heart-centered, fiercely supportive career.</p>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
+            <a href="#" class="btn btn-primary">Apply Now</a>
+            <a href="#" class="btn btn-navy">View Open Roles in Your Area</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       10. FOOTER
+       ============================================================ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer__top">
+
+        <!-- Brand column -->
+        <div>
+          <div class="footer__brand-logo">
+            <div class="footer__logo-mark" aria-hidden="true">CSD</div>
+            <div>
+              <span class="footer__logo-text">Center for Social Dynamics</span>
+              <span class="footer__logo-sub">Autism &amp; ABA Therapy</span>
+            </div>
+          </div>
+          <p class="footer__tagline">
+            Opening a world of possibilities—by making the world possible—for children with autism and their families.
+          </p>
+          <address class="footer__contact" style="font-style: normal;">
+            <a href="tel:+18779106538" aria-label="Phone: 877-910-6538">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+              (877) 910-6538
+            </a>
+            <a href="mailto:info@csdautismservices.com">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              info@csdautismservices.com
+            </a>
+          </address>
+          <div class="footer__badges" aria-label="Accreditation and certification badges (placeholders)">
+            <div class="footer__badge-fpo">BACB Accredited</div>
+            <div class="footer__badge-fpo">BHCOE Certified</div>
+            <div class="footer__badge-fpo">CARF</div>
+          </div>
+        </div>
+
+        <!-- Services column -->
+        <nav aria-label="Services navigation">
+          <h2 class="footer__col-heading">Services</h2>
+          <ul class="footer__col-links" role="list">
+            <li><a href="#">Virtual &amp; VR Therapy</a></li>
+            <li><a href="#">In-Home Therapy</a></li>
+            <li><a href="#">Center-Based Therapy</a></li>
+            <li><a href="#">School-Based Therapy</a></li>
+            <li><a href="#">Request Services</a></li>
+          </ul>
+        </nav>
+
+        <!-- Company column -->
+        <nav aria-label="Company navigation">
+          <h2 class="footer__col-heading">Company</h2>
+          <ul class="footer__col-links" role="list">
+            <li><a href="#">About CSD</a></li>
+            <li><a href="csd-careers-wireframe.html">Careers</a></li>
+            <li><a href="csd-locations-wireframe.html">Locations</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Newsroom</a></li>
+          </ul>
+        </nav>
+
+        <!-- Connect column -->
+        <div>
+          <h2 class="footer__col-heading">Connect</h2>
+          <ul class="footer__col-links" role="list">
+            <li><a href="#">Family Resources</a></li>
+            <li><a href="#">Insurance &amp; Coverage</a></li>
+            <li><a href="#">CSD University</a></li>
+            <li><a href="#">Referral Partners</a></li>
+          </ul>
+          <div class="footer__social" aria-label="CSD Social Media">
+            <a href="#" class="footer__social-btn" aria-label="CSD on Facebook">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="footer__social-btn" aria-label="CSD on Instagram">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="footer__social-btn" aria-label="CSD on LinkedIn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" class="footer__social-btn" aria-label="CSD on YouTube">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2025 Center for Social Dynamics. All rights reserved.</p>
+        <nav class="footer__legal-links" aria-label="Legal navigation">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Notice of Privacy Practices</a>
+          <a href="#">Accessibility</a>
+        </nav>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCROLL ANIMATION SCRIPT
+       ============================================================ -->
+  <script>
+    // IntersectionObserver fade-in animations
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    document.querySelectorAll('.fade-in').forEach((el) => {
+      observer.observe(el);
+    });
+
+    // Service scroll cards visibility
+    const serviceObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            serviceObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.service-scroll-card').forEach((el) => {
+      serviceObserver.observe(el);
+    });
+
+    // Mobile hamburger / drawer
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    const drawerOverlay = document.getElementById('drawer-overlay');
+    const drawerCloseBtn = document.getElementById('drawer-close-btn');
+
+    function openDrawer() {
+      mobileDrawer.classList.add('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'true');
+      drawerCloseBtn.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      mobileDrawer.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+      hamburgerBtn.focus();
+      document.body.style.overflow = '';
+    }
+
+    hamburgerBtn.addEventListener('click', openDrawer);
+    drawerCloseBtn.addEventListener('click', closeDrawer);
+    drawerOverlay.addEventListener('click', closeDrawer);
+
+    mobileDrawer.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDrawer();
+    });
+
+    // ---- Mega menu ----
+    const moreBtn = document.getElementById('nav-more-btn');
+    const megaMenu = document.getElementById('nav-mega');
+
+    function openMega() {
+      megaMenu.classList.add('is-open');
+      moreBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeMega() {
+      megaMenu.classList.remove('is-open');
+      moreBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    moreBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      megaMenu.classList.contains('is-open') ? closeMega() : openMega();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!moreBtn.contains(e.target) && !megaMenu.contains(e.target)) closeMega();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMega();
+    });
+  </script>
+
+</body>
+</html>

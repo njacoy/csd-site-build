@@ -1,0 +1,2550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSD Brand & Style Guide — Option B: Bold</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS — OPTION B: BOLD / CONFIDENT
+       ============================================================ */
+    :root {
+      --color-bg:           #FFFFFF;
+      --color-bg-warm:      #FFF8F0;
+      --color-navy:         #0A2540;
+      --color-navy-light:   #183B56;
+      --color-teal:         #0891B2;
+      --color-teal-light:   #CFFAFE;
+      --color-amber:        #F59E0B;
+      --color-amber-bg:     #FEF9C3;
+      --color-coral:        #F97316;
+      --color-coral-light:  #FFF7ED;
+      --color-sage:         #059669;
+      --color-sage-light:   #D1FAE5;
+      --color-text:         #0A2540;
+      --color-text-muted:   #475569;
+      --color-border:       #E2E8F0;
+      --color-white:        #FFFFFF;
+      --color-dark-footer:  #0A2540;
+
+      --font-display: 'Outfit', system-ui, sans-serif;
+      --font-body:    'Nunito', system-ui, sans-serif;
+
+      --radius-sm: 12px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 40px;
+    }
+
+    /* ============================================================
+       RESET
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--color-text);
+      background: var(--color-bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ============================================================
+       LAYOUT
+       ============================================================ */
+    .page {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--color-navy);
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .sidebar__brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .sidebar__logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--color-teal);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .sidebar__title {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1.2;
+    }
+
+    .sidebar__subtitle {
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .sidebar__section-label {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      padding-left: 0.5rem;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 0.45rem 0.75rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .sidebar a:hover {
+      background: rgba(255,255,255,0.08);
+      color: white;
+    }
+
+    /* Main content */
+    .main {
+      padding: 3rem clamp(2rem, 5vw, 4rem);
+      max-width: 1000px;
+    }
+
+    /* Section */
+    .sg-section {
+      margin-bottom: 5rem;
+      scroll-margin-top: 2rem;
+    }
+
+    .sg-section__header {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--color-border);
+    }
+
+    .sg-section__title {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--color-navy);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.35rem;
+    }
+
+    .sg-section__desc {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+    }
+
+    /* Token label */
+    .token-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .token-label:first-child { margin-top: 0; }
+
+    /* ============================================================
+       COLOR PALETTE
+       ============================================================ */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+
+    .color-swatch {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+    }
+
+    .color-swatch__block {
+      height: 80px;
+    }
+
+    .color-swatch__info {
+      padding: 0.6rem 0.75rem;
+      background: white;
+    }
+
+    .color-swatch__name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-text);
+      display: block;
+    }
+
+    .color-swatch__hex {
+      font-size: 0.72rem;
+      color: var(--color-text-muted);
+      font-family: monospace;
+    }
+
+    .color-swatch__var {
+      font-size: 0.65rem;
+      color: var(--color-teal);
+      font-family: monospace;
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* ============================================================
+       TYPOGRAPHY
+       ============================================================ */
+    .type-specimen {
+      padding: 1.5rem;
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      margin-bottom: 1rem;
+    }
+
+    .type-specimen__meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .type-specimen__tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    .type-specimen__tag span {
+      color: var(--color-teal);
+      font-family: monospace;
+    }
+
+    /* ============================================================
+       BUTTONS — BOLDER TREATMENT
+       ============================================================ */
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-row--dark {
+      background: var(--color-navy);
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.875rem 1.75rem;
+      min-height: 48px;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+      border: 2px solid transparent;
+      text-decoration: none;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-primary {
+      background: var(--color-amber);
+      color: var(--color-navy);
+      border-color: var(--color-amber);
+    }
+
+    .btn-primary:hover {
+      background: #D97706;
+      border-color: #D97706;
+      color: white;
+      box-shadow: 0 6px 20px rgba(245,158,11,0.4);
+    }
+
+    .btn-secondary {
+      background: var(--color-teal);
+      color: white;
+      border-color: var(--color-teal);
+    }
+
+    .btn-secondary:hover {
+      background: #0E7490;
+      border-color: #0E7490;
+      box-shadow: 0 6px 20px rgba(8,145,178,0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-navy);
+      border-color: var(--color-navy);
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: var(--color-navy);
+      color: white;
+    }
+
+    .btn-outline--light {
+      background: transparent;
+      color: white;
+      border-color: rgba(255,255,255,0.5);
+      box-shadow: none;
+    }
+
+    .btn-outline--light:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: white;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-teal);
+      border-color: transparent;
+      padding-inline: 0;
+      min-height: unset;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      box-shadow: none;
+    }
+
+    .btn-ghost:hover { color: var(--color-navy); transform: none; box-shadow: none; }
+
+    .btn-sm {
+      padding: 0.5rem 1rem;
+      min-height: 36px;
+      font-size: 0.875rem;
+    }
+
+    .btn-lg {
+      padding: 1.1rem 2.25rem;
+      min-height: 56px;
+      font-size: 1.1rem;
+    }
+
+    /* ============================================================
+       SPACING
+       ============================================================ */
+    .spacing-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .spacing-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .spacing-bar {
+      background: var(--color-teal);
+      height: 24px;
+      border-radius: 4px;
+      opacity: 0.7;
+      flex-shrink: 0;
+    }
+
+    .spacing-meta {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .spacing-meta span {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+
+    .spacing-meta code {
+      font-family: monospace;
+      font-size: 0.78rem;
+      color: var(--color-teal);
+      background: var(--color-teal-light);
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+    }
+
+    /* ============================================================
+       BORDER RADIUS
+       ============================================================ */
+    .radius-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: flex-end;
+    }
+
+    .radius-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .radius-box {
+      width: 80px;
+      height: 80px;
+      background: var(--color-teal-light);
+      border: 2px solid var(--color-teal);
+    }
+
+    .radius-item span {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      text-align: center;
+    }
+
+    .radius-item code {
+      font-family: monospace;
+      font-size: 0.72rem;
+      color: var(--color-teal);
+    }
+
+    /* ============================================================
+       ICONOGRAPHY SAMPLES
+       ============================================================ */
+    .icon-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .icon-chip {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 1rem;
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      min-width: 80px;
+    }
+
+    .icon-chip svg {
+      color: var(--color-navy);
+    }
+
+    .icon-chip span {
+      font-size: 0.68rem;
+      color: var(--color-text-muted);
+      text-align: center;
+    }
+
+    /* ============================================================
+       COMPONENTS — CARDS (SHADOW-FIRST, NO BORDERS)
+       ============================================================ */
+    .component-preview {
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .component-preview--dark {
+      background: var(--color-navy);
+    }
+
+    .component-preview--warm {
+      background: var(--color-bg-warm);
+    }
+
+    .sample-card {
+      background: white;
+      border: none;
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      max-width: 280px;
+      box-shadow: 0 4px 16px rgba(10,37,64,0.08);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .sample-card:hover {
+      box-shadow: 0 12px 40px rgba(8,145,178,0.18);
+      transform: translateY(-6px);
+    }
+
+    .sample-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--color-teal-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .sample-card__title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .sample-card__body {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    /* Stat card */
+    .sample-stat {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 1.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(10,37,64,0.08);
+      max-width: 200px;
+    }
+
+    .sample-stat__number {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--color-navy);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .sample-stat__label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    /* Testimonial card */
+    .sample-testimonial {
+      background: white;
+      border: none;
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      max-width: 360px;
+      box-shadow: 0 4px 16px rgba(10,37,64,0.08);
+    }
+
+    .sample-testimonial__quote {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--color-text);
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    .sample-testimonial__footer {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-top: 1px solid var(--color-border);
+      padding-top: 0.75rem;
+    }
+
+    .sample-testimonial__avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--color-teal-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .sample-testimonial__name {
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--color-navy);
+    }
+
+    .sample-testimonial__role {
+      font-size: 0.72rem;
+      color: var(--color-text-muted);
+    }
+
+    /* Badge / Eyebrow chip — FILLED STYLE */
+    .eyebrow-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--color-teal);
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+    }
+
+    .eyebrow-chip--gold {
+      background: var(--color-amber);
+      color: var(--color-navy);
+    }
+
+    .eyebrow-text {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-teal);
+    }
+
+    /* ============================================================
+       WRITING STYLE TABLE
+       ============================================================ */
+    .style-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    .style-table th {
+      text-align: left;
+      padding: 0.6rem 1rem;
+      background: var(--color-navy);
+      color: white;
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+    }
+
+    .style-table th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+    .style-table th:last-child  { border-radius: 0 var(--radius-sm) 0 0; }
+
+    .style-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--color-border);
+      color: var(--color-text);
+      vertical-align: top;
+    }
+
+    .style-table tr:last-child td { border-bottom: none; }
+    .style-table tr:nth-child(even) td { background: var(--color-bg-warm); }
+
+    /* ============================================================
+       ART ON PHOTO SAMPLE
+       ============================================================ */
+    .art-on-photo-sample {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--color-bg-warm);
+      margin-bottom: 1.5rem;
+    }
+
+    .art-on-photo-sample img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .art-on-photo-sample.no-image img {
+      display: none;
+    }
+
+    .art-on-photo-sample__placeholder {
+      display: none;
+      padding: 3rem 2rem;
+      text-align: center;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 8px,
+        rgba(14, 116, 144, 0.04) 8px,
+        rgba(14, 116, 144, 0.04) 16px
+      );
+      border: 2px dashed var(--color-border);
+      border-radius: var(--radius-lg);
+    }
+
+    .art-on-photo-sample.no-image .art-on-photo-sample__placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 280px;
+    }
+
+    .art-on-photo-sample__caption {
+      padding: 1rem 1.25rem;
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .art-on-photo-sample.no-image .art-on-photo-sample__caption {
+      display: none;
+    }
+
+    /* ============================================================
+       AI PROMPTS TABLE
+       ============================================================ */
+    .prompt-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      table-layout: fixed;
+    }
+
+    .prompt-table th {
+      text-align: left;
+      padding: 0.6rem 0.75rem;
+      background: var(--color-navy);
+      color: white;
+      font-weight: 600;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .prompt-table th:first-child { border-radius: var(--radius-sm) 0 0 0; width: 22%; }
+    .prompt-table th:nth-child(2) { width: 18%; }
+    .prompt-table th:nth-child(3) { width: 36%; }
+    .prompt-table th:last-child  { border-radius: 0 var(--radius-sm) 0 0; width: 24%; }
+
+    .prompt-table td {
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--color-border);
+      color: var(--color-text);
+      vertical-align: top;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .prompt-table tr:last-child td { border-bottom: none; }
+    .prompt-table tr:nth-child(even) td { background: var(--color-bg-warm); }
+
+    .prompt-table td .prompt-text {
+      display: block;
+      padding-right: 1.75rem;
+    }
+
+    .prompt-table td .brand-text {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+      font-style: italic;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.4rem;
+      background: none;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      line-height: 1;
+      padding: 2px 4px;
+      color: var(--color-text-muted);
+      opacity: 0.4;
+      transition: opacity 0.2s, background 0.2s, border-color 0.2s;
+    }
+
+    .copy-btn:hover {
+      opacity: 1;
+      background: var(--color-teal-light);
+      border-color: var(--color-border);
+    }
+
+    .copy-btn.copied {
+      opacity: 1;
+      color: var(--color-sage);
+    }
+
+    .prompt-row-num {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      border-radius: 50%;
+      background: var(--color-teal);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .tag-do {
+      display: inline-block;
+      background: var(--color-sage-light);
+      color: var(--color-sage);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+    }
+
+    .tag-dont {
+      display: inline-block;
+      background: #FEE2E2;
+      color: #B91C1C;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+    }
+
+    /* ============================================================
+       MISC UTILITIES
+       ============================================================ */
+    .code-chip {
+      font-family: monospace;
+      font-size: 0.78rem;
+      background: var(--color-teal-light);
+      color: var(--color-teal);
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+    }
+
+    .sg-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 640px) {
+      .sg-grid-2 { grid-template-columns: 1fr; }
+    }
+
+    /* Focus visible */
+    :focus-visible {
+      outline: 3px solid var(--color-amber);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* Version Switcher Dropdown */
+    .version-switcher { position: relative; margin-bottom: 1.25rem; }
+    .version-switcher__trigger {
+      width: 100%; display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem 0.75rem; background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 8px;
+      color: rgba(255,255,255,0.8); font-size: 0.78rem; font-weight: 600;
+      cursor: pointer; text-align: left; font-family: var(--font-body);
+      transition: background 0.2s, color 0.2s;
+    }
+    .version-switcher__trigger:hover { background: rgba(255,255,255,0.14); color: white; }
+    .version-caret { margin-left: auto; font-size: 0.65rem; opacity: 0.6; transition: transform 0.2s; }
+    .version-switcher__menu {
+      display: none; position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+      background: #0a1e30; border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px; overflow: hidden; z-index: 100;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .version-switcher__menu.open { display: block; }
+    .version-switcher.open .version-caret { transform: rotate(180deg); }
+    .version-option {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.6rem 0.75rem; color: rgba(255,255,255,0.65);
+      font-size: 0.78rem; font-weight: 600; text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .version-option:hover { background: rgba(255,255,255,0.08); color: white; }
+    .version-option--active { color: white; background: rgba(255,255,255,0.05); pointer-events: none; }
+    .version-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 20px; height: 20px; background: #0891B2; border-radius: 50%;
+      font-size: 0.6rem; font-weight: 800; color: white; flex-shrink: 0;
+    }
+    .version-label { flex: 1; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ============================================================
+       SIDEBAR NAV
+       ============================================================ -->
+  <nav class="sidebar" aria-label="Style guide navigation">
+    <div class="sidebar__brand">
+      <div class="sidebar__logo-mark">CSD</div>
+      <div>
+        <div class="sidebar__title">Brand &amp; Style Guide</div>
+        <div class="sidebar__subtitle">Option B · Bold</div>
+      </div>
+    </div>
+
+    <div class="version-switcher" id="versionSwitcher">
+      <button class="version-switcher__trigger" onclick="toggleVersionDropdown()">
+        <span class="version-badge">B</span>
+        <span class="version-label">Style Guide B</span>
+        <span class="version-caret">▾</span>
+      </button>
+      <div class="version-switcher__menu" id="versionMenu">
+        <a href="/brand/index.html" class="version-option">
+          <span class="version-badge">A</span> Light / Airy
+        </a>
+        <a href="/brand/brand-alt.html" class="version-option version-option--active">
+          <span class="version-badge">B</span> Bold / Confident
+        </a>
+        <a href="/brand/brand-c.html" class="version-option">
+          <span class="version-badge">C</span> Refined / Editorial
+        </a>
+      </div>
+    </div>
+
+    <div class="sidebar__section-label">Brand Strategy</div>
+    <a href="#framework">Navigator of Possibility</a>
+    <a href="#audience">Audience &amp; Context</a>
+    <a href="#personality">Brand Personality</a>
+
+    <div class="sidebar__section-label">Foundations</div>
+    <a href="#colors">Color Palette</a>
+    <a href="#typography">Typography</a>
+    <a href="#spacing">Spacing</a>
+    <a href="#radius">Border Radius</a>
+
+    <div class="sidebar__section-label">Components</div>
+    <a href="#buttons">Buttons</a>
+    <a href="#cards">Cards</a>
+    <a href="#badges">Badges &amp; Eyebrows</a>
+    <a href="#icons">Iconography</a>
+
+    <div class="sidebar__section-label">Visual Direction</div>
+    <a href="#photography">Photography</a>
+    <a href="#art-on-photo">Art on Photography</a>
+    <a href="#ai-prompts">AI Image Prompts</a>
+    <a href="#avoid">What to Avoid</a>
+
+    <div class="sidebar__section-label">Voice &amp; Tone</div>
+    <a href="#voice">Writing Style</a>
+  </nav>
+
+  <!-- ============================================================
+       MAIN CONTENT
+       ============================================================ -->
+  <main class="main">
+
+    <!-- Page header -->
+    <div style="margin-bottom: 3.5rem;">
+      <p style="font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-teal); margin-bottom: 0.4rem;">Center for Social Dynamics</p>
+      <h1 style="font-family: var(--font-display); font-size: 2.5rem; font-weight: 800; color: var(--color-navy); letter-spacing: -0.03em; margin-bottom: 0.5rem;">Brand &amp; Style Guide</h1>
+      <p style="color: var(--color-text-muted); max-width: 560px;">The visual and verbal identity for CSD's website relaunch — guided by the <strong>Navigator of Possibility</strong> framework.</p>
+    </div>
+
+    <!-- ============================================================
+         BRAND FRAMEWORK
+         ============================================================ -->
+    <section class="sg-section" id="framework">
+      <div class="sg-section__header">
+        <h2 class="sg-section__title">Navigator of Possibility</h2>
+        <p class="sg-section__desc">The two conceptual pillars that define the CSD brand. They work in tension and harmony.</p>
+      </div>
+
+      <div class="sg-grid-2" style="margin-bottom: 2rem;">
+        <div class="component-preview">
+          <p class="eyebrow-text" style="margin-bottom: 0.5rem;">Pillar 1</p>
+          <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--color-navy); margin-bottom: 0.5rem;">Possibility</h3>
+          <p style="font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.7;">We believe in every child's potential. We create brightness and belief, celebrate successes, and believe dreams are innately individualized and aspirational.</p>
+          <p style="font-size: 0.78rem; color: var(--color-text-muted); margin-top: 0.75rem; font-style: italic;">Design role: The dominant emotional register. Warmth, optimism, forward movement, light.</p>
+        </div>
+        <div class="component-preview">
+          <p class="eyebrow-text" style="margin-bottom: 0.5rem;">Pillar 2</p>
+          <h3 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--color-navy); margin-bottom: 0.5rem;">Navigator</h3>
+          <p style="font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.7;">We guide families. We are trusted, reliable, and expert. We reduce overwhelm and cultivate hope and confidence.</p>
+          <p style="font-size: 0.78rem; color: var(--color-text-muted); margin-top: 0.75rem; font-style: italic;">Design role: The undercurrent that makes Possibility credible. Structure, hierarchy, clear pathways.</p>
+        </div>
+      </div>
+
+      <div class="component-preview" style="background: var(--color-teal-light); border: none;">
+        <p style="font-size: 0.875rem; color: var(--color-text); line-height: 1.7;"><strong>Weighting:</strong> Possibility leads — it should be the dominant feeling a family carries away. Navigator is the undercurrent that makes Possibility credible. Think of it as <em>warmth supported by structure</em>, not structure decorated with warmth. A site that feels genuinely aspirational and human, with clear evidence of expertise woven through, gets it right.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         AUDIENCE & CONTEXT
+         ============================================================ -->
+    <section class="sg-section" id="audience">
+      <div class="sg-section__header">
+        <h2 class="sg-section__title">Audience &amp; Emotional Context</h2>
+        <p class="sg-section__desc">Who we're designing for, and the emotional state they arrive in.</p>
+      </div>
+
+      <p class="token-label">Primary Audience</p>
+      <p style="font-size: 0.9rem; color: var(--color-text); line-height: 1.7; margin-bottom: 1.5rem;">Parents and caregivers of children with developmental, communication, or learning differences — often arriving at CSD feeling uncertain, overwhelmed, or having been bounced between providers without a clear path forward.</p>
+
+      <p class="token-label">Client Demographics — Critical Design Inputs</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+        <div class="component-preview" style="text-align: center;">
+          <p style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--color-navy); margin-bottom: 0.25rem;">70%</p>
+          <p style="font-size: 0.8rem; font-weight: 600; color: var(--color-text);">Male Clients</p>
+          <p style="font-size: 0.78rem; color: var(--color-text-muted); margin-top: 0.25rem;">Visual language should feel inclusive and age-appropriate for boys; avoid skewing feminine</p>
+        </div>
+        <div class="component-preview" style="text-align: center;">
+          <p style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--color-navy); margin-bottom: 0.25rem;">75%</p>
+          <p style="font-size: 0.8rem; font-weight: 600; color: var(--color-text);">Age 8 or Older</p>
+          <p style="font-size: 0.78rem; color: var(--color-text-muted); margin-top: 0.25rem;">Nothing should read as babyish, cartoonish, or aimed at toddlers</p>
+        </div>
+        <div class="component-preview" style="text-align: center;">
+          <p style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--color-navy); margin-bottom: 0.25rem;">30–40</p>
+          <p style="font-size: 0.8rem; font-weight: 600; color: var(--color-text);">Web Visitor Age Range</p>
+          <p style="font-size: 0.78rem; color: var(--color-text-muted); margin-top: 0.25rem;">Primarily mothers — aesthetic should feel nurturing, protective, hopeful, and empowering</p>
+        </div>
+      </div>
+
+      <div class="component-preview" style="background: var(--color-coral-light); border: none;">
+        <p style="font-size: 0.8rem; font-weight: 600; color: var(--color-text); margin-bottom: 0.5rem;">Gut-check for all design decisions:</p>
+        <p style="font-size: 0.875rem; color: var(--color-text); line-height: 1.7;">Would an 11-year-old boy be embarrassed to be associated with this? If yes, pull back. The aesthetic should feel confident, forward-looking, and slightly aspirational.</p>
+      </div>
+
+      <p class="token-label" style="margin-top: 2rem;">Emotional Journey</p>
+      <div class="sg-grid-2">
+        <div class="component-preview">
+          <h3 style="font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--color-navy); margin-bottom: 0.75rem;">When They Arrive</h3>
+          <ul style="font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.8; padding-left: 1rem;">
+            <li>Anxious about what their child's diagnosis means</li>
+            <li>Exhausted from navigating fragmented systems</li>
+            <li>Looking for someone who "gets it"</li>
+          </ul>
+        </div>
+        <div class="component-preview" style="background: var(--color-sage-light); border: none;">
+          <h3 style="font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--color-navy); margin-bottom: 0.75rem;">When They Leave the Site</h3>
+          <ul style="font-size: 0.875rem; color: var(--color-text); line-height: 1.8; padding-left: 1rem;">
+            <li><strong>Relieved</strong> — there's a clear next step</li>
+            <li><strong>Seen</strong> — this place understands kids like mine</li>
+            <li><strong>Optimistic</strong> — things can be different from here</li>
+            <li><strong>Confident</strong> — these people know what they're doing</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BRAND PERSONALITY
+         ============================================================ -->
+    <section class="sg-section" id="personality">
+      <div class="sg-section__header">
+        <h2 class="sg-section__title">Brand Personality</h2>
+        <p class="sg-section__desc">Think of the brand voice as a highly competent, warm friend who happens to be an expert. Not clinical. Not corporate. Not overly cheerful.</p>
+      </div>
+
+      <table class="style-table">
+        <thead>
+          <tr>
+            <th>We Are</th>
+            <th>We Are Not</th>
+            <th>Design Implication</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Warm &amp; human</strong></td>
+            <td>Cold or clinical</td>
+            <td>Rounded forms, photography of real interactions, approachable typography</td>
+          </tr>
+          <tr>
+            <td><strong>Expert &amp; structured</strong></td>
+            <td>Chaotic or vague</td>
+            <td>Clear hierarchy, confident use of space, purposeful color</td>
+          </tr>
+          <tr>
+            <td><strong>Hopeful &amp; forward-looking</strong></td>
+            <td>Cautionary or heavy</td>
+            <td>Light backgrounds, upward movement, growth-oriented imagery</td>
+          </tr>
+          <tr>
+            <td><strong>Individualized</strong></td>
+            <td>Generic or mass-market</td>
+            <td>Specific language, avoid stock-photo parents looking generically happy</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ============================================================
+         COLORS
+         ============================================================ -->
+    <section class="sg-section" id="colors">
+      <div class="sg-section__header">
+        <h2 class="sg-section__title">Color Palette</h2>
+        <p class="sg-section__desc">Bolder, more saturated values used liberally as section backgrounds — not just accents. Each color carries specific emotional intent.</p>
+      </div>
+
+      <p class="token-label">Primary Colors</p>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: #0A2540;"></div>
+          <div class="color-swatch__info">
+            <span class="color-swatch__name">Navy</span>
+            <span class="color-swatch__hex">#0A2540</span>
+            <span class="color-swatch__var">--color-navy</span>
+            <span style="font-size: 0.62rem; color: var(--color-text-muted); display: block; margin-top: 2px;">Trust, expertise, stability</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: #183B56;"></div>
+          <div class="color-swatch__info">
+            <span class="color-swatch__name">Navy Light</span>
+            <span class="color-swatch__hex">#183B56</span>
+            <span class="color-swatch__var">--color-navy-light</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: #0891B2;"></div>
+          <div class="color-swatch__info">
+            <span class="color-swatch__name">Teal</span>
+            <span class="color-swatch__hex">#0891B2</span>
+            <span class="color-swatch__var">--color-teal</span>
+            <span style="font-size: 0.62rem; color: var(--color-text-muted); display: block; margin-top: 2px;">Discovery, innovation, energy</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: #CFFAFE; border-bottom: 1px solid var(--color-border);"></div>
+          <div class="color-swatch__info">
+            <span class="color-swatch__name">Teal Light</span>
+            <span class="color-swatch__hex">#CFFAFE</span>
+            <span class="color-swatch__var">--color-teal-light</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="token-label">Accent Colors</p>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: #F59E0B;"></div>
+          <div class="color-swatch__info">
+            <span class="color-swatch__name">Gold</span>
+            <span class="color-swatch__hex">#F59E0B</span>
+            <span class="color-swatch__var">--color-amber</span>
+            <span style="font-size: 0.62rem; color: var(--color-text-muted); display: block; margin-top: 2px;">Momentum, mastery, earned progress</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: #FEF9C3; border-bottom: 1px solid var(--color-border);"></div>
+          <div class="color-swatch__info">
+            <span class="color-swatch__name">Gold Light</span>
+            <span class="color-swatch__hex">#FEF9C3</span>
+            <span class="color-swatch__var">--color-amber-bg</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: #F97316;"></div>
+          <div class="color-swatch__info">
+            <span class="color-swatch__name">Coral</span>
+            <span class="color-swatch__hex">#F97316</span>
+            <span class="color-swatch__var">--color-coral</span>
+            <span style="font-size: 0.62rem; color: var(--color-text-muted); display: block; margin-top: 2px;">Warmth, human connection, heart</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: #FFF7ED; border-bottom: 1px solid var(--color-border);"></div>
+          <div class="color-swatch__info">
+            <span class="color-swatch__name">Coral Light</span>
+            <span class="color-swatch__hex">#FFF7ED</span>
+            <span class="color-swatch__var">--color-coral-light</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: #059669;"></div>
+          <div class="color-swatch__info">
+            <span class="color-swatch__name">Sage</span>
+            <span class="color-swatch__hex">#059669</span>
+            <span class="color-swatch__var">--color-sage</span>
+            <span style="font-size: 0.62rem; color: var(--color-text-muted); display: block; margin-top: 2px;">Learning, flourishing, progress</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: #D1FAE5; border-bottom: 1px solid var(--color-border);"></div>
+          <div class="color-swatch__info">
+            <span class="color-swatch__name">Sage Light</span>
+            <span class="color-swatch__hex">#D1FAE5</span>
+            <span class="color-swatch__var">--color-sage-light</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="token-label">Neutrals &amp; Backgrounds</p>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: #FFFFFF; border-bottom: 1px solid var(--color-border);"></div>
+          <div class="color-swatch__info">
+            <span class="color-swatch__name">Background</span>
+            <span class="color-swatch__hex">#FFFFFF</span>
+            <span class="color-swatch__var">--color-bg</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: #FFF8F0; border-bottom: 1px solid var(--color-border);"></div>
+          <div class="color-swatch__info">
+            <span class="color-swatch__name">Warm BG</span>
+            <span class="color-swatch__hex">#FFF8F0</span>
+            <span class="color-swatch__var">--color-bg-warm</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: #0A2540;"></div>
+          <div class="color-swatch__info">
+            <span class="color-swatch__name">Text Dark</span>
+            <span class="color-swatch__hex">#0A2540</span>
+            <span class="color-swatch__var">--color-text</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: #475569;"></div>
+          <div class="color-swatch__info">
+            <span class="color-swatch__name">Text Muted</span>
+            <span class="color-swatch__hex">#475569</span>
+            <span class="color-swatch__var">--color-text-muted</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: #E2E8F0; border-bottom: 1px solid var(--color-border);"></div>
+          <div class="color-swatch__info">
+            <span class="color-swatch__name">Border</span>
+            <span class="color-swatch__hex">#E2E8F0</span>
+            <span class="color-swatch__var">--color-border</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: #0A2540;"></div>
+          <div class="color-swatch__info">
+            <span class="color-swatch__name">Footer Dark</span>
+            <span class="color-swatch__hex">#0A2540</span>
+            <span class="color-swatch__var">--color-dark-footer</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="token-label" style="margin-top: 2.5rem;">Accessibility &amp; Contrast</p>
+      <div class="component-preview" style="background: var(--color-teal-light); border: none; margin-bottom: 1.5rem;">
+        <p style="font-size: 0.85rem; color: var(--color-text); line-height: 1.7; margin-bottom: 0.5rem;"><strong>WCAG 2.1 AA compliance is mandatory</strong> for all text on the CSD site. This means a minimum contrast ratio of <strong>4.5:1</strong> for normal text and <strong>3:1</strong> for large text (18px+ bold or 24px+ regular). Non-text UI elements (icons, borders, form controls) require <strong>3:1</strong> against their background.</p>
+        <p style="font-size: 0.85rem; color: var(--color-text); line-height: 1.7;">Target <strong>AAA (7:1)</strong> where possible for body copy to support users with low vision.</p>
+      </div>
+
+      <p style="font-size: 0.78rem; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem;">Contrast Pairings</p>
+      <table class="style-table">
+        <thead>
+          <tr>
+            <th>Preview</th>
+            <th>Text Color</th>
+            <th>Background</th>
+            <th>Ratio</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div style="background:#FFFFFF;border:1px solid var(--color-border);border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:800;color:#0A2540;">Sample</span></div></td>
+            <td><strong>Navy #0A2540</strong></td>
+            <td>White #FFFFFF</td>
+            <td>15.5:1</td>
+            <td><span class="tag-do">AAA</span></td>
+          </tr>
+          <tr>
+            <td><div style="background:#FFF8F0;border:1px solid var(--color-border);border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:800;color:#0A2540;">Sample</span></div></td>
+            <td><strong>Navy #0A2540</strong></td>
+            <td>Warm BG #FFF8F0</td>
+            <td>14.8:1</td>
+            <td><span class="tag-do">AAA</span></td>
+          </tr>
+          <tr>
+            <td><div style="background:#FFFFFF;border:1px solid var(--color-border);border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-body);font-size:0.85rem;color:#0A2540;">Sample</span></div></td>
+            <td><strong>Text #0A2540</strong></td>
+            <td>BG #FFFFFF</td>
+            <td>15.5:1</td>
+            <td><span class="tag-do">AAA</span></td>
+          </tr>
+          <tr>
+            <td><div style="background:#FFFFFF;border:1px solid var(--color-border);border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-body);font-size:0.85rem;color:#475569;">Sample</span></div></td>
+            <td><strong>Muted #475569</strong></td>
+            <td>White #FFFFFF</td>
+            <td>7.6:1</td>
+            <td><span class="tag-do">AAA</span></td>
+          </tr>
+          <tr>
+            <td><div style="background:#FFFFFF;border:1px solid var(--color-border);border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:800;color:#0891B2;">Sample</span></div></td>
+            <td><strong>Teal #0891B2</strong></td>
+            <td>White #FFFFFF</td>
+            <td>3.7:1</td>
+            <td><span class="tag-do">AA Large</span></td>
+          </tr>
+          <tr>
+            <td><div style="background:#0A2540;border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:800;color:#FFFFFF;">Sample</span></div></td>
+            <td><strong>White #FFFFFF</strong></td>
+            <td>Navy #0A2540</td>
+            <td>15.5:1</td>
+            <td><span class="tag-do">AAA</span></td>
+          </tr>
+          <tr>
+            <td><div style="background:#0891B2;border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:800;color:#FFFFFF;">Sample</span></div></td>
+            <td><strong>White #FFFFFF</strong></td>
+            <td>Teal #0891B2</td>
+            <td>3.7:1</td>
+            <td><span class="tag-do">AA Large</span></td>
+          </tr>
+          <tr>
+            <td><div style="background:#0A2540;border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:800;color:#F59E0B;">Sample</span></div></td>
+            <td><strong>Gold #F59E0B</strong></td>
+            <td>Navy #0A2540</td>
+            <td>7.2:1</td>
+            <td><span class="tag-do">AAA</span></td>
+          </tr>
+          <tr>
+            <td><div style="background:#FFFFFF;border:1px solid var(--color-border);border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:800;color:#059669;">Sample</span></div></td>
+            <td><strong>Sage #059669</strong></td>
+            <td>White #FFFFFF</td>
+            <td>3.8:1</td>
+            <td><span class="tag-do">AA Large</span></td>
+          </tr>
+          <tr>
+            <td><div style="background:#FFFFFF;border:1px solid var(--color-border);border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:800;color:#F97316;">Sample</span></div></td>
+            <td><strong>Coral #F97316</strong></td>
+            <td>White #FFFFFF</td>
+            <td>2.8:1</td>
+            <td><span class="tag-dont">FAIL</span></td>
+          </tr>
+          <tr>
+            <td><div style="background:#FFFFFF;border:1px solid var(--color-border);border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:800;color:#F59E0B;">Sample</span></div></td>
+            <td><strong>Gold #F59E0B</strong></td>
+            <td>White #FFFFFF</td>
+            <td>2.1:1</td>
+            <td><span class="tag-dont">Decorative only</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="component-preview" style="background: var(--color-coral-light); border: none; margin-top: 1.5rem;">
+        <p style="font-size: 0.85rem; color: var(--color-text); line-height: 1.7;"><strong>Bold palette note:</strong> The brighter Gold and Coral values in this palette have lower contrast on white than Option A. Use them as <strong>button fills with Navy text</strong> (passes AA) or as decorative/background elements — never as small text on white.</p>
+      </div>
+
+      <p class="token-label" style="margin-top: 2rem;">Rules</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <div class="component-preview">
+          <h3 style="font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; color: var(--color-navy); margin-bottom: 0.5rem;">Do</h3>
+          <ul style="font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.8; padding-left: 1rem;">
+            <li>Use Navy or Text Dark for body copy on white</li>
+            <li>Use White text on Navy backgrounds (15.4:1)</li>
+            <li>Use Navy text on Gold/Coral button fills</li>
+            <li>Use Teal only for large text or UI accents on white</li>
+            <li>Test every new pairing before shipping</li>
+          </ul>
+        </div>
+        <div class="component-preview">
+          <h3 style="font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; color: #B91C1C; margin-bottom: 0.5rem;">Don't</h3>
+          <ul style="font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.8; padding-left: 1rem;">
+            <li>Use Gold or Coral as small text on white</li>
+            <li>Use white text on Teal for small body copy</li>
+            <li>Place light text on light tint backgrounds</li>
+            <li>Rely on color alone to convey meaning — always pair with text or icons</li>
+            <li>Skip contrast checks for "it looks fine to me"</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TYPOGRAPHY
+         ============================================================ -->
+    <section class="sg-section" id="typography">
+      <div class="sg-section__header">
+        <h2 class="sg-section__title">Typography</h2>
+        <p class="sg-section__desc">Two typefaces that function as a standalone brand signal. Outfit for bold, confident display contexts. Nunito for warm, readable body copy. Together they carry the brand with enough character to work on typography and color alone.</p>
+      </div>
+
+      <p class="token-label">Typefaces</p>
+      <div class="sg-grid-2" style="margin-bottom: 2rem;">
+        <div class="component-preview" style="text-align: center;">
+          <p style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 0.75rem;">Display — Outfit</p>
+          <p style="font-family: var(--font-display); font-size: 2.25rem; font-weight: 800; color: var(--color-navy); letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.5rem;">AaBbCc</p>
+          <p style="font-family: var(--font-display); font-size: 1rem; color: var(--color-text-muted); font-style: italic;">Bold confidence meets warmth.</p>
+          <p style="font-size: 0.72rem; color: var(--color-text-muted); margin-top: 0.75rem; font-family: monospace;">Google Fonts · Outfit</p>
+        </div>
+        <div class="component-preview" style="text-align: center;">
+          <p style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 0.75rem;">Body — Nunito</p>
+          <p style="font-family: var(--font-body); font-size: 2.25rem; font-weight: 700; color: var(--color-navy); letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 0.5rem;">AaBbCc</p>
+          <p style="font-family: var(--font-body); font-size: 1rem; color: var(--color-text-muted);">Warm, rounded, accessible.</p>
+          <p style="font-size: 0.72rem; color: var(--color-text-muted); margin-top: 0.75rem; font-family: monospace;">Google Fonts · Nunito</p>
+        </div>
+      </div>
+
+      <div class="component-preview" style="background: var(--color-teal-light); border: none; margin-bottom: 2rem;">
+        <p style="font-size: 0.78rem; font-weight: 700; color: var(--color-teal); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.35rem;">Pairing Rationale</p>
+        <p style="font-size: 0.85rem; color: var(--color-text); line-height: 1.65;"><strong>Outfit</strong> (geometric sans-serif) is bold and expressive — its rounded terminals and confident weight range signal energy and approachability. <strong>Nunito</strong> adds warmth in body copy — its rounded humanist forms feel inviting without being childlike.</p>
+        <p style="font-size: 0.9rem; font-weight: 600; color: var(--color-navy); line-height: 1.65; margin-top: 0.75rem;">Together they lean into the "confident, forward-looking" tone the brief calls for.</p>
+      </div>
+
+      <p class="token-label">Heading Scale</p>
+
+      <div class="type-specimen">
+        <div class="type-specimen__meta">
+          <span class="type-specimen__tag">Element <span>&lt;h1&gt;</span></span>
+          <span class="type-specimen__tag">Font <span>Outfit</span></span>
+          <span class="type-specimen__tag">Weight <span>800</span></span>
+          <span class="type-specimen__tag">Line Height <span>1.1</span></span>
+          <span class="type-specimen__tag">Letter Spacing <span>-0.03em</span></span>
+        </div>
+        <h1 style="font-size: clamp(2rem, 4vw, 3.25rem); font-family: var(--font-display); font-weight: 800; color: var(--color-navy); letter-spacing: -0.03em; line-height: 1.1;">Breakthrough Autism Therapy</h1>
+        <table class="style-table" style="margin-top: 1rem;">
+          <thead><tr><th>Viewport</th><th>Width</th><th>Font Size</th></tr></thead>
+          <tbody>
+            <tr><td>Monitor</td><td>1680px +</td><td>72px</td></tr>
+            <tr><td>Desktop</td><td>1200 – 1679px</td><td>72px</td></tr>
+            <tr><td>Tablet</td><td>810 – 1199px</td><td>60px</td></tr>
+            <tr><td>Mobile</td><td>&le; 809px</td><td>45px</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-specimen__meta">
+          <span class="type-specimen__tag">Element <span>&lt;h2&gt;</span></span>
+          <span class="type-specimen__tag">Font <span>Outfit</span></span>
+          <span class="type-specimen__tag">Weight <span>700</span></span>
+          <span class="type-specimen__tag">Line Height <span>1.15</span></span>
+          <span class="type-specimen__tag">Letter Spacing <span>-0.03em</span></span>
+        </div>
+        <h2 style="font-family: var(--font-display); font-weight: 700; color: var(--color-navy); letter-spacing: -0.03em; line-height: 1.15;">Innovation Grounded in Empathy</h2>
+        <table class="style-table" style="margin-top: 1rem;">
+          <thead><tr><th>Viewport</th><th>Width</th><th>Font Size</th></tr></thead>
+          <tbody>
+            <tr><td>Monitor</td><td>1680px +</td><td>48px</td></tr>
+            <tr><td>Desktop</td><td>1200 – 1679px</td><td>48px</td></tr>
+            <tr><td>Tablet</td><td>810 – 1199px</td><td>40px</td></tr>
+            <tr><td>Mobile</td><td>&le; 809px</td><td>32px</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-specimen__meta">
+          <span class="type-specimen__tag">Element <span>&lt;h3&gt;</span></span>
+          <span class="type-specimen__tag">Font <span>Outfit</span></span>
+          <span class="type-specimen__tag">Weight <span>700</span></span>
+          <span class="type-specimen__tag">Line Height <span>1.15</span></span>
+          <span class="type-specimen__tag">Letter Spacing <span>-0.02em</span></span>
+        </div>
+        <h3 style="font-family: var(--font-display); font-weight: 700; color: var(--color-navy); letter-spacing: -0.02em; line-height: 1.15;">Virtual &amp; VR Therapy</h3>
+        <table class="style-table" style="margin-top: 1rem;">
+          <thead><tr><th>Viewport</th><th>Width</th><th>Font Size</th></tr></thead>
+          <tbody>
+            <tr><td>Monitor</td><td>1680px +</td><td>26px</td></tr>
+            <tr><td>Desktop</td><td>1200 – 1679px</td><td>26px</td></tr>
+            <tr><td>Tablet</td><td>810 – 1199px</td><td>22px</td></tr>
+            <tr><td>Mobile</td><td>&le; 809px</td><td>21px</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="token-label" style="margin-top: 2rem;">Body &amp; UI Text</p>
+
+      <div class="type-specimen">
+        <div class="type-specimen__meta">
+          <span class="type-specimen__tag">Role <span>Lead / Intro</span></span>
+          <span class="type-specimen__tag">Font <span>Nunito</span></span>
+          <span class="type-specimen__tag">Weight <span>400</span></span>
+          <span class="type-specimen__tag">Line Height <span>1.7</span></span>
+          <span class="type-specimen__tag">Paragraph Spacing <span>16px</span></span>
+        </div>
+        <p style="font-family: var(--font-body); font-size: 1.1rem; line-height: 1.7; color: var(--color-text-muted);">ABA therapy that meets your child exactly where they are—and helps them get where they're going.</p>
+        <table class="style-table" style="margin-top: 1rem;">
+          <thead><tr><th>Viewport</th><th>Width</th><th>Font Size</th></tr></thead>
+          <tbody>
+            <tr><td>Monitor</td><td>1680px +</td><td>20px</td></tr>
+            <tr><td>Desktop</td><td>1200 – 1679px</td><td>20px</td></tr>
+            <tr><td>Tablet</td><td>810 – 1199px</td><td>18px</td></tr>
+            <tr><td>Mobile</td><td>&le; 809px</td><td>18px</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-specimen__meta">
+          <span class="type-specimen__tag">Role <span>Body</span></span>
+          <span class="type-specimen__tag">Font <span>Nunito</span></span>
+          <span class="type-specimen__tag">Weight <span>400</span></span>
+          <span class="type-specimen__tag">Size <span>17px</span></span>
+          <span class="type-specimen__tag">Line Height <span>1.7</span></span>
+          <span class="type-specimen__tag">Paragraph Spacing <span>16px</span></span>
+        </div>
+        <p style="font-family: var(--font-body); font-size: 1rem; line-height: 1.65; color: var(--color-text);">We are architects of possibility. We don't believe in one-size-fits-all therapy. For too long, autism therapy has felt overwhelming and overly clinical. CSD is changing that. We stand at the intersection of compassion and evidence, where human connection meets clinical excellence.</p>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-specimen__meta">
+          <span class="type-specimen__tag">Role <span>Small / Caption</span></span>
+          <span class="type-specimen__tag">Font <span>Nunito</span></span>
+          <span class="type-specimen__tag">Weight <span>400</span></span>
+          <span class="type-specimen__tag">Size <span>14px</span></span>
+          <span class="type-specimen__tag">Line Height <span>1.6</span></span>
+        </div>
+        <p style="font-family: var(--font-body); font-size: 0.875rem; line-height: 1.6; color: var(--color-text-muted);">Top 10% in Vineland-3 results, supervision hours, and family utilization nationwide.</p>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-specimen__meta">
+          <span class="type-specimen__tag">Role <span>Eyebrow / Label</span></span>
+          <span class="type-specimen__tag">Font <span>Nunito</span></span>
+          <span class="type-specimen__tag">Weight <span>700</span></span>
+          <span class="type-specimen__tag">Size <span>12px</span></span>
+          <span class="type-specimen__tag">Letter Spacing <span>0.14em</span></span>
+          <span class="type-specimen__tag">Text Transform <span>UPPERCASE</span></span>
+        </div>
+        <p style="font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-teal);">Our Services</p>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-specimen__meta">
+          <span class="type-specimen__tag">Role <span>Button Label</span></span>
+          <span class="type-specimen__tag">Font <span>Nunito</span></span>
+          <span class="type-specimen__tag">Weight <span>700</span></span>
+          <span class="type-specimen__tag">Size <span>15px</span></span>
+          <span class="type-specimen__tag">Letter Spacing <span>0.01em</span></span>
+        </div>
+        <p style="font-family: var(--font-body); font-size: 0.95rem; font-weight: 700; letter-spacing: 0.01em; color: var(--color-navy);">Get Started</p>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-specimen__meta">
+          <span class="type-specimen__tag">Role <span>Nav Link</span></span>
+          <span class="type-specimen__tag">Font <span>Nunito</span></span>
+          <span class="type-specimen__tag">Weight <span>600</span></span>
+          <span class="type-specimen__tag">Size <span>14px</span></span>
+        </div>
+        <p style="font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; color: var(--color-text);">Home &nbsp;&nbsp; Careers &nbsp;&nbsp; Locations</p>
+      </div>
+
+      <p class="token-label" style="margin-top: 2rem;">Pull Quote Style</p>
+
+      <div class="type-specimen">
+        <div class="type-specimen__meta">
+          <span class="type-specimen__tag">Role <span>Pull Quote</span></span>
+          <span class="type-specimen__tag">Font <span>Outfit</span></span>
+          <span class="type-specimen__tag">Weight <span>600</span></span>
+          <span class="type-specimen__tag">Line Height <span>1.35</span></span>
+        </div>
+        <blockquote style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--color-navy); line-height: 1.35; margin: 0;">
+          CSD opens a world of possibilities—by making the world possible—for children with autism and their families.
+        </blockquote>
+        <table class="style-table" style="margin-top: 1rem;">
+          <thead><tr><th>Viewport</th><th>Width</th><th>Font Size</th></tr></thead>
+          <tbody>
+            <tr><td>Monitor</td><td>1680px +</td><td>32px</td></tr>
+            <tr><td>Desktop</td><td>1200 – 1679px</td><td>32px</td></tr>
+            <tr><td>Tablet</td><td>810 – 1199px</td><td>25px</td></tr>
+            <tr><td>Mobile</td><td>&le; 809px</td><td>21px</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="token-label" style="margin-top: 2.5rem;">Combining Typefaces</p>
+
+      <!-- Live example: hero-style lockup -->
+      <div class="component-preview" style="padding: 2.5rem; margin-bottom: 1.5rem;">
+        <p style="font-family: var(--font-body); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-teal); margin-bottom: 0.75rem;">Our Approach</p>
+        <h2 style="font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 800; color: var(--color-navy); letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem;">Every child has a<br>breakthrough waiting.</h2>
+        <p style="font-family: var(--font-body); font-size: 1.05rem; line-height: 1.7; color: var(--color-text-muted); max-width: 520px;">We combine evidence-based ABA therapy with genuine human connection — meeting your child exactly where they are and helping them get where they're going.</p>
+      </div>
+
+      <!-- Live example: card-style lockup -->
+      <div class="sg-grid-2" style="margin-bottom: 1.5rem;">
+        <div class="component-preview" style="padding: 1.75rem;">
+          <p style="font-family: var(--font-body); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-teal); margin-bottom: 0.5rem;">Virtual Therapy</p>
+          <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--color-navy); letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 0.5rem;">Therapy that fits your life</h3>
+          <p style="font-family: var(--font-body); font-size: 0.9rem; line-height: 1.6; color: var(--color-text-muted);">Sessions from anywhere, on your schedule. Same expert BCBAs, same personalized approach.</p>
+        </div>
+        <div class="component-preview" style="padding: 1.75rem;">
+          <p style="font-family: var(--font-body); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-teal); margin-bottom: 0.5rem;">In-Home ABA</p>
+          <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--color-navy); letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 0.5rem;">Where comfort meets progress</h3>
+          <p style="font-family: var(--font-body); font-size: 0.9rem; line-height: 1.6; color: var(--color-text-muted);">Naturalistic teaching in your child's most comfortable environment, led by expert therapists.</p>
+        </div>
+      </div>
+
+      <!-- Rules -->
+      <p style="font-size: 0.78rem; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem;">Rules</p>
+      <div class="sg-grid-2" style="margin-bottom: 0;">
+        <div class="component-preview">
+          <h3 style="font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; color: var(--color-sage); margin-bottom: 0.5rem;">Do</h3>
+          <ul style="font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.8; padding-left: 1rem;">
+            <li>Use Outfit for headlines, Nunito for body — never reverse</li>
+            <li>Use Nunito for eyebrows and labels in uppercase</li>
+            <li>Keep Outfit at weight 700–800, Nunito at 400–600</li>
+            <li>Maintain clear size hierarchy: headings should be noticeably larger than body</li>
+            <li>Use the same line-height throughout a block of body copy</li>
+            <li>Never combine both fonts in the same sentence</li>
+          </ul>
+        </div>
+        <div class="component-preview">
+          <h3 style="font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; color: #B91C1C; margin-bottom: 0.5rem;">Don't</h3>
+          <ul style="font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.8; padding-left: 1rem;">
+            <li>Use Nunito for headlines or hero text</li>
+            <li>Use Outfit for long paragraphs of body copy</li>
+            <li>Set body font larger than or equal to the display font nearby</li>
+            <li>Mix weights randomly — stick to the defined scale</li>
+            <li>Use Outfit at light weights (below 600) — it loses its character</li>
+            <li>Center-align body paragraphs — always left-align</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SPACING
+         ============================================================ -->
+    <section class="sg-section" id="spacing">
+      <div class="sg-section__header">
+        <h2 class="sg-section__title">Spacing Scale</h2>
+        <p class="sg-section__desc">Consistent spacing tokens used for padding, margins, and gaps throughout the site.</p>
+      </div>
+
+      <div class="spacing-grid">
+        <div class="spacing-row">
+          <div class="spacing-bar" style="width: 8px;"></div>
+          <div class="spacing-meta">
+            <code>--space-xs</code>
+            <span>0.5rem · 8px</span>
+          </div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-bar" style="width: 16px;"></div>
+          <div class="spacing-meta">
+            <code>--space-sm</code>
+            <span>1rem · 16px</span>
+          </div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-bar" style="width: 24px;"></div>
+          <div class="spacing-meta">
+            <code>--space-md</code>
+            <span>1.5rem · 24px</span>
+          </div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-bar" style="width: 40px;"></div>
+          <div class="spacing-meta">
+            <code>--space-lg</code>
+            <span>2.5rem · 40px</span>
+          </div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-bar" style="width: 64px;"></div>
+          <div class="spacing-meta">
+            <code>--space-xl</code>
+            <span>4rem · 64px</span>
+          </div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-bar" style="width: 96px;"></div>
+          <div class="spacing-meta">
+            <code>--space-2xl</code>
+            <span>6rem · 96px</span>
+          </div>
+        </div>
+        <div class="spacing-row">
+          <div class="spacing-bar" style="width: 128px;"></div>
+          <div class="spacing-meta">
+            <code>--space-3xl</code>
+            <span>8rem · 128px · section padding</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BORDER RADIUS
+         ============================================================ -->
+    <section class="sg-section" id="radius">
+      <div class="sg-section__header">
+        <h2 class="sg-section__title">Border Radius</h2>
+        <p class="sg-section__desc">Bolder, rounder corners that feel confident and expressive.</p>
+      </div>
+
+      <div class="radius-grid">
+        <div class="radius-item">
+          <div class="radius-box" style="border-radius: 12px;"></div>
+          <span>Small</span>
+          <code>--radius-sm · 12px</code>
+          <span style="font-size: 0.68rem; color: var(--color-text-muted);">Buttons, chips, badges</span>
+        </div>
+        <div class="radius-item">
+          <div class="radius-box" style="border-radius: 16px;"></div>
+          <span>Medium</span>
+          <code>--radius-md · 16px</code>
+          <span style="font-size: 0.68rem; color: var(--color-text-muted);">Stat cards, callouts</span>
+        </div>
+        <div class="radius-item">
+          <div class="radius-box" style="border-radius: 24px;"></div>
+          <span>Large</span>
+          <code>--radius-lg · 24px</code>
+          <span style="font-size: 0.68rem; color: var(--color-text-muted);">Service cards, testimonials</span>
+        </div>
+        <div class="radius-item">
+          <div class="radius-box" style="border-radius: 40px;"></div>
+          <span>Extra Large</span>
+          <code>--radius-xl · 40px</code>
+          <span style="font-size: 0.68rem; color: var(--color-text-muted);">Hero image, large media</span>
+        </div>
+        <div class="radius-item">
+          <div class="radius-box" style="border-radius: 999px; width: 80px; height: 40px;"></div>
+          <span>Pill</span>
+          <code>border-radius: 999px</code>
+          <span style="font-size: 0.68rem; color: var(--color-text-muted);">Tags, eyebrow chips</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BUTTONS
+         ============================================================ -->
+    <section class="sg-section" id="buttons">
+      <div class="sg-section__header">
+        <h2 class="sg-section__title">Buttons</h2>
+        <p class="sg-section__desc">Bold buttons with shadows at rest — they demand attention. Primary uses Gold, secondary uses Teal. All meet 44×44px minimum touch target.</p>
+      </div>
+
+      <p class="token-label">Variants</p>
+      <div class="component-preview">
+        <div class="btn-row">
+          <a href="javascript:void(0)" class="btn btn-primary">Primary CTA</a>
+          <a href="javascript:void(0)" class="btn btn-secondary">Secondary</a>
+          <a href="javascript:void(0)" class="btn btn-outline">Outline</a>
+          <a href="javascript:void(0)" class="btn btn-ghost">Ghost Link →</a>
+        </div>
+      </div>
+
+      <p class="token-label">Sizes</p>
+      <div class="component-preview">
+        <div class="btn-row">
+          <a href="javascript:void(0)" class="btn btn-primary btn-sm">Small</a>
+          <a href="javascript:void(0)" class="btn btn-primary">Default</a>
+          <a href="javascript:void(0)" class="btn btn-primary btn-lg">Large</a>
+        </div>
+      </div>
+
+      <p class="token-label">Usage Guidelines</p>
+      <table class="style-table">
+        <thead>
+          <tr>
+            <th>Button</th>
+            <th>When to use</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Primary (Gold)</strong></td>
+            <td>Primary page action, max 1–2 per page</td>
+            <td>"Start your child's journey today"</td>
+          </tr>
+          <tr>
+            <td><strong>Secondary (Teal)</strong></td>
+            <td>Important secondary action</td>
+            <td>"Connect with a team member"</td>
+          </tr>
+          <tr>
+            <td><strong>Outline</strong></td>
+            <td>Tertiary action, light or dark backgrounds</td>
+            <td>"Learn more"</td>
+          </tr>
+          <tr>
+            <td><strong>Ghost / Text</strong></td>
+            <td>Inline actions, card links</td>
+            <td>"Explore services →"</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ============================================================
+         CARDS
+         ============================================================ -->
+    <section class="sg-section" id="cards">
+      <div class="sg-section__header">
+        <h2 class="sg-section__title">Cards</h2>
+        <p class="sg-section__desc">Shadow-first cards with no borders. Colored hover shadows and dramatic lift. Circular icon containers.</p>
+      </div>
+
+      <p class="token-label">Service Card</p>
+      <div class="component-preview">
+        <div class="sample-card">
+          <div class="sample-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0891B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div class="sample-card__title">Virtual &amp; VR Therapy</div>
+          <p class="sample-card__body">We lead in ABA innovation with our virtual program, brought to life by gamification and VR technology—always with live guidance from your therapist.</p>
+        </div>
+      </div>
+
+      <p class="token-label">Stat Card</p>
+      <div class="component-preview component-preview--warm">
+        <div class="sample-stat">
+          <div class="sample-stat__number">17%</div>
+          <div class="sample-stat__label">Higher Goal Progress</div>
+        </div>
+      </div>
+
+      <p class="token-label">Testimonial Card</p>
+      <div class="component-preview">
+        <div class="sample-testimonial">
+          <p class="sample-testimonial__quote">"CSD didn't just give my son skills—they gave him a voice. The flexibility of in-home sessions made it possible for me to manage work and therapy without feeling completely overwhelmed."</p>
+          <div class="sample-testimonial__footer">
+            <div class="sample-testimonial__avatar" aria-hidden="true">👩</div>
+            <div>
+              <div class="sample-testimonial__name">Sarah L.</div>
+              <div class="sample-testimonial__role">Parent</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BADGES & EYEBROWS
+         ============================================================ -->
+    <section class="sg-section" id="badges">
+      <div class="sg-section__header">
+        <h2 class="sg-section__title">Badges &amp; Eyebrows</h2>
+        <p class="sg-section__desc">Bolder chip styling — filled backgrounds with white text, not just light tints.</p>
+      </div>
+
+      <p class="token-label">Eyebrow Styles</p>
+      <div class="component-preview" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div>
+          <p style="font-size: 0.72rem; color: var(--color-text-muted); margin-bottom: 0.4rem;">Chip style (Hero) — Filled</p>
+          <span class="eyebrow-chip">
+            <svg width="8" height="8" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><circle cx="5" cy="5" r="5"/></svg>
+            ABA Therapy · Autism Support
+          </span>
+        </div>
+        <div>
+          <p style="font-size: 0.72rem; color: var(--color-text-muted); margin-bottom: 0.4rem;">Chip style — Gold variant</p>
+          <span class="eyebrow-chip eyebrow-chip--gold">
+            <svg width="8" height="8" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><circle cx="5" cy="5" r="5"/></svg>
+            New · Just Launched
+          </span>
+        </div>
+        <div>
+          <p style="font-size: 0.72rem; color: var(--color-text-muted); margin-bottom: 0.4rem;">Plain text style (Sections)</p>
+          <p class="eyebrow-text">Our Services</p>
+        </div>
+        <div style="background: var(--color-navy); padding: 1rem; border-radius: var(--radius-sm); display: inline-block;">
+          <p style="font-size: 0.72rem; color: rgba(255,255,255,0.5); margin-bottom: 0.4rem;">On dark background</p>
+          <p style="font-family: var(--font-body); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.88);">Where Do I Start?</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ICONOGRAPHY
+         ============================================================ -->
+    <section class="sg-section" id="icons">
+      <div class="sg-section__header">
+        <h2 class="sg-section__title">Iconography</h2>
+        <p class="sg-section__desc">Line icons from Lucide/Feather icon family. Stroke weight 2px. Teal color by default. Never used without a visible text label.</p>
+      </div>
+
+      <p class="token-label">Core UI Icons</p>
+      <div class="icon-grid">
+        <div class="icon-chip">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+          <span>Phone</span>
+        </div>
+        <div class="icon-chip">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>Email</span>
+        </div>
+        <div class="icon-chip">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <span>Arrow</span>
+        </div>
+        <div class="icon-chip">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <span>Virtual</span>
+        </div>
+        <div class="icon-chip">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Home</span>
+        </div>
+        <div class="icon-chip">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Family</span>
+        </div>
+        <div class="icon-chip">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <span>Progress</span>
+        </div>
+        <div class="icon-chip">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>Check</span>
+        </div>
+        <div class="icon-chip">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Star</span>
+        </div>
+        <div class="icon-chip">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span>Heart</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PHOTOGRAPHY DIRECTION
+         ============================================================ -->
+    <section class="sg-section" id="photography">
+      <div class="sg-section__header">
+        <h2 class="sg-section__title">Photography Direction</h2>
+        <p class="sg-section__desc">Photography choices are strategic, not decorative. Every image should pass the demographic and emotional gut-checks.</p>
+      </div>
+
+      <p class="token-label">Subject Guidelines</p>
+      <table class="style-table">
+        <thead>
+          <tr>
+            <th><span class="tag-do">Do</span></th>
+            <th><span class="tag-dont">Don't</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Real children in real contexts — therapy, focus, play, discovery, collaboration</td>
+            <td>Generic stock: smiling families in white rooms, posed "happy patient" shots</td>
+          </tr>
+          <tr>
+            <td>Include older children and teens (8–15 range should feel represented)</td>
+            <td>Only young children or toddlers — 75% of clients are age 8+</td>
+          </tr>
+          <tr>
+            <td>Boys and male-presenting subjects featured prominently (70% male client base)</td>
+            <td>Imagery that skews predominantly feminine</td>
+          </tr>
+          <tr>
+            <td>Candid and slightly imperfect — real moments of engagement</td>
+            <td>Polished and posed stock-photo aesthetics</td>
+          </tr>
+          <tr>
+            <td>Images of moms, families, and clinicians alongside children in below-the-fold sections</td>
+            <td>Abstract illustration alone — real photos create emotional resonance</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="token-label" style="margin-top: 2rem;">Emotional Register</p>
+      <div class="component-preview" style="background: var(--color-bg-warm); border: none;">
+        <p style="font-size: 0.875rem; color: var(--color-text); line-height: 1.7;">Photography should show kids <em>engaged</em> — curious, focused, active, collaborative. Not smiling at nothing. The goal is for a parent to look at a photo and think: <strong>"That looks like my kid at their best."</strong></p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ART ON PHOTOGRAPHY
+         ============================================================ -->
+    <section class="sg-section" id="art-on-photo">
+      <div class="sg-section__header">
+        <h2 class="sg-section__title">Signature Technique: Art on Photography</h2>
+        <p class="sg-section__desc">The core visual idea: layering illustration or graphic art on top of real photography.</p>
+      </div>
+
+      <div class="sg-grid-2" style="margin-bottom: 1.5rem;">
+        <div class="component-preview">
+          <h3 style="font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--color-navy); margin-bottom: 0.5rem;">The Photograph</h3>
+          <p style="font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.7;">Signals that CSD's program operates in the real world, produces real outcomes, and fits into real family life.</p>
+        </div>
+        <div class="component-preview" style="background: var(--color-teal-light); border: none;">
+          <h3 style="font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--color-navy); margin-bottom: 0.5rem;">The Art Layer</h3>
+          <p style="font-size: 0.875rem; color: var(--color-text); line-height: 1.7;">Lifts the image into possibility, imagination, and aspiration. Together they say: <em>"This is real, and it can be more."</em></p>
+        </div>
+      </div>
+
+      <p class="token-label">Example</p>
+      <div class="art-on-photo-sample">
+        <img src="assets/art-on-photo-sample.jpg" alt="Example of Art on Photography technique — candid photo with flat vector illustration overlay" onerror="this.parentElement.classList.add('no-image')" />
+        <div class="art-on-photo-sample__placeholder">
+          <p style="font-size: 0.9rem; font-weight: 600; color: var(--color-navy); margin-bottom: 0.5rem;">Sample Image Placeholder</p>
+          <p style="font-size: 0.8rem; color: var(--color-text-muted); line-height: 1.6; max-width: 480px;">Generate using the combined prompt from the AI Prompts table below, then save as <code style="font-size: 0.75rem; background: var(--color-teal-light); padding: 2px 6px; border-radius: 3px;">assets/art-on-photo-sample.jpg</code></p>
+        </div>
+        <p class="art-on-photo-sample__caption">Real photography grounds the image in CSD's world. The flat vector art layer lifts it into possibility — together they say <em>"this is real, and it can be more."</em></p>
+      </div>
+
+      <p class="token-label" style="margin-top: 2rem;">Constraints</p>
+      <table class="style-table">
+        <thead>
+          <tr>
+            <th>Principle</th>
+            <th>Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Integration</strong></td>
+            <td>The illustration layer should feel like it <em>belongs with</em> the photograph, not dropped on top. Integration matters more than technique.</td>
+          </tr>
+          <tr>
+            <td><strong>Meaning</strong></td>
+            <td>Art should carry meaning — navigational, growth-oriented, or forward-looking imagery. Abstract decoration for its own sake does not belong.</td>
+          </tr>
+          <tr>
+            <td><strong>Maturity</strong></td>
+            <td>Must read as mature and considered. Think editorial or studio art direction, not children's app.</td>
+          </tr>
+          <tr>
+            <td><strong>Gut-check</strong></td>
+            <td>Would this feel at home on a thoughtful consumer brand aimed at adults who happen to have children? If yes, it's right.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="token-label" style="margin-top: 2rem;">Open Techniques</p>
+      <div class="component-preview" style="background: var(--color-bg-warm); border: none;">
+        <p style="font-size: 0.875rem; color: var(--color-text); line-height: 1.7;">Pencil sketch, clean vector illustration, fluid painted strokes, or other treatments are all on the table. The style should be harmonious with the graphics used in CSD's virtual and VR sessions.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         AI IMAGE GENERATION PROMPTS
+         ============================================================ -->
+    <section class="sg-section" id="ai-prompts">
+      <div class="sg-section__header">
+        <h2 class="sg-section__title">AI Image Generation Prompts</h2>
+        <p class="sg-section__desc">Ready-to-use prompts for generating on-brand imagery using Midjourney, Nana Banaa, or other AI tools. Each row separates the photographic base, the vector art overlay concept, and a combined prompt for full mixed-media output.</p>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="prompt-table">
+          <thead>
+            <tr>
+              <th>Photo Prompt</th>
+              <th>Artwork Concept</th>
+              <th>Combined Prompt</th>
+              <th>Brand Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <!-- PROMPT 1 -->
+            <tr>
+              <td>
+                <span class="prompt-row-num">1</span>
+                <span class="prompt-text">Candid photograph of a boy around age 10 sitting cross-legged on a clinic floor, sorting colored cards with focused concentration. Warm overhead natural light from a window, shallow depth of field blurring the background. He wears a casual striped t-shirt. Shot at eye level, editorial portrait style. Warm skin tones, soft neutral background.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Flat vector coral and teal hot air balloon floating above the child's head trailing a thin golden ribbon. A few simplified cumulus clouds in white and pale blue scattered around. Clean geometric shapes, no outlines, solid color fills.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Editorial mixed-media photograph of a boy around age 10 sitting cross-legged on a clinic floor, sorting colored cards with focused concentration. Warm overhead natural light from a window, shallow depth of field. Casual striped t-shirt. Shot at eye level with warm skin tones and soft neutral background. Overlaid with flat vector illustration: a coral and teal hot air balloon floats above the child's head trailing a thin golden ribbon, with simplified white and pale blue cumulus clouds scattered in the upper portion. The vector art uses clean geometric shapes with solid color fills, no outlines, seamlessly integrated into the photographic scene as a cohesive mixed-media composition.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="brand-text">Supports the Navigator of Possibility brand pillar. The focused child demonstrates real therapeutic engagement while the ascending balloon symbolizes upward potential. Ideal for hero sections or service pages where CSD needs to show that structured clinical work unlocks aspiration.</span>
+              </td>
+            </tr>
+
+            <!-- PROMPT 2 -->
+            <tr>
+              <td>
+                <span class="prompt-row-num">2</span>
+                <span class="prompt-text">Candid photograph of a teenage boy around 14 and a female clinician sitting side by side at a table, both looking at a shared notebook. The teen is pointing at something on the page. Natural indoor lighting, modern therapy room with warm wood tones. Shot from a three-quarter angle, documentary style. Genuine engagement between subjects, no posed smiling.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Flat vector winding river in gradient teal to sage green flowing across the background behind both figures, with small stylized stepping stones in gold and coral dotting the water. Minimal flat vector reeds along the riverbank edges. Solid fills, no strokes or outlines.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Documentary-style mixed-media photograph of a teenage boy around 14 and a female clinician sitting side by side at a table, both engaged with a shared notebook. The teen points at something on the page. Natural indoor lighting in a modern therapy room with warm wood tones, three-quarter angle. Behind both figures, a flat vector winding river in gradient teal to sage green flows across the background with small stylized stepping stones in gold and coral dotting the water, and minimal flat vector reeds along the riverbank edges. The illustration uses solid fills with no strokes, blending naturally with the photographic scene in a cohesive mixed-media editorial style.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="brand-text">Demonstrates the clinician-client partnership at the heart of CSD's model. The stepping-stone river represents guided progress and the therapeutic journey. Serves the "Are they actually good?" user question — showing credible, collaborative clinical expertise with older children.</span>
+              </td>
+            </tr>
+
+            <!-- PROMPT 3 -->
+            <tr>
+              <td>
+                <span class="prompt-row-num">3</span>
+                <span class="prompt-text">Candid photograph of a boy around age 9 standing at a whiteboard drawing shapes with a marker, his back slightly turned, captured mid-stroke. Bright classroom-like environment with soft diffused light. Wearing a hoodie and jeans. Slight motion blur on his drawing hand. Clean modern space, not cluttered.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Flat vector constellation pattern radiating outward from the whiteboard area — connected dots and lines in gold and teal forming abstract star shapes against a soft lavender background wash. Small flat vector compass rose in coral in one corner. No gradients within shapes, clean flat fills.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Mixed-media editorial photograph of a boy around age 9 standing at a whiteboard drawing shapes with a marker, back slightly turned, captured mid-stroke. Bright classroom-like environment with soft diffused light, wearing a hoodie and jeans, slight motion blur on his drawing hand. Surrounding the whiteboard area, flat vector constellation patterns radiate outward — connected dots and lines in gold and teal forming abstract star shapes against a soft lavender background wash, with a small flat vector compass rose in coral in one corner. All illustration uses clean flat fills with no gradients within shapes, integrated naturally with the photograph.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="brand-text">Captures active learning and self-expression — a child building skills in real time. The constellation motif suggests that individual actions connect to bigger patterns and outcomes. Works for services pages or the "How does this actually work?" section showing therapeutic activities.</span>
+              </td>
+            </tr>
+
+            <!-- PROMPT 4 -->
+            <tr>
+              <td>
+                <span class="prompt-row-num">4</span>
+                <span class="prompt-text">Candid photograph of a mother and her son around age 12 walking together down a sunlit hallway, seen from behind. The mom has her hand on the boy's shoulder. Warm golden hour light streaming through side windows. Both dressed casually. Architectural lines of the hallway creating depth. Shot with a longer focal length for gentle compression.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Flat vector arching gateway or open doorway at the end of the hallway rendered in layered teal and sage green with golden light rays fanning outward from the opening. Stylized flat vector vine with small leaves in green tracing along the hallway walls. Solid color fills, no outlines.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Mixed-media editorial photograph of a mother and her son around age 12 walking together down a sunlit hallway, seen from behind. Mom's hand rests on the boy's shoulder. Warm golden hour light streams through side windows, both dressed casually, architectural hallway lines creating depth, longer focal length with gentle compression. At the end of the hallway, a flat vector arching gateway in layered teal and sage green with golden light rays fanning outward from the opening. Stylized flat vector vines with small leaves in green trace along the hallway walls. All illustration uses solid color fills with no outlines, seamlessly composited into the photographic scene.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="brand-text">Embodies the family journey narrative central to CSD's brand. Mom and child moving forward together toward something bright speaks directly to the primary audience — mothers seeking a path forward. The open gateway represents the clear next step CSD provides. Ideal for homepage hero or conversion-adjacent sections.</span>
+              </td>
+            </tr>
+
+            <!-- PROMPT 5 -->
+            <tr>
+              <td>
+                <span class="prompt-row-num">5</span>
+                <span class="prompt-text">Candid photograph of two boys around ages 10 and 12 sitting across from each other at a round table playing a board game, one mid-laugh. Natural overhead light, cozy therapy room with plants in background. Shot from slightly above, capturing genuine interaction. Warm color temperature, relaxed body language.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Flat vector fireworks-like burst shapes in coral, gold, and teal radiating between the two boys at the center of the table. Small flat vector geometric confetti pieces — triangles, circles, diamonds — scattered in the upper portion of the frame. Bright saturated colors, flat fills, no outlines or strokes.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Mixed-media editorial photograph of two boys around ages 10 and 12 sitting across from each other at a round table playing a board game, one mid-laugh. Natural overhead light in a cozy therapy room with plants in background, shot from slightly above, warm color temperature with relaxed body language. Between the two boys at the center of the table, flat vector fireworks-like burst shapes radiate in coral, gold, and teal. Small flat vector geometric confetti pieces — triangles, circles, and diamonds — scatter across the upper frame. Bright saturated flat color fills with no outlines, blended into the photographic scene as a polished mixed-media composition.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="brand-text">Shows peer interaction and social skill development — a key CSD service area. The celebratory burst energy between subjects visualizes the connection happening in real time. Demonstrates that therapy can be engaging, not clinical. Supports the "Does this place serve kids like mine?" question for families seeking social skills support.</span>
+              </td>
+            </tr>
+
+            <!-- PROMPT 6 -->
+            <tr>
+              <td>
+                <span class="prompt-row-num">6</span>
+                <span class="prompt-text">Candid photograph of a girl around age 13 with natural curly hair, sitting in a beanbag chair holding a tablet, smiling slightly at the screen. Soft ambient indoor light, modern comfortable space. Shot from a low angle looking slightly up. She wears a denim jacket. Background softly out of focus with warm earth tones.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Flat vector aurora borealis-like ribbons in flowing curves of teal, sage green, and soft lavender sweeping across the upper background behind her. Small flat vector origami-style birds in coral and gold scattered within the ribbon flow. Smooth solid fills, organic curves, no outlines.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Mixed-media editorial photograph of a girl around age 13 with natural curly hair, sitting in a beanbag chair holding a tablet, smiling slightly at the screen. Soft ambient indoor light in a modern comfortable space, low angle looking slightly up, wearing a denim jacket, warm earth-toned background softly out of focus. Sweeping across the upper background, flat vector aurora borealis-like ribbons in flowing curves of teal, sage green, and soft lavender, with small flat vector origami-style birds in coral and gold scattered within the ribbon flow. All illustration uses smooth solid fills with organic curves and no outlines, naturally composited into the scene.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="brand-text">Represents telehealth and virtual therapy sessions — a major CSD service channel. Shows a teen engaged independently with technology in a comfortable setting, normalizing remote therapeutic engagement. The flowing aurora motif conveys expansive possibility. Supports the virtual services page and demonstrates CSD serves teens, not just young children.</span>
+              </td>
+            </tr>
+
+            <!-- PROMPT 7 -->
+            <tr>
+              <td>
+                <span class="prompt-row-num">7</span>
+                <span class="prompt-text">Candid photograph of a male clinician kneeling to be at eye level with a boy around age 8, both examining something small the child is holding in his hands. Warm natural side lighting from a large window. Clinical setting that feels warm — light wood, soft furnishings. Shot at their shared eye level, intimate documentary feel.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Flat vector magnifying glass in teal and gold hovering near the object in the child's hands, with tiny flat vector gears, atoms, and question marks floating outward from the lens in coral, sage, and gold. Playful but clean and precise. Flat fills, no outlines.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Mixed-media editorial photograph of a male clinician kneeling at eye level with a boy around age 8, both examining something small the child holds in his hands. Warm natural side lighting from a large window in a clinical setting with light wood and soft furnishings, shot at their shared eye level with intimate documentary feel. Near the object in the child's hands, a flat vector magnifying glass in teal and gold hovers, with tiny flat vector gears, atoms, and question marks floating outward from the lens in coral, sage, and gold. Clean and precise flat fills with no outlines, seamlessly integrated as a cohesive mixed-media editorial image.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="brand-text">Highlights the individualized, child-led approach CSD clinicians take. The clinician meeting the child at eye level communicates respect and partnership. The curiosity motifs radiating from the child's discovery reinforce that therapy follows the child's interests. Builds trust with parents by showing expert clinicians who genuinely engage.</span>
+              </td>
+            </tr>
+
+            <!-- PROMPT 8 -->
+            <tr>
+              <td>
+                <span class="prompt-row-num">8</span>
+                <span class="prompt-text">Candid photograph of a boy around age 11 mid-stride on a balance beam in a movement therapy room, arms outstretched, face showing determined concentration. Bright open space with high ceilings and natural light. Athletic wear. Shot from a slight side angle capturing the full body in motion. Clean minimal background.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Flat vector winding trail extending from the balance beam forward into the background, transforming into an illustrated landscape with gentle rolling hills in layered greens and a small flag marker in gold at the trail's vanishing point. Flat vector wind lines in light teal around the child suggesting forward momentum. Solid fills, no outlines.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Mixed-media editorial photograph of a boy around age 11 mid-stride on a balance beam in a movement therapy room, arms outstretched, face showing determined concentration. Bright open space with high ceilings, natural light, athletic wear, slight side angle capturing full body in motion against a clean minimal background. A flat vector winding trail extends from the balance beam forward into the background, transforming into an illustrated landscape with gentle rolling hills in layered greens and a small gold flag marker at the trail's vanishing point. Flat vector wind lines in light teal surround the child suggesting forward momentum. All illustration uses solid fills with no outlines, cohesively integrated with the photograph.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="brand-text">Showcases physical/motor therapy services and the idea of measurable progress. The extending trail with a goal marker visualizes the structured path CSD creates for each child. The forward momentum embodies the brand's optimistic, progress-driven personality. Works well for services overview or outcomes-focused sections.</span>
+              </td>
+            </tr>
+
+            <!-- PROMPT 9 -->
+            <tr>
+              <td>
+                <span class="prompt-row-num">9</span>
+                <span class="prompt-text">Candid photograph of a mother sitting on a couch with her arm around a boy around age 10, both looking at something off-camera to the right with interested expressions. Cozy home environment with soft blankets and warm lamp light. Shot from across the room, environmental portrait style. Natural and unstaged, comfortable body language.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Flat vector telescope in teal and navy pointing toward the right side of the frame where they are looking, with a scattering of flat vector stars and a crescent moon in gold and soft yellow emanating from the telescope's direction. A subtle flat vector horizon line with gentle hills in sage green along the bottom edge. Solid fills, no outlines.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Mixed-media editorial photograph of a mother sitting on a couch with her arm around a boy around age 10, both looking off-camera to the right with interested expressions. Cozy home environment with soft blankets and warm lamp light, shot from across the room in environmental portrait style, natural and unstaged with comfortable body language. A flat vector telescope in teal and navy points toward the right where they are looking, with flat vector stars and a crescent moon in gold and soft yellow emanating from the telescope's direction. A subtle flat vector horizon line with gentle hills in sage green runs along the bottom edge. Solid fills with no outlines, naturally composited into the photographic scene.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="brand-text">Speaks directly to the primary audience — mothers navigating their child's development. Both parent and child looking toward the same horizon communicates shared vision and partnership. The telescope symbolizes CSD helping families see further ahead. Ideal for parent-facing content, testimonial sections, or the intake conversion pathway.</span>
+              </td>
+            </tr>
+
+            <!-- PROMPT 10 -->
+            <tr>
+              <td>
+                <span class="prompt-row-num">10</span>
+                <span class="prompt-text">Candid photograph of a boy around age 15 sitting at a desk writing in a journal, wearing glasses, natural window light illuminating the page. Calm focused expression. Modern bedroom or study space with books on shelves. Shot over the shoulder at a slight angle, seeing both his face in profile and the journal. Muted warm tones.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Flat vector open book shape in teal emerging from the journal, with stylized pages fanning outward releasing small flat vector icons — a lightbulb in gold, a speech bubble in coral, a small globe in sage green, a musical note in lavender. The icons drift upward like they are floating off the pages. Clean flat fills, no outlines or gradients.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Mixed-media editorial photograph of a boy around age 15 sitting at a desk writing in a journal, wearing glasses, natural window light illuminating the page. Calm focused expression in a modern bedroom or study space with books on shelves, shot over the shoulder at a slight angle showing his profile and the journal, muted warm tones. Emerging from the journal, a flat vector open book shape in teal with stylized pages fanning outward, releasing small flat vector icons floating upward — a lightbulb in gold, a speech bubble in coral, a small globe in sage green, a musical note in lavender. All icons drift upward as if floating off the pages. Clean flat fills with no outlines or gradients, cohesively composited with the photograph.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="brand-text">Represents older teens in CSD's programs — challenging the assumption that developmental services are only for young children. The floating icons symbolize the range of skills and interests unlocked through therapeutic support. Directly addresses the 75% of clients who are age 8+ demographic reality. Works for outcomes pages or age-range messaging.</span>
+              </td>
+            </tr>
+
+            <!-- PROMPT 11 -->
+            <tr>
+              <td>
+                <span class="prompt-row-num">11</span>
+                <span class="prompt-text">Candid photograph of a female clinician and a boy around age 9 sitting on the floor facing each other, the clinician holding up picture cards while the boy responds animatedly. Bright therapy room with colorful but organized materials. Natural light, shot from the side at floor level. Both subjects engaged and present.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Flat vector speech bubbles of various sizes in teal, coral, and soft yellow floating above and between both figures, connected by thin dotted lines in sage green suggesting a conversation pathway. One larger bubble contains a small flat vector star shape. No outlines, solid fills, clean geometric forms.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Mixed-media editorial photograph of a female clinician and a boy around age 9 sitting on the floor facing each other, the clinician holding up picture cards while the boy responds animatedly. Bright therapy room with colorful but organized materials, natural light, shot from the side at floor level, both subjects engaged. Above and between both figures, flat vector speech bubbles of various sizes in teal, coral, and soft yellow float connected by thin dotted lines in sage green suggesting a conversation pathway. One larger bubble contains a small flat vector star shape. No outlines, solid fills with clean geometric forms, integrated naturally into the photographic composition.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="brand-text">Visualizes speech and communication therapy — one of CSD's core specialties. The connected speech bubbles represent building communication pathways, which is literally what the therapy achieves. The star inside the bubble suggests breakthrough moments. Effective for services pages focused on speech-language pathology.</span>
+              </td>
+            </tr>
+
+            <!-- PROMPT 12 -->
+            <tr>
+              <td>
+                <span class="prompt-row-num">12</span>
+                <span class="prompt-text">Candid photograph of three children around ages 8, 10, and 13 gathered around a large art table, each working on their own project but sharing space collaboratively. Overhead shot looking down at the table. Art supplies scattered naturally. Warm workshop-style lighting. Diverse group, majority boys. Hands and projects in focus, faces partially visible.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Flat vector colorful map-like illustration filling the negative space of the table surface between projects — winding paths in teal, small landmark icons in gold and coral (a tiny house, a bridge, a tree), and topographic-style contour rings in sage green. The illustrated map connects the three work areas visually. Flat fills, no outlines.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Mixed-media editorial photograph shot from overhead of three children around ages 8, 10, and 13 gathered around a large art table, each working on their own project but sharing space collaboratively. Art supplies scattered naturally under warm workshop-style lighting, diverse group with majority boys, hands and projects in focus with faces partially visible. The negative space of the table surface between projects is filled with a flat vector colorful map-like illustration — winding paths in teal, small landmark icons in gold and coral including a tiny house, bridge, and tree, and topographic-style contour rings in sage green connecting the three work areas visually. Flat fills with no outlines, blended naturally with the overhead photographic perspective.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="brand-text">Shows group therapy in action with mixed ages — reflecting CSD's actual client range. The map metaphor connecting individual work areas reinforces that each child follows their own path while being part of a shared community. The overhead angle gives the viewer a sense of guided oversight. Useful for community or group program pages.</span>
+              </td>
+            </tr>
+
+            <!-- PROMPT 13 -->
+            <tr>
+              <td>
+                <span class="prompt-row-num">13</span>
+                <span class="prompt-text">Candid photograph of a boy around age 11 standing outdoors in a park, looking up at the sky with an expression of wonder and slight amusement. Golden late-afternoon light catching his face. Trees blurred in background. Wearing a backpack slung over one shoulder. Shot from below at a heroic low angle. Natural colors with warm golden tint.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Flat vector paper airplane in coral soaring upward in the sky where the boy is looking, trailing a thin dashed line in teal showing its flight path in a graceful arc. Two or three flat vector clouds in white with subtle lavender shadows scattered nearby. A small flat vector sun with simplified rays in warm gold peeking from the upper corner. Solid fills, no outlines.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Mixed-media editorial photograph of a boy around age 11 standing outdoors in a park, looking up at the sky with wonder and slight amusement. Golden late-afternoon light catching his face, trees blurred in background, backpack slung over one shoulder, shot from below at a heroic low angle with warm golden tint. In the sky where he looks, a flat vector paper airplane in coral soars upward trailing a thin dashed line in teal showing its graceful arc flight path. Two or three flat vector clouds in white with subtle lavender shadows scatter nearby, and a small flat vector sun with simplified rays in warm gold peeks from the upper corner. Solid fills with no outlines, cohesively integrated as a mixed-media editorial composition.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="brand-text">Captures aspiration and forward momentum — the feeling families should leave CSD's site with. The heroic low angle makes the child feel powerful and capable. The paper airplane represents trajectory and potential. A strong brand campaign image that could work across homepage hero, social media, or print collateral. Embodies the Possibility pillar.</span>
+              </td>
+            </tr>
+
+            <!-- PROMPT 14 -->
+            <tr>
+              <td>
+                <span class="prompt-row-num">14</span>
+                <span class="prompt-text">Candid photograph of a father and son around age 9 sitting on front porch steps together, the boy showing his dad something on a phone screen. Both leaning in. Late morning soft light, residential neighborhood feel. Casual weekend clothing. Shot from the walkway looking up at them on the steps. Relaxed and genuine, no posing.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Flat vector potted plant in teal pot growing upward along the porch railing, with oversized stylized leaves in varying shades of sage green, emerald, and mint. A single flat vector flower bloom in coral at the top of the plant. The plant appears to grow naturally from the scene's architecture. Solid fills, no outlines, organic but clean shapes.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Mixed-media editorial photograph of a father and son around age 9 sitting on front porch steps together, the boy showing his dad something on a phone screen. Both leaning in under late morning soft light with a residential neighborhood feel, casual weekend clothing, shot from the walkway looking up. Along the porch railing, a flat vector potted plant in a teal pot grows upward with oversized stylized leaves in varying shades of sage green, emerald, and mint, topped by a single flat vector flower bloom in coral. The plant grows naturally from the scene's architecture. Solid fills with no outlines, organic but clean shapes, seamlessly composited into the photographic scene.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="brand-text">Includes fathers in the family narrative — important for representing the full family unit even though moms are the primary web audience. The growing plant rooted in the home represents development that happens organically within family life. Shows therapy fitting into real life, not just clinical settings. Useful for family testimonial sections or the about page.</span>
+              </td>
+            </tr>
+
+            <!-- PROMPT 15 -->
+            <tr>
+              <td>
+                <span class="prompt-row-num">15</span>
+                <span class="prompt-text">Candid photograph of a boy around age 12 wearing a VR headset in a modern clinical space, hands reaching forward interacting with something virtual, slight smile of engagement. Clean bright room with teal accent wall partially visible. Shot at three-quarter angle capturing his immersed posture. Soft studio-quality lighting, contemporary feel.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Flat vector geometric portal or doorway shape in gradient teal and navy framing the boy, with flat vector abstract shapes — circles, hexagons, and rounded rectangles in coral, gold, sage, and lavender — floating outward from the portal as if emerging from the virtual world into real space. Clean precise geometry, flat fills, no outlines.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="prompt-text">Mixed-media editorial photograph of a boy around age 12 wearing a VR headset in a modern clinical space, hands reaching forward interacting with something virtual, slight smile of engagement. Clean bright room with a teal accent wall partially visible, three-quarter angle capturing his immersed posture, soft studio-quality lighting with contemporary feel. A flat vector geometric portal or doorway shape in gradient teal and navy frames the boy, with flat vector abstract shapes — circles, hexagons, and rounded rectangles in coral, gold, sage, and lavender — floating outward from the portal as if emerging from the virtual world into real space. Clean precise geometry with flat fills and no outlines, cohesively composited with the photograph.</span>
+                <button class="copy-btn" onclick="copyPrompt(this)" title="Copy to clipboard">&#128203;</button>
+              </td>
+              <td>
+                <span class="brand-text">Showcases CSD's innovative VR therapy technology — a key differentiator. The portal motif bridges real and virtual worlds, matching how CSD uses technology as a tool within evidence-based practice. Positions CSD as forward-looking and technologically fluent without losing warmth. Ideal for the technology/innovation section or homepage feature highlighting what makes CSD distinct.</span>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <script>
+    function copyPrompt(btn) {
+      const cell = btn.closest('td');
+      const text = cell.querySelector('.prompt-text').textContent.trim();
+      navigator.clipboard.writeText(text).then(function() {
+        btn.classList.add('copied');
+        btn.innerHTML = '&#10003;';
+        setTimeout(function() {
+          btn.classList.remove('copied');
+          btn.innerHTML = '&#128203;';
+        }, 1500);
+      });
+    }
+    </script>
+
+    <!-- ============================================================
+         WHAT TO AVOID
+         ============================================================ -->
+    <section class="sg-section" id="avoid">
+      <div class="sg-section__header">
+        <h2 class="sg-section__title">What to Avoid</h2>
+        <p class="sg-section__desc">Guardrails to keep the brand on track. When in doubt, check against these.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;">
+        <div class="component-preview" style="background: #FEF2F2; border: 1px solid #FECACA;">
+          <p style="font-size: 0.875rem; font-weight: 700; color: #B91C1C; margin-bottom: 0.25rem;">Generic healthcare aesthetic</p>
+          <p style="font-size: 0.8rem; color: var(--color-text-muted);">Nothing that looks like a generic therapy provider site. No blue-and-white medical palette.</p>
+        </div>
+        <div class="component-preview" style="background: #FEF2F2; border: 1px solid #FECACA;">
+          <p style="font-size: 0.875rem; font-weight: 700; color: #B91C1C; margin-bottom: 0.25rem;">Childish or cartoonish elements</p>
+          <p style="font-size: 0.8rem; color: var(--color-text-muted);">No clip art, abstract doodles, floating shapes, or disconnected scribbles. No babyish aesthetic.</p>
+        </div>
+        <div class="component-preview" style="background: #FEF2F2; border: 1px solid #FECACA;">
+          <p style="font-size: 0.875rem; font-weight: 700; color: #B91C1C; margin-bottom: 0.25rem;">Overly literal metaphors</p>
+          <p style="font-size: 0.8rem; color: var(--color-text-muted);">No literal lightbulbs for ideas. Metaphors should be nuanced and brand-specific.</p>
+        </div>
+        <div class="component-preview" style="background: #FEF2F2; border: 1px solid #FECACA;">
+          <p style="font-size: 0.875rem; font-weight: 700; color: #B91C1C; margin-bottom: 0.25rem;">Dated typography</p>
+          <p style="font-size: 0.8rem; color: var(--color-text-muted);">Nothing that reads as "educational software from 2010."</p>
+        </div>
+        <div class="component-preview" style="background: #FEF2F2; border: 1px solid #FECACA;">
+          <p style="font-size: 0.875rem; font-weight: 700; color: #B91C1C; margin-bottom: 0.25rem;">Overcrowded hero sections</p>
+          <p style="font-size: 0.8rem; color: var(--color-text-muted);">Lead with one clear message. The site should feel like an exhale, not an assault.</p>
+        </div>
+        <div class="component-preview" style="background: #FEF2F2; border: 1px solid #FECACA;">
+          <p style="font-size: 0.875rem; font-weight: 700; color: #B91C1C; margin-bottom: 0.25rem;">Passive, vague language</p>
+          <p style="font-size: 0.8rem; color: var(--color-text-muted);">"Empowering families" without saying how. Be specific about what CSD does differently.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VOICE & TONE
+         ============================================================ -->
+    <section class="sg-section" id="voice">
+      <div class="sg-section__header">
+        <h2 class="sg-section__title">Voice &amp; Tone</h2>
+        <p class="sg-section__desc">CSD's brand voice is warm and friendly but professional—hopeful but honest, conversational but credible.</p>
+      </div>
+
+      <p class="token-label">Core Principles</p>
+      <div class="sg-grid-2" style="margin-bottom: 2rem;">
+        <div class="component-preview">
+          <h3 style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--color-navy); margin-bottom: 0.4rem;">Science Meets Heart</h3>
+          <p style="font-size: 0.875rem; color: var(--color-text-muted);">Balance clinical credibility with genuine warmth. Lead with outcomes, follow with empathy.</p>
+        </div>
+        <div class="component-preview">
+          <h3 style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--color-navy); margin-bottom: 0.4rem;">Partnership Over Prescription</h3>
+          <p style="font-size: 0.875rem; color: var(--color-text-muted);">Never prescriptive. Always collaborative. Families are experts on their child; CSD are experts in ABA.</p>
+        </div>
+        <div class="component-preview">
+          <h3 style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--color-navy); margin-bottom: 0.4rem;">Celebratory but Humble</h3>
+          <p style="font-size: 0.875rem; color: var(--color-text-muted);">Spotlight wins without bragging. Acknowledge difficulty with honesty and hope.</p>
+        </div>
+        <div class="component-preview">
+          <h3 style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--color-navy); margin-bottom: 0.4rem;">Access as a Right</h3>
+          <p style="font-size: 0.875rem; color: var(--color-text-muted);">Language is inclusive, multilingual-aware, and never implies care is a luxury or privilege.</p>
+        </div>
+      </div>
+
+      <p class="token-label">Words to Use vs. Avoid</p>
+      <table class="style-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th><span class="tag-do">Use</span></th>
+            <th><span class="tag-dont">Avoid</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Emotional</strong></td>
+            <td>Partnership, journey, breakthrough, adventure, possibility, joy, together, hope</td>
+            <td>Compliance, productivity, metrics-first language in family-facing copy</td>
+          </tr>
+          <tr>
+            <td><strong>Clinical</strong></td>
+            <td>Evidence-based, clinically grounded, ABA, Board Certified (BCBA), outcomes</td>
+            <td>Jargon-heavy clinical terms, unexplained acronyms, "therapy speak"</td>
+          </tr>
+          <tr>
+            <td><strong>Action</strong></td>
+            <td>Begin, start, connect, reach out, explore, discover</td>
+            <td>Submit, register, enroll (feels cold/administrative)</td>
+          </tr>
+          <tr>
+            <td><strong>Family reference</strong></td>
+            <td>Family, caregiver, your child, parent, loved one</td>
+            <td>Patient, case, client (in family-facing contexts)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="token-label" style="margin-top: 2rem;">CTA Copy Examples</p>
+      <table class="style-table">
+        <thead>
+          <tr>
+            <th>Context</th>
+            <th><span class="tag-do">Approved</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Primary hero CTA</td>
+            <td>"Start your child's journey today"</td>
+          </tr>
+          <tr>
+            <td>Services section CTA</td>
+            <td>"Connect with a team member"</td>
+          </tr>
+          <tr>
+            <td>3-step section CTA</td>
+            <td>"Take the first step toward your child's future"</td>
+          </tr>
+          <tr>
+            <td>Nav CTA</td>
+            <td>"Get Started"</td>
+          </tr>
+          <tr>
+            <td>Secondary / ghost</td>
+            <td>"Connect with a care team member →"</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div style="height: 4rem;"></div>
+
+  </main>
+</div>
+<script>
+  function toggleVersionDropdown() {
+    const switcher = document.getElementById('versionSwitcher');
+    const menu = document.getElementById('versionMenu');
+    const isOpen = menu.classList.toggle('open');
+    switcher.classList.toggle('open', isOpen);
+  }
+  document.addEventListener('click', function(e) {
+    const switcher = document.getElementById('versionSwitcher');
+    if (!switcher.contains(e.target)) {
+      document.getElementById('versionMenu').classList.remove('open');
+      switcher.classList.remove('open');
+    }
+  });
+</script>
+</body>
+</html>

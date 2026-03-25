@@ -1,0 +1,3426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSD Homepage — Wireframe V3</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN SYSTEM — CSS VARIABLES
+       ============================================================ */
+    :root {
+      /* Colors — Wireframe grayscale */
+      --color-bg:         #F4F4F4;
+      --color-bg-warm:    #E8E8E8;
+      --color-navy:       #1A1A1A;
+      --color-navy-light: #2D2D2D;
+      --color-teal:       #444444;
+      --color-teal-light: #DEDEDE;
+      --color-amber:      #2B2B2B;
+      --color-amber-bg:   #E4E4E4;
+      --color-sage:       #555555;
+      --color-sage-light: #E4E4E4;
+      --color-text:       #1A1A1A;
+      --color-text-muted: #5C5C5C;
+      --color-border:     #C0C0C0;
+      --color-white:      #FFFFFF;
+
+      /* Typography */
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, -apple-system, sans-serif;
+
+      /* Spacing */
+      --space-xs:  0.5rem;
+      --space-sm:  1rem;
+      --space-md:  1.5rem;
+      --space-lg:  2.5rem;
+      --space-xl:  4rem;
+      --space-2xl: 6rem;
+      --space-3xl: 8rem;
+
+      /* Layout — flatter radius for wireframe feel */
+      --max-width: 1200px;
+      --radius-sm: 3px;
+      --radius-md: 4px;
+      --radius-lg: 6px;
+      --radius-xl: 8px;
+
+      /* Transitions */
+      --transition: 0.25s ease;
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--color-text);
+      background-color: var(--color-bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    /* ============================================================
+       ACCESSIBILITY
+       ============================================================ */
+    /* Skip link */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      padding: 0.75rem 1.25rem;
+      background: var(--color-navy);
+      color: var(--color-white);
+      font-family: var(--font-body);
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      z-index: 9999;
+      transition: top 0.2s;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    /* Focus styles */
+    :focus-visible {
+      outline: 3px solid var(--color-amber);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .fade-in {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    /* ============================================================
+       TYPOGRAPHY UTILITIES
+       ============================================================ */
+    .eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-teal);
+    }
+
+    .eyebrow--light {
+      color: rgba(255,255,255,0.88);
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
+    h2 { font-size: clamp(1.8rem, 3.5vw, 2.75rem); }
+    h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); }
+
+    .lead {
+      font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+      line-height: 1.7;
+      color: var(--color-text-muted);
+    }
+
+    /* ============================================================
+       LAYOUT UTILITIES
+       ============================================================ */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+    }
+
+    .section {
+      padding-block: var(--space-3xl);
+    }
+
+    .section--sm {
+      padding-block: var(--space-2xl);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+    }
+
+    @media (max-width: 900px) {
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.875rem 1.75rem;
+      min-height: 48px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
+      border: 2px solid transparent;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary {
+      background: var(--color-amber);
+      color: var(--color-navy);
+      border-color: var(--color-amber);
+    }
+
+    .btn-primary:hover {
+      background: #B45309;
+      border-color: #B45309;
+      color: var(--color-white);
+      box-shadow: 0 6px 20px rgba(217,119,6,0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-navy);
+      border-color: var(--color-navy);
+    }
+
+    .btn-outline:hover {
+      background: var(--color-navy);
+      color: var(--color-white);
+    }
+
+    .btn-outline--light {
+      background: transparent;
+      color: var(--color-white);
+      border-color: rgba(255,255,255,0.5);
+    }
+
+    .btn-outline--light:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: var(--color-white);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-teal);
+      border-color: transparent;
+      padding-inline: 0;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .btn-ghost:hover {
+      color: var(--color-navy);
+      transform: none;
+    }
+
+    /* ============================================================
+       FPO IMAGE PLACEHOLDERS
+       ============================================================ */
+    .fpo {
+      background: var(--color-teal-light);
+      border: 2px dashed var(--color-teal);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--color-teal);
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-align: center;
+      padding: 1.5rem;
+      overflow: hidden;
+    }
+
+    .fpo__label {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    .fpo__desc {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-navy);
+    }
+
+    .fpo svg {
+      opacity: 0.4;
+    }
+
+    /* ============================================================
+       SCROLL ANIMATIONS
+       ============================================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in--delay-1 { transition-delay: 0.1s; }
+    .fade-in--delay-2 { transition-delay: 0.2s; }
+    .fade-in--delay-3 { transition-delay: 0.3s; }
+    .fade-in--delay-4 { transition-delay: 0.4s; }
+
+    /* ============================================================
+       WIREFRAME ANNOTATION BADGE
+       ============================================================ */
+    .wireframe-badge {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 999;
+      font-family: var(--font-body);
+    }
+
+    .wireframe-badge__toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--color-navy);
+      color: var(--color-white);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+
+    .wireframe-badge__toggle:hover,
+    .wireframe-badge.is-open .wireframe-badge__toggle {
+      opacity: 1;
+    }
+
+    .wireframe-badge__toggle svg {
+      transition: transform 0.2s ease;
+    }
+
+    .wireframe-badge.is-open .wireframe-badge__toggle svg {
+      transform: rotate(180deg);
+    }
+
+    .wireframe-badge__menu {
+      position: absolute;
+      bottom: calc(100% + 0.5rem);
+      right: 0;
+      background: var(--color-navy);
+      border-radius: 10px;
+      padding: 0.35rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.15rem;
+      min-width: 160px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .wireframe-badge.is-open .wireframe-badge__menu {
+      display: flex;
+    }
+
+    .wireframe-badge__item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.65rem;
+      border-radius: 7px;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .wireframe-badge__item:hover {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+
+    .wireframe-badge__item.is-current {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+    }
+
+    .wireframe-badge__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      flex-shrink: 0;
+    }
+
+    .wireframe-badge__item.is-current .wireframe-badge__dot {
+      background: var(--color-teal, #5EC6C6);
+    }
+
+    .wireframe-badge__home {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 0.15rem;
+      padding-top: 0.3rem;
+    }
+
+    .wireframe-badge__home a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.65rem;
+      border-radius: 7px;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .wireframe-badge__home a:hover {
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ============================================================
+       1. NAVIGATION
+       ============================================================ */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: 0 1px 12px rgba(11,45,72,0.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      gap: var(--space-md);
+    }
+
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav__logo-mark {
+      width: 44px;
+      height: 44px;
+      background: var(--color-navy);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+
+    .nav__logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .nav__logo-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--color-navy);
+    }
+
+    .nav__logo-sub {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+
+    .nav__links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      transition: color var(--transition);
+      padding-block: 0.25rem;
+    }
+
+    .nav__links a:hover {
+      color: var(--color-navy);
+    }
+
+    .nav__links a[aria-current="page"] {
+      color: var(--color-navy);
+      font-weight: 600;
+      border-bottom: 2px solid currentColor;
+    }
+
+    .nav__right {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-shrink: 0;
+    }
+
+    .nav__phone {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-teal);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .nav__phone:hover {
+      color: var(--color-navy);
+    }
+
+    /* ---- More / Mega Menu ---- */
+    .nav__more-wrap {
+      position: relative;
+    }
+
+    .nav__more-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding-block: 0.25rem;
+      font-family: var(--font-body);
+      transition: color var(--transition);
+    }
+
+    .nav__more-btn:hover,
+    .nav__more-btn[aria-expanded="true"] {
+      color: var(--color-navy);
+    }
+
+    .nav__more-chevron {
+      transition: transform 0.2s ease;
+    }
+
+    .nav__more-btn[aria-expanded="true"] .nav__more-chevron {
+      transform: rotate(180deg);
+    }
+
+    .nav__mega {
+      display: none;
+      position: absolute;
+      top: calc(100% + 1rem);
+      right: -1rem;
+      width: 580px;
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      z-index: 200;
+    }
+
+    .nav__mega.is-open {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+    }
+
+    .nav__mega-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.7rem 0.75rem;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: background var(--transition);
+    }
+
+    .nav__mega-item:hover {
+      background: var(--color-bg);
+    }
+
+    .nav__mega-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--color-bg-warm);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-teal);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .nav__mega-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-navy);
+      line-height: 1.3;
+    }
+
+    .nav__mega-desc {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      line-height: 1.4;
+      margin-top: 0.15rem;
+    }
+
+    .nav__mega-item--full {
+      grid-column: 1 / -1;
+      border-top: 1px solid var(--color-border);
+      margin-top: var(--space-xs);
+      padding-top: calc(var(--space-xs) + 0.5rem);
+    }
+
+    /* ---- Hamburger / Mobile toggle ---- */
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      padding: 0 10px;
+      flex-shrink: 0;
+    }
+
+    .nav__hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--color-navy);
+      border-radius: 2px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .nav__hamburger[aria-expanded="true"] span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .nav__hamburger[aria-expanded="true"] span:nth-child(2) {
+      opacity: 0;
+    }
+    .nav__hamburger[aria-expanded="true"] span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* ---- Mobile drawer ---- */
+    .nav__drawer {
+      display: none;
+      position: fixed;
+      inset: 72px 0 0 0;
+      background: var(--color-white);
+      z-index: 150;
+      overflow-y: auto;
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-md);
+    }
+
+    .nav__drawer.is-open {
+      display: block;
+    }
+
+    .nav__drawer-links {
+      list-style: none;
+      margin: 0 0 var(--space-md) 0;
+      padding: 0;
+    }
+
+    .nav__drawer-links li a {
+      display: block;
+      padding: 0.85rem 0;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--color-navy);
+      border-bottom: 1px solid var(--color-border);
+      text-decoration: none;
+    }
+
+    .nav__drawer-links li a:hover {
+      color: var(--color-teal);
+    }
+
+    .nav__drawer-section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin: var(--space-sm) 0 var(--space-xs);
+    }
+
+    .nav__drawer-more {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-md);
+    }
+
+    .nav__drawer-more a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 0.75rem;
+      background: var(--color-bg);
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--color-navy);
+      text-decoration: none;
+      border: 1px solid var(--color-border);
+    }
+
+    .nav__drawer-more a:hover {
+      background: var(--color-bg-warm);
+    }
+
+    .nav__drawer-cta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      padding-top: var(--space-sm);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .nav__drawer-cta .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      .nav__links, .nav__phone { display: none; }
+      .nav__hamburger { display: flex; }
+    }
+
+    /* ============================================================
+       2. HERO
+       ============================================================ */
+    .hero {
+      background: var(--color-bg);
+      padding-block: var(--space-3xl) var(--space-3xl);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -200px;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(14,116,144,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero__inner {
+      display: grid;
+      grid-template-columns: 1fr 0.85fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--color-teal-light);
+      color: var(--color-teal);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: var(--space-md);
+    }
+
+    .hero__headline {
+      color: var(--color-navy);
+      margin-bottom: var(--space-md);
+    }
+
+    .hero__headline em {
+      font-style: italic;
+      color: var(--color-teal);
+    }
+
+    .hero__subhead {
+      font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-xs);
+      max-width: 540px;
+    }
+
+    .hero__secondary {
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-lg);
+      max-width: 500px;
+    }
+
+    .hero__ctas {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .hero__media {
+      position: relative;
+    }
+
+    .hero__image-wrap {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+
+    .hero__image-wrap .fpo {
+      height: 480px;
+      border-radius: var(--radius-xl);
+    }
+
+    /* Floating stat chip on hero image */
+    .hero__float-chip {
+      position: absolute;
+      bottom: 2rem;
+      left: -2rem;
+      background: var(--color-white);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      box-shadow: 0 8px 32px rgba(11,45,72,0.15);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      z-index: 2;
+      min-width: 200px;
+    }
+
+    .hero__float-chip-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--color-sage-light);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .hero__float-chip-stat {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      line-height: 1;
+    }
+
+    .hero__float-chip-label {
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+      font-weight: 500;
+      line-height: 1.3;
+      margin-top: 0.15rem;
+    }
+
+    .hero__float-chip-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (max-width: 900px) {
+      .hero__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero__media {
+        order: -1;
+      }
+
+      .hero__image-wrap .fpo {
+        height: 320px;
+      }
+
+      .hero__float-chip {
+        left: 1rem;
+        bottom: 1rem;
+      }
+    }
+
+    /* ============================================================
+       3. APPROACH
+       ============================================================ */
+    .approach {
+      background: var(--color-navy);
+      color: var(--color-white);
+    }
+
+    .approach__inner {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+    }
+
+    .approach__inner > div:not(.approach__image-wrap) {
+      max-width: 680px;
+      margin-inline: auto;
+    }
+
+    .approach__heading {
+      color: var(--color-white);
+      margin-bottom: var(--space-md);
+    }
+
+    .approach__heading em {
+      font-style: italic;
+      color: var(--color-amber);
+    }
+
+    .approach__body {
+      color: rgba(255,255,255,0.78);
+      margin-bottom: var(--space-sm);
+    }
+
+    .approach__image-wrap .fpo {
+      height: 460px;
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.5);
+      border-radius: var(--radius-xl);
+    }
+
+    .approach__image-wrap .fpo .fpo__desc {
+      color: rgba(255,255,255,0.8);
+    }
+
+    @media (max-width: 900px) {
+      .approach__inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================================
+       4. SERVICES — Scattered scroll layout (MindMarket-inspired)
+       ============================================================ */
+    .services {
+      background: var(--color-bg);
+      overflow: hidden;
+    }
+
+    .services__intro {
+      text-align: center;
+      padding-block: var(--space-xl);
+    }
+
+    .services__heading {
+      color: var(--color-navy);
+      margin-top: var(--space-xs);
+      margin-bottom: var(--space-sm);
+    }
+
+    .services__subhead {
+      color: var(--color-text-muted);
+      max-width: 560px;
+      margin-inline: auto;
+    }
+
+    /* ── In-flow staggered service cards ── */
+    .services__scroll-track {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      padding-block: var(--space-xl);
+    }
+
+    .service-scroll-card {
+      width: clamp(300px, 52%, 520px);
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      box-shadow: 0 4px 24px rgba(11,45,72,0.07);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .service-scroll-card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Alternating left / right */
+    .service-scroll-card--1 { align-self: flex-start; }
+    .service-scroll-card--2 { align-self: flex-end; }
+    .service-scroll-card--3 { align-self: flex-start; }
+    .service-scroll-card--4 { align-self: flex-end; }
+
+    .service-scroll-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .service-scroll-card__icon--virtual { background: var(--color-teal-light); color: var(--color-teal); }
+    .service-scroll-card__icon--home    { background: var(--color-amber-bg);   color: #92400E; }
+    .service-scroll-card__icon--center  { background: var(--color-sage-light); color: #166534; }
+    .service-scroll-card__icon--school  { background: #E4E4E4;                 color: #444; }
+
+    .service-scroll-card__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-weight: 600;
+      color: var(--color-navy);
+    }
+
+    .service-scroll-card__body {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    .service-scroll-card__link {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-teal);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: auto;
+      padding-top: var(--space-sm);
+      transition: gap var(--transition);
+    }
+
+    .service-scroll-card__link:hover { gap: 0.6rem; }
+
+    .services__cta {
+      text-align: center;
+      padding-block: var(--space-xl);
+    }
+
+    @media (max-width: 768px) {
+      .service-scroll-card {
+        width: 100%;
+        align-self: stretch !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* ============================================================
+       5. PROOF / STATS
+       ============================================================ */
+    .proof {
+      background: var(--color-bg-warm);
+    }
+
+    .proof__header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .proof__heading {
+      color: var(--color-navy);
+      margin-top: var(--space-xs);
+      margin-bottom: var(--space-sm);
+    }
+
+    .proof__subhead {
+      color: var(--color-text-muted);
+      max-width: 600px;
+      margin-inline: auto;
+      font-style: normal;
+    }
+
+    .stat-card {
+      background: var(--color-white);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+      border-bottom: 4px solid var(--color-teal);
+      box-shadow: 0 2px 12px rgba(11,45,72,0.06);
+    }
+
+    .stat-card__number {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--color-navy);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-card__label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-card__desc {
+      font-size: 0.82rem;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── Scroll-Driven Stat Card Deck ───────────────────────────── */
+    .proof__deck-track {
+      position: relative;
+      height: 320vh;
+    }
+
+    .proof__deck-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      pointer-events: none;
+    }
+
+    .proof__deck-bg {
+      position: absolute;
+      top: 4vh;
+      right: 0;
+      bottom: 4vh;
+      left: 0;
+      border-radius: var(--radius-lg);
+      z-index: 0;
+      /* inherits .fpo visual styles */
+    }
+
+    .proof__deck,
+    .deck-progress {
+      position: relative;
+      z-index: 2;
+    }
+
+    .proof__deck {
+      position: relative;
+      width: clamp(280px, 38vw, 420px);
+      height: clamp(240px, 30vw, 320px);
+    }
+
+    .stat-deck-card {
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      will-change: transform;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      transform-origin: center center;
+      backface-visibility: hidden;
+      border: 1.5px solid #CCCCCC;
+    }
+
+    /* Wireframe grayscale card colors */
+    .stat-deck-card--1 { background: #3A3A3A; color: #fff; z-index: 4; }
+    .stat-deck-card--2 { background: #666666; color: #fff; z-index: 3; }
+    .stat-deck-card--3 { background: #999999; color: #fff; z-index: 2; }
+    .stat-deck-card--4 { background: #CCCCCC; color: #1C2B3A; z-index: 1; }
+
+    .stat-deck-card__eyebrow {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 0.6rem;
+    }
+
+    .stat-deck-card__number {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-deck-card__label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-deck-card__desc {
+      font-size: 0.82rem;
+      line-height: 1.55;
+      opacity: 0.72;
+    }
+
+    .stat-deck-card__hint {
+      margin-top: auto;
+      padding-top: 1rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.4;
+      transition: opacity 0.4s;
+    }
+
+    .deck-progress {
+      display: flex;
+      gap: 9px;
+      align-items: center;
+    }
+
+    .deck-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.15);
+      transition: background 0.35s, transform 0.35s;
+    }
+
+    .deck-dot--active {
+      background: #3A3A3A;
+      transform: scale(1.45);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .proof__deck-track   { height: auto; }
+      .proof__deck-sticky  { position: relative; height: auto; padding-block: var(--space-xl); overflow: visible; }
+      .proof__deck         { position: static; width: 100%; height: auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+      .stat-deck-card      { position: relative; inset: auto; transform: none !important; }
+      .deck-progress       { display: none; }
+    }
+
+    .proof__callouts {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 0;
+      margin-top: var(--space-xl);
+    }
+
+    .proof__callouts-divider {
+      background: rgba(255,255,255,0.25);
+      margin-block: var(--space-sm);
+    }
+
+    .callout-strip {
+      background: var(--color-navy);
+      color: var(--color-white);
+      border-radius: 0;
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+
+    .callout-strip__icon {
+      font-size: 1.75rem;
+      flex-shrink: 0;
+      line-height: 1;
+      margin-top: 0.1rem;
+    }
+
+    .callout-strip__title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--color-amber);
+      margin-bottom: 0.25rem;
+    }
+
+    .callout-strip__body {
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 640px) {
+      .proof__callouts { grid-template-columns: 1fr; }
+      .proof__callouts-divider { display: none; }
+    }
+
+    /* ============================================================
+       6. PULL QUOTE
+       ============================================================ */
+    .pull-quote {
+      background: var(--color-teal);
+      padding-top: var(--space-2xl);
+      padding-bottom: 0;
+    }
+
+    .pull-quote__inner {
+      max-width: 860px;
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .pull-quote__eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: var(--space-sm);
+    }
+
+    .pull-quote__heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: var(--color-white);
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+
+    /* ============================================================
+       7. TESTIMONIALS
+       ============================================================ */
+    .testimonials {
+      background: var(--color-bg);
+    }
+
+    .testimonials__header {
+      margin-bottom: var(--space-xl);
+    }
+
+    .testimonials__heading {
+      color: var(--color-navy);
+      margin-top: var(--space-xs);
+      margin-bottom: var(--space-sm);
+      max-width: 660px;
+    }
+
+    .testimonials__subhead {
+      color: var(--color-text-muted);
+      max-width: 600px;
+    }
+
+    .testimonial-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: none;
+    }
+
+    .testimonial-card__quote {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--color-text);
+      font-style: italic;
+      flex: 1;
+    }
+
+    .testimonial-card__footer {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-top: 1px solid var(--color-border);
+      padding-top: var(--space-sm);
+    }
+
+    .testimonial-card__avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--color-teal-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .testimonial-card__author {
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: var(--color-navy);
+    }
+
+    .testimonial-card__role {
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+    }
+
+    /* ============================================================
+       8. HOW WE DO IT
+       ============================================================ */
+    .how {
+      background: var(--color-bg-warm);
+    }
+
+    .how__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+      align-items: start;
+    }
+
+    /* Left column — sticky heading + CTA */
+    .how__left {
+      position: sticky;
+      top: 6rem;
+    }
+
+    .how__heading {
+      color: var(--color-navy);
+      margin-top: var(--space-xs);
+      margin-bottom: var(--space-md);
+    }
+
+    .how__cta {
+      margin-top: var(--space-lg);
+    }
+
+    /* Right column — vertical list of pillars */
+    .how__pillars {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+    }
+
+    .how-pillar {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+    }
+
+    .how-pillar__icon-wrap {
+      width: 72px;
+      height: 72px;
+      flex-shrink: 0;
+      background: var(--color-white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(11,45,72,0.1);
+    }
+
+    .how-pillar__text { flex: 1; }
+
+    .how-pillar__title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--color-navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .how-pillar__body {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .how__inner { grid-template-columns: 1fr; }
+      .how__left  { position: static; }
+    }
+
+    /* ============================================================
+       9. GET STARTED — 3-STEP PROCESS
+       ============================================================ */
+    .get-started {
+      background: var(--color-navy);
+      color: var(--color-white);
+    }
+
+    .get-started__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+      align-items: stretch;
+    }
+
+    .get-started__left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .get-started__left h2 {
+      color: var(--color-white);
+      margin-top: var(--space-xs);
+      margin-bottom: var(--space-sm);
+    }
+
+    .get-started__cta {
+      margin-top: var(--space-2xl);
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+    }
+    .get-started__cta-image {
+      background: rgba(255,255,255,0.12);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 220px;
+      border-left: 1px dashed rgba(255,255,255,0.2);
+      order: 2;
+    }
+    .get-started__cta-image svg { opacity: 0.3; }
+    .get-started__cta-image span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); }
+    .get-started__cta-image strong { font-size: 0.75rem; color: rgba(255,255,255,0.5); font-weight: 600; }
+    .get-started__cta-body {
+      padding: var(--space-xl) var(--space-2xl);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: var(--space-lg);
+      order: 1;
+    }
+    .get-started__cta-headline {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.35;
+      margin: 0;
+    }
+    .get-started__cta-sub {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+      margin: 0.4rem 0 0;
+    }
+    .get-started__cta-btn {
+      flex-shrink: 0;
+    }
+    @media (max-width: 900px) {
+      .get-started__cta {
+        grid-template-columns: 1fr;
+      }
+      .get-started__cta-image {
+        order: 1;
+        min-height: 180px;
+        border-left: none;
+        border-bottom: 1px dashed rgba(255,255,255,0.15);
+      }
+      .get-started__cta-body {
+        order: 2;
+        padding: var(--space-lg);
+      }
+      .get-started__cta-btn { width: 100%; text-align: center; }
+    }
+
+    /* Steps list */
+    .steps {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .step {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding-block: var(--space-md);
+      cursor: pointer;
+      /* no border-top/bottom — progress track at bottom: 0 is the only divider */
+    }
+
+    .step__number {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.5);
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .step.is-active .step__number {
+      background: var(--color-amber);
+      color: var(--color-navy);
+    }
+
+    .step__content { flex: 1; }
+
+    .step__title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8); /* ≥4.5:1 contrast on navy & wireframe gray */
+      margin-bottom: 0;
+      transition: color 0.3s ease;
+    }
+
+    .step.is-active .step__title {
+      color: var(--color-white);
+    }
+
+    /* Right-side step description panels — fill full container, cross-fade */
+    .step-panels {
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+    .step-panel {
+      position: absolute;
+      inset: 0;
+      padding: 2.5rem 2.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.45s ease;
+    }
+    .step-panel.is-active { opacity: 1; }
+    .step-panel__label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1rem;
+    }
+    .step-panel__text {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.95);
+    }
+
+    /* Static vertical connector line between steps */
+    .step::after {
+      content: '';
+      position: absolute;
+      left: 17px; /* center of 36px circle */
+      top: calc(var(--space-md) + 36px + 4px);
+      bottom: calc(-1 * var(--space-md) - 4px);
+      width: 2px;
+      background: rgba(255,255,255,0.15);
+    }
+    .step:last-child::after { display: none; }
+
+    /* Circular progress ring around number */
+    .step__ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      pointer-events: none;
+    }
+    .step__ring circle {
+      fill: none;
+      stroke-width: 2.5;
+      cx: 22;
+      cy: 22;
+      r: 20;
+    }
+    .step__ring .ring-track {
+      stroke: rgba(255,255,255,0.1);
+    }
+    .step__ring .ring-fill {
+      stroke: var(--color-white);
+      stroke-dasharray: 125.66; /* 2 * PI * 20 */
+      stroke-dashoffset: 125.66;
+      stroke-linecap: round;
+      transform: rotate(-90deg);
+      transform-origin: center;
+      transition: none;
+    }
+    .step.is-active .step__ring .ring-fill {
+      stroke-dashoffset: 125.66; /* start full offset */
+    }
+    .ring-fill.is-running {
+      transition: stroke-dashoffset 10s linear !important;
+      stroke-dashoffset: 0 !important;
+    }
+
+    /* Hide old progress bar (now unused in DOM but keeping for compat) */
+    .step__progress {
+      display: none;
+    }
+    .step__progress-bar {
+      display: none;
+    }
+
+    /* Step keyboard focus ring */
+    .step:focus-visible {
+      outline: 2px solid rgba(255,255,255,0.9);
+      outline-offset: 4px;
+      border-radius: var(--radius-sm);
+    }
+
+    /* Pause / resume button — overlays the number circle on hover */
+    .step__pause-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.7);
+      border: none;
+      color: rgba(255,255,255,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      z-index: 2;
+    }
+    .step.is-active .step__number:hover .step__pause-btn {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .step__pause-btn:hover { background: rgba(0,0,0,0.85); }
+    .step__pause-btn:focus-visible {
+      outline: 2px solid rgba(255,255,255,0.9);
+      outline-offset: 3px;
+    }
+    .step__pause-btn .icon-play  { display: none; }
+    .step__pause-btn[aria-pressed="true"] .icon-pause { display: none; }
+    .step__pause-btn[aria-pressed="true"] .icon-play  { display: block; }
+
+    /* Screen-reader-only utility */
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Right: image */
+    .get-started__image {
+      align-self: stretch;
+    }
+
+    .get-started__image .fpo {
+      height: 100%;
+      border-radius: var(--radius-xl);
+      background: rgba(255,255,255,0.05);
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.1); /* subtle, not dashed */
+    }
+
+    /* Inline step description — desktop: hidden (right panel handles it) */
+    .step__inline-desc { display: none; }
+
+    @media (max-width: 900px) {
+      .get-started__inner { grid-template-columns: 1fr; }
+      .get-started__image { display: none; } /* right panel replaced by inline desc */
+
+      /* Reveal inline description on the active step */
+      .step__inline-desc {
+        display: block;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: rgba(255,255,255,0.8);
+        margin-top: 0;
+        transition: max-height 0.35s ease, opacity 0.35s ease, margin-top 0.35s ease;
+      }
+      .step.is-active .step__inline-desc {
+        max-height: 120px;
+        opacity: 1;
+        margin-top: 0.6rem;
+      }
+    }
+
+    /* ============================================================
+       10. FOOTER
+       ============================================================ */
+    .site-footer {
+      background: #111111;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .footer__top {
+      padding-block: var(--space-2xl);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap: var(--space-xl);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer__brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: var(--space-md);
+    }
+
+    .footer__logo-mark {
+      width: 44px;
+      height: 44px;
+      background: var(--color-teal);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .footer__logo-text {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-white);
+      line-height: 1.2;
+    }
+
+    .footer__logo-sub {
+      font-family: var(--font-body);
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      display: block;
+    }
+
+    .footer__tagline {
+      font-size: 0.87rem;
+      line-height: 1.6;
+      margin-bottom: var(--space-md);
+      color: rgba(255,255,255,0.55);
+    }
+
+    .footer__contact a {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.35rem;
+      transition: color var(--transition);
+    }
+
+    .footer__contact a:hover {
+      color: var(--color-white);
+    }
+
+    .footer__badges {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: var(--space-md);
+    }
+
+    .footer__badge-fpo {
+      background: rgba(255,255,255,0.06);
+      border: 1px dashed rgba(255,255,255,0.2);
+      border-radius: var(--radius-sm);
+      padding: 0.35rem 0.6rem;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.4);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .footer__col-heading {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: var(--space-sm);
+    }
+
+    .footer__col-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer__col-links a {
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.6);
+      transition: color var(--transition);
+    }
+
+    .footer__col-links a:hover {
+      color: var(--color-white);
+    }
+
+    .footer__social {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: var(--space-sm);
+    }
+
+    .footer__social-btn {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.07);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      transition: background var(--transition), color var(--transition);
+      text-decoration: none;
+    }
+
+    .footer__social-btn:hover {
+      background: var(--color-teal);
+      color: var(--color-white);
+    }
+
+    .footer__bottom {
+      padding-block: var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .footer__copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .footer__legal-links {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    .footer__legal-links a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      transition: color var(--transition);
+    }
+
+    .footer__legal-links a:hover {
+      color: rgba(255,255,255,0.7);
+    }
+
+    @media (max-width: 900px) {
+      .footer__top {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .footer__top {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================================
+       WIREFRAME OVERRIDES — grayscale all hardcoded colors
+       ============================================================ */
+
+    /* Remove all colored box-shadows */
+    * { box-shadow: none !important; }
+
+    /* Primary buttons — dark fill with white text globally */
+    .btn-primary {
+      background: #2B2B2B;
+      color: #FFFFFF;
+      border-color: #2B2B2B;
+    }
+    .btn-primary:hover {
+      background: #444444;
+      border-color: #444444;
+      color: #FFFFFF;
+    }
+
+    /* Hero section */
+    .hero::before { display: none; }
+    .hero__float-chip { border: 1px solid var(--color-border); }
+    .hero__float-chip-icon { background: #E4E4E4; }
+
+    /* Service card icon backgrounds — all neutral gray */
+    .service-card__icon--virtual,
+    .service-card__icon--home,
+    .service-card__icon--center,
+    .service-card__icon--school { background: #E4E4E4; }
+
+    /* Pull quote — dark gray instead of teal */
+    .pull-quote { background: #2B2B2B; }
+
+    /* How section pillars */
+    .how-pillar__icon-wrap { background: #E4E4E4; border: 1px solid var(--color-border); }
+
+    /* Footer dark background */
+    .site-footer { background: #1A1A1A; }
+    .footer__logo-mark { background: #444444; }
+    .footer__social-btn:hover { background: #444444; }
+
+    /* Nav hover underline */
+    .nav__links a:hover { border-bottom-color: transparent; }
+
+    /* Hero eyebrow pill */
+    .hero__eyebrow { background: #E4E4E4; color: #444444; }
+
+    /* Step connector line */
+    .step__connector { background: rgba(255,255,255,0.2); }
+
+    /* Step numbers — white circle with dark text so they read on grey background */
+    .step__number {
+      background: #FFFFFF;
+      color: #1A1A1A;
+    }
+    /* Active step number — dark fill so it reads as the selected state */
+    .step.is-active .step__number {
+      background: #1A1A1A;
+      color: #FFFFFF;
+    }
+
+    /* Our Approach section — mid-gray instead of near-black */
+    .approach { background: #555555; }
+    .approach__heading em { color: #DDDDDD; }
+
+    /* Get Started section — mid-gray instead of near-black */
+    .get-started { background: #555555; }
+    .get-started .btn-primary {
+      background: #FFFFFF;
+      color: #1A1A1A;
+      border-color: #FFFFFF;
+    }
+    .get-started .btn-primary:hover {
+      background: #E0E0E0;
+      border-color: #E0E0E0;
+      color: #1A1A1A;
+    }
+
+    /* Callout strips */
+    .callout-strip { background: #2B2B2B; }
+    .callout-strip__title { color: #DDDDDD; }
+
+    /* Stat card border accent */
+    .stat-card { border-bottom-color: #888888; }
+
+    /* Focus outline */
+    :focus-visible { outline-color: #555555; }
+
+
+    /* ============================================================
+       V2 HERO OVERRIDES (split layout)
+       ============================================================ */
+    .hero__split {
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .hero__left {}
+
+    .hero__split .hero__headline {
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: 0;
+    }
+    .hero__split .hero__headline em {
+      color: var(--color-text-muted);
+    }
+
+    .hero__right {
+      padding-bottom: 0.5rem;
+    }
+
+    .hero__split ~ .hero__image-wrap {
+      position: relative;
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+      margin-top: var(--space-xl);
+    }
+
+    .hero__split ~ .hero__image-wrap .fpo {
+      width: 100%;
+      height: 420px;
+      border-radius: var(--radius-xl);
+    }
+
+    .hero__split ~ .hero__image-wrap .hero__float-chip {
+      position: absolute;
+      bottom: 2rem;
+      right: clamp(2.25rem, 6vw, 4rem);
+      left: auto;
+      z-index: 3;
+    }
+
+    @media (max-width: 768px) {
+      .hero__split {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+      .hero__split .hero__headline { font-size: clamp(2.2rem, 8vw, 3rem); }
+      .hero__split ~ .hero__image-wrap .fpo { height: 280px; }
+      .hero__split ~ .hero__image-wrap .hero__float-chip {
+        bottom: 1rem;
+        right: 2rem;
+      }
+    }
+
+    /* ============================================================
+       V2 APPROACH — Statement band + callout cards
+       ============================================================ */
+    .approach__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .approach__bg .fpo {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      border: none;
+      opacity: 0.08;
+      background: var(--color-teal-light);
+    }
+
+    .approach__statement {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 880px;
+      margin-inline: auto;
+      padding-bottom: var(--space-xl);
+    }
+
+    .approach__highlight {
+      margin-top: var(--space-sm);
+      font-weight: 500;
+      color: rgba(255,255,255,0.92);
+      font-size: 1.05rem;
+    }
+
+    .approach__cards-wrap {
+      position: relative;
+      z-index: 2;
+      margin-top: var(--space-xl);
+    }
+
+    .approach__cards {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+    }
+
+    .approach__cards-bg {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+      height: 50%;
+      background: var(--color-bg);
+      z-index: 0;
+    }
+
+    .approach-card {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .approach-card__image {
+      height: 180px;
+      background: var(--color-teal-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .approach-card__image .fpo {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      border: none;
+    }
+
+    .approach-card__content {
+      padding: var(--space-md) var(--space-lg);
+    }
+
+    .approach-card__title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--color-navy);
+      margin-bottom: 0.35rem;
+    }
+
+    .approach-card__body {
+      font-size: 0.87rem;
+      color: var(--color-text-muted);
+      line-height: 1.55;
+    }
+
+    @media (max-width: 768px) {
+      .approach__cards { grid-template-columns: 1fr; }
+      .approach-card__image { height: 140px; }
+    }
+
+    /* ============================================================
+       V2 PROOF-V2 — Stats interleaved with testimonials
+       ============================================================ */
+    .proof-v2 {
+      background: #2B2B2B;
+      color: var(--color-white);
+      padding-block: var(--space-3xl);
+    }
+    .proof-v2 .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+    }
+
+    .proof-v2__left {
+      position: sticky;
+      top: calc(var(--space-3xl) + 60px);
+      align-self: start;
+    }
+    .proof-v2__header {
+      margin-bottom: var(--space-xl);
+    }
+    .proof-v2__header .eyebrow {
+      color: rgba(255,255,255,0.5);
+    }
+    .proof-v2__heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--color-white);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-top: var(--space-xs);
+      margin-bottom: var(--space-sm);
+    }
+    .proof-v2__subhead {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+    }
+
+    .proof-v2__stream {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .proof-v2__stat {
+      padding: var(--space-lg) 0;
+    }
+    .proof-v2__stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: var(--color-white);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .proof-v2__stat-label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 0.2rem;
+    }
+    .proof-v2__stat-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.5;
+      max-width: 320px;
+    }
+
+    .proof-v2__testimonial {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      margin-block: var(--space-xs);
+    }
+    .proof-v2__testimonial-quote {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.55;
+      margin-bottom: 0.75rem;
+    }
+    .proof-v2__testimonial-footer {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .proof-v2__testimonial-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      border: 1px dashed rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .proof-v2__testimonial-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-white);
+    }
+    .proof-v2__testimonial-role {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    @media (max-width: 900px) {
+      .proof-v2 .container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Also need approach to be position: relative for bg overlay */
+    .approach {
+      position: relative;
+      overflow: visible;
+      padding-bottom: 0;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Skip navigation for keyboard/screen reader users -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Wireframe label -->
+  <div class="wireframe-badge" id="wireframe-badge">
+    <div class="wireframe-badge__menu">
+      <a href="csd-homepage-wireframe.html" class="wireframe-badge__item is-current"><span class="wireframe-badge__dot"></span>Version 3</a>
+      <a href="/wireframes/v2/csd-homepage-wireframe.html" class="wireframe-badge__item"><span class="wireframe-badge__dot"></span>Version 2</a>
+      <a href="/wireframes/v1/csd-homepage-wireframe.html" class="wireframe-badge__item"><span class="wireframe-badge__dot"></span>Version 1</a>
+      <div class="wireframe-badge__home"><a href="/"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Project Home</a></div>
+    </div>
+    <button class="wireframe-badge__toggle" aria-label="Switch wireframe version">
+      V3.0
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+  </div>
+  <script>
+  (function() {
+    var badge = document.getElementById('wireframe-badge');
+    var toggle = badge.querySelector('.wireframe-badge__toggle');
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      badge.classList.toggle('is-open');
+    });
+    document.addEventListener('click', function() {
+      badge.classList.remove('is-open');
+    });
+    badge.querySelector('.wireframe-badge__menu').addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+  })();
+  </script>
+
+  <!-- ============================================================
+       1. NAVIGATION
+       ============================================================ -->
+  <header class="site-header" role="banner">
+    <nav class="nav container" aria-label="Main navigation">
+
+      <a href="/" class="nav__logo" aria-label="Center for Social Dynamics — Home">
+        <div class="nav__logo-mark" aria-hidden="true"></div>
+        <div class="nav__logo-text">
+          <span class="nav__logo-name">Center for Social Dynamics</span>
+          <span class="nav__logo-sub">Autism &amp; ABA Therapy</span>
+        </div>
+      </a>
+
+      <ul class="nav__links" role="list">
+        <li><a href="csd-homepage-wireframe.html" aria-current="page">Home</a></li>
+        <li><a href="csd-careers-wireframe.html">Careers</a></li>
+        <li><a href="csd-locations-wireframe.html">Locations</a></li>
+        <li class="nav__more-wrap">
+          <button class="nav__more-btn" aria-expanded="false" aria-controls="nav-mega" id="nav-more-btn">
+            More
+            <svg class="nav__more-chevron" aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="nav__mega" id="nav-mega" role="region" aria-label="More navigation links">
+            <a href="#" class="nav__mega-item">
+              <div class="nav__mega-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <div>
+                <div class="nav__mega-label">Resources for Families</div>
+                <div class="nav__mega-desc">Blog, guides &amp; support articles</div>
+              </div>
+            </a>
+            <a href="#" class="nav__mega-item">
+              <div class="nav__mega-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div>
+                <div class="nav__mega-label">For Referring Providers</div>
+                <div class="nav__mega-desc">Partner referral tools &amp; info</div>
+              </div>
+            </a>
+            <a href="#" class="nav__mega-item">
+              <div class="nav__mega-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div>
+                <div class="nav__mega-label">For Health Plans</div>
+                <div class="nav__mega-desc">Coverage &amp; payer partnerships</div>
+              </div>
+            </a>
+            <a href="#" class="nav__mega-item">
+              <div class="nav__mega-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <div>
+                <div class="nav__mega-label">For School Districts</div>
+                <div class="nav__mega-desc">School-based program resources</div>
+              </div>
+            </a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav__right">
+        <a href="tel:+18779106538" class="nav__phone" aria-label="Call us: 877-910-6538">
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+          (877) 910-6538
+        </a>
+        <button class="nav__hamburger" aria-expanded="false" aria-controls="nav-drawer" aria-label="Open navigation menu" id="nav-hamburger">
+          <span></span><span></span><span></span>
+        </button>
+        <a href="#get-started" class="btn btn-primary">Get Started</a>
+      </div>
+
+    </nav>
+
+    <!-- Mobile drawer -->
+    <div class="nav__drawer" id="nav-drawer" aria-label="Mobile navigation">
+      <ul class="nav__drawer-links" role="list">
+        <li><a href="csd-homepage-wireframe.html" aria-current="page">Home</a></li>
+        <li><a href="csd-careers-wireframe.html">Careers</a></li>
+        <li><a href="csd-locations-wireframe.html">Locations</a></li>
+      </ul>
+      <p class="nav__drawer-section-label">More</p>
+      <div class="nav__drawer-more">
+        <a href="#">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          Resources for Families
+        </a>
+        <a href="#">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          For Referring Providers
+        </a>
+        <a href="#">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          For Health Plans
+        </a>
+        <a href="#">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          For School Districts
+        </a>
+      </div>
+      <div class="nav__drawer-cta">
+        <a href="tel:+18779106538" class="btn btn-outline">
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+          (877) 910-6538
+        </a>
+        <a href="#get-started" class="btn btn-primary">Get Started</a>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- ============================================================
+       MAIN CONTENT
+       ============================================================ -->
+  <main id="main-content">
+
+    <!-- ============================================================
+         2. HERO — Full-width cinematic
+         ============================================================ -->
+    <section class="hero" aria-labelledby="hero-heading">
+
+      <div class="hero__split fade-in">
+        <div class="hero__left">
+          <h1 class="hero__headline" id="hero-heading">
+            Breakthrough Autism Therapy to <em>Shape Your Child's Future</em>
+          </h1>
+        </div>
+        <div class="hero__right">
+          <p class="hero__subhead">
+            ABA therapy that meets your child exactly where they are—and helps them get where they're going.
+          </p>
+          <p class="hero__secondary">
+            In-home, in-center, at school, or through our virtual immersion program. We're with you, wherever you are.
+          </p>
+          <div class="hero__ctas">
+            <a href="javascript:void(0)" class="btn btn-primary">Start your child's journey today</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__image-wrap fade-in fade-in--delay-1">
+        <div class="fpo" role="img" aria-label="FPO: Child and clinician in a warm, joyful therapy session">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M7 21c0-2.761 2.239-5 5-5s5 2.239 5 5"/></svg>
+          <span class="fpo__label">FPO — Hero Image</span>
+          <span class="fpo__desc">Child + clinician, warm &amp; joyful virtual therapy session</span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ============================================================
+         3. OUR APPROACH — Statement band + callout cards
+         ============================================================ -->
+    <section class="approach section" aria-labelledby="approach-heading">
+
+      <!-- Subtle background FPO -->
+      <div class="approach__bg" aria-hidden="true">
+        <div class="fpo" style="border: none;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+      </div>
+
+      <div class="container">
+
+        <div class="approach__statement fade-in">
+          <p class="eyebrow eyebrow--light">Our Approach</p>
+          <h2 class="approach__heading" id="approach-heading">
+            Innovation Grounded in <em>Empathy</em>
+          </h2>
+          <p class="approach__body">
+            We are architects of possibility. We don't believe in one-size-fits-all therapy. For too long, autism therapy has felt overwhelming and overly clinical. CSD is changing that. We stand at the intersection of compassion and evidence, where human connection meets clinical excellence.
+          </p>
+          <p class="approach__body">
+            We believe in your child—their interests, their pace, their potential. Our clinically rigorous, individually tailored ABA programs are built around what makes your child light up, not a rigid playbook. From our pioneering virtual platform to the living room or therapy center floor, we bring the science of behavior analysis to life with heart, warmth, flexibility, and an unwavering commitment to your family's success.
+          </p>
+          <p class="approach__highlight">
+            We bring hope, joy, and a clear roadmap to guide your family.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. OUR SERVICES
+         ============================================================ -->
+    <section class="services" id="services" aria-labelledby="services-heading">
+
+      <!-- Intro header -->
+      <div class="container">
+        <header class="services__intro fade-in">
+          <p class="eyebrow">Our Services</p>
+          <h2 class="services__heading" id="services-heading">Therapy Where Life Happens</h2>
+          <p class="services__subhead lead">
+            Choose the setting that works best for your family—or combine them. CSD is designed to grow alongside your child.
+          </p>
+        </header>
+      </div>
+
+      <!-- Scattered scroll track -->
+      <div class="container">
+      <div class="services__scroll-track" aria-label="Service options">
+
+        <article class="service-scroll-card service-scroll-card--1" aria-label="Virtual and VR Therapy">
+          <div class="service-scroll-card__icon service-scroll-card__icon--virtual" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3 class="service-scroll-card__title">Virtual &amp; VR Therapy</h3>
+          <p class="service-scroll-card__body">We lead in ABA innovation with our virtual program, brought to life by gamification and VR technology—always with live onscreen guidance from your therapist. Flexible scheduling fits around classes and family routines.</p>
+        </article>
+
+        <article class="service-scroll-card service-scroll-card--2" aria-label="In-Home Therapy">
+          <div class="service-scroll-card__icon service-scroll-card__icon--home" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3 class="service-scroll-card__title">In-Home Therapy</h3>
+          <p class="service-scroll-card__body">Familiar spaces fuel confidence. Our clinicians come to you, embedding skill-building into your child's natural routines and environment, helping them integrate with family dynamics for a more cohesive home life.</p>
+        </article>
+
+        <article class="service-scroll-card service-scroll-card--3" aria-label="Center-Based Therapy">
+          <div class="service-scroll-card__icon service-scroll-card__icon--center" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <h3 class="service-scroll-card__title">Center-Based Therapy</h3>
+          <p class="service-scroll-card__body">Safe, structured spaces designed for focus and growth—where your child can learn, practice, play, and progress individually and alongside peers. Parents and caregivers have support from people who understand their world.</p>
+        </article>
+
+        <article class="service-scroll-card service-scroll-card--4" aria-label="School-Based Therapy">
+          <div class="service-scroll-card__icon service-scroll-card__icon--school" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3 class="service-scroll-card__title">School-Based Therapy</h3>
+          <p class="service-scroll-card__body">When your school engages CSD's programs, we meet your child in the classroom, building communication and adaptive skills where they're needed most—right at school, in the flow of their daily life.</p>
+        </article>
+
+      </div>
+      </div><!-- /container -->
+
+      <div class="container">
+        <div class="services__cta fade-in">
+          <a href="#get-started" class="btn btn-outline">Connect with a team member</a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============================================================
+         5b. YOUR CHILD'S PROGRESS IS OUR PURPOSE (pull-quote)
+         ============================================================ -->
+    <section class="pull-quote" aria-label="CSD mission statement">
+      <div class="container">
+        <div class="pull-quote__inner fade-in">
+          <p class="pull-quote__eyebrow">Your Child's Progress Is Our Purpose</p>
+          <h2 class="pull-quote__heading">CSD opens a world of possibilities—by making the world possible—for children with autism and their families.</h2>
+        </div>
+
+        <div class="proof__callouts">
+
+          <div class="callout-strip fade-in fade-in--delay-1">
+            <div class="callout-strip__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="callout-strip__title">No waitlist. No barriers.</div>
+              <div class="callout-strip__body">Our virtual platform connects your family with skilled clinicians in as few as 7 days—because breakthroughs and skills learning shouldn't wait.</div>
+            </div>
+          </div>
+
+          <div class="proof__callouts-divider" aria-hidden="true"></div>
+
+          <div class="callout-strip fade-in fade-in--delay-2">
+            <div class="callout-strip__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div>
+              <div class="callout-strip__title">Industry Leader</div>
+              <div class="callout-strip__body">Our CSD University trains clinicians and therapists who stay and grow. Your child gains comfort with familiarity, and your family has a partner you can trust.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="fpo" role="img" aria-label="FPO: Children and therapists in a warm, joyful therapy setting" style="width:100%; height:320px; margin: var(--space-2xl) 0 0 0; border-radius: var(--radius-lg); background: rgba(255,255,255,0.1); border: 1px dashed rgba(255,255,255,0.2); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" style="opacity:0.3;" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+          <span style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.35);">FPO — Section Image</span>
+          <strong style="font-size:0.75rem; color:rgba(255,255,255,0.5); font-weight:600;">Children and therapists in a warm, joyful therapy setting</strong>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6. PROVEN IMPACT — Stats interleaved with testimonials
+         ============================================================ -->
+    <section class="proof-v2" aria-labelledby="proof-v2-heading">
+      <div class="container">
+
+        <!-- Col 1: Header (sticky) -->
+        <div class="proof-v2__left fade-in">
+          <div class="proof-v2__header">
+            <p class="eyebrow">Proven Impact</p>
+            <h2 class="proof-v2__heading" id="proof-v2-heading">Outcomes That Matter, Connecting Data to Life</h2>
+            <p class="proof-v2__subhead">
+              We don't just track success metrics. We measure the moments that matter most—better days, less stress, and more joy for your entire family.
+            </p>
+          </div>
+
+          <div class="fpo" role="img" aria-label="FPO: Family embrace — mom, dad, and child hugging" style="width:100%; height:140px; margin-top: var(--space-xl); margin-bottom: var(--space-lg); border-radius: var(--radius-lg); background: rgba(255,255,255,0.08); border: 1px dashed rgba(255,255,255,0.2); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem;">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" style="opacity:0.3;" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.35);">FPO — Family Image</span>
+            <strong style="font-size:0.75rem; color:rgba(255,255,255,0.5); font-weight:600;">Mom, dad &amp; child embracing</strong>
+            <span style="font-size:0.7rem; color:rgba(255,255,255,0.35);">Warm, candid, natural light</span>
+          </div>
+        </div>
+
+        <!-- Col 2: Interleaved stats + testimonials -->
+        <div class="proof-v2__stream fade-in fade-in--delay-1">
+
+          <div class="proof-v2__stat">
+            <div class="proof-v2__stat-number">93%</div>
+            <div class="proof-v2__stat-label">Family Satisfaction</div>
+            <div class="proof-v2__stat-desc">Of families rate their experience with CSD as excellent or very good.</div>
+          </div>
+
+          <div class="proof-v2__testimonial">
+            <blockquote class="proof-v2__testimonial-quote">&ldquo;CSD didn't just give my son skills—they gave him a voice. The flexibility of in-home sessions made it possible for me to manage work and therapy without feeling completely overwhelmed.&rdquo;</blockquote>
+            <div class="proof-v2__testimonial-footer">
+              <div class="proof-v2__testimonial-avatar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+              <div><div class="proof-v2__testimonial-name">Sarah L.</div><div class="proof-v2__testimonial-role">Parent</div></div>
+            </div>
+          </div>
+
+          <div class="proof-v2__stat">
+            <div class="proof-v2__stat-number">Top 10%</div>
+            <div class="proof-v2__stat-label">Nationwide Performance</div>
+            <div class="proof-v2__stat-desc">In Vineland-3 results, supervision hours, and family utilization.</div>
+          </div>
+
+          <div class="proof-v2__testimonial">
+            <blockquote class="proof-v2__testimonial-quote">&ldquo;My client's mother initially requested in-center support for her son. But after seeing him respond to the virtual program trial session, she cried. He attended to games and used language she had never heard him use!&rdquo;</blockquote>
+            <div class="proof-v2__testimonial-footer">
+              <div class="proof-v2__testimonial-avatar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+              <div><div class="proof-v2__testimonial-name">CSD Virtual Behavior Specialist</div><div class="proof-v2__testimonial-role">CSD Global Services</div></div>
+            </div>
+          </div>
+
+          <div class="proof-v2__stat">
+            <div class="proof-v2__stat-number">1:1</div>
+            <div class="proof-v2__stat-label">Dedicated Care</div>
+            <div class="proof-v2__stat-desc">Every child works with a dedicated therapist and individualized plan.</div>
+          </div>
+
+          <div class="proof-v2__testimonial">
+            <blockquote class="proof-v2__testimonial-quote">&ldquo;The care felt customized, not cookie-cutter. CSD celebrated every small win, and seeing the genuine excitement of my son's therapist for his progress made all the difference.&rdquo;</blockquote>
+            <div class="proof-v2__testimonial-footer">
+              <div class="proof-v2__testimonial-avatar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+              <div><div class="proof-v2__testimonial-name">Mike T.</div><div class="proof-v2__testimonial-role">Parent</div></div>
+            </div>
+          </div>
+
+          <div class="proof-v2__stat">
+            <div class="proof-v2__stat-number">17%</div>
+            <div class="proof-v2__stat-label">Higher Goal Progress</div>
+            <div class="proof-v2__stat-desc">Children using our virtual platform achieve 17% higher progress toward goals.</div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. HOW WE DO IT
+         ============================================================ -->
+    <section class="how section" aria-labelledby="how-heading">
+      <div class="container">
+        <div class="how__inner">
+
+          <!-- Left: sticky heading + CTA -->
+          <div class="how__left fade-in">
+            <p class="eyebrow">How We Do It</p>
+            <h2 class="how__heading" id="how-heading">Big Enough to Reach You. Connected Enough to Know You.</h2>
+            <p class="lead" style="color: var(--color-text-muted); margin-bottom: var(--space-lg);">
+              We back our commitment with the resources and compassion needed to ensure your child's and whole family's success.
+            </p>
+            <a href="#get-started" class="btn btn-primary how__cta">Get started</a>
+          </div>
+
+          <!-- Right: vertical list -->
+          <div class="how__pillars">
+
+            <div class="how-pillar fade-in fade-in--delay-1">
+              <div class="how-pillar__icon-wrap" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="how-pillar__text">
+                <h3 class="how-pillar__title">Care Wherever You Need It</h3>
+                <p class="how-pillar__body">Access to therapy in the setting that works best for your family's unique life—in-home, center-based, school-based, or virtual.</p>
+              </div>
+            </div>
+
+            <div class="how-pillar fade-in fade-in--delay-2">
+              <div class="how-pillar__icon-wrap" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div class="how-pillar__text">
+                <h3 class="how-pillar__title">Focus on the Whole Family</h3>
+                <p class="how-pillar__body">We provide the support, partnership, and resources for families and caregivers to thrive alongside their child—not just survive.</p>
+              </div>
+            </div>
+
+            <div class="how-pillar fade-in fade-in--delay-3">
+              <div class="how-pillar__icon-wrap" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <div class="how-pillar__text">
+                <h3 class="how-pillar__title">Whoever You Are</h3>
+                <p class="how-pillar__body">We have multilingual clinicians who embrace, adapt, and integrate cultural approaches to learning with respect and deep understanding.</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         9. GET STARTED — 3-STEP PROCESS
+         ============================================================ -->
+    <section class="get-started section" id="get-started" aria-labelledby="get-started-heading">
+      <div class="container">
+        <div class="get-started__inner">
+
+          <!-- Left: heading + steps + CTA -->
+          <div class="get-started__left fade-in">
+            <p class="eyebrow eyebrow--light">Where Do I Start?</p>
+            <h2 id="get-started-heading">Here's What to Expect</h2>
+            <p class="lead" style="color: rgba(255,255,255,0.85); margin-bottom: var(--space-lg);">
+              If you feel overwhelmed by the path ahead, know that you don't have to go it alone. We'll be right there in partnership beside you. We want the best for your child—and you.
+            </p>
+
+            <div class="steps" aria-label="Three steps to get started with CSD">
+
+              <div class="step" data-step="0" role="button" tabindex="0" aria-expanded="false" aria-controls="step-panel-0">
+                <div class="step__number" aria-hidden="true">1<svg class="step__ring" viewBox="0 0 44 44"><circle class="ring-track" /><circle class="ring-fill" /></svg><button class="step__pause-btn" tabindex="-1" aria-label="Pause step rotation" aria-pressed="false"><svg class="icon-pause" aria-hidden="true" width="9" height="9" viewBox="0 0 10 10" fill="currentColor"><rect x="1" y="0" width="3" height="10" rx="1"/><rect x="6" y="0" width="3" height="10" rx="1"/></svg><svg class="icon-play" aria-hidden="true" width="9" height="9" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5l8 4.5-8 4.5z"/></svg></button></div>
+                <div class="step__content">
+                  <h3 class="step__title">Contact Us</h3>
+                  <p class="step__inline-desc">Reach out by phone, online, or through a referral. Our care team will get back to you within one business day to answer your questions and confirm your insurance coverage.</p>
+                  <div class="step__progress" aria-hidden="true">
+                    <div class="step__progress-bar"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="step" data-step="1" role="button" tabindex="0" aria-expanded="false" aria-controls="step-panel-1">
+                <div class="step__number" aria-hidden="true">2<svg class="step__ring" viewBox="0 0 44 44"><circle class="ring-track" /><circle class="ring-fill" /></svg><button class="step__pause-btn" tabindex="-1" aria-label="Pause step rotation" aria-pressed="false"><svg class="icon-pause" aria-hidden="true" width="9" height="9" viewBox="0 0 10 10" fill="currentColor"><rect x="1" y="0" width="3" height="10" rx="1"/><rect x="6" y="0" width="3" height="10" rx="1"/></svg><svg class="icon-play" aria-hidden="true" width="9" height="9" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5l8 4.5-8 4.5z"/></svg></button></div>
+                <div class="step__content">
+                  <h3 class="step__title">Assessment &amp; Personalized Care Plan</h3>
+                  <p class="step__inline-desc">A Board Certified Behavior Analyst (BCBA) conducts a comprehensive evaluation of your child's strengths and goals, then builds a fully individualized treatment plan.</p>
+                  <div class="step__progress" aria-hidden="true">
+                    <div class="step__progress-bar"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="step" data-step="2" role="button" tabindex="0" aria-expanded="false" aria-controls="step-panel-2">
+                <div class="step__number" aria-hidden="true">3<svg class="step__ring" viewBox="0 0 44 44"><circle class="ring-track" /><circle class="ring-fill" /></svg><button class="step__pause-btn" tabindex="-1" aria-label="Pause step rotation" aria-pressed="false"><svg class="icon-pause" aria-hidden="true" width="9" height="9" viewBox="0 0 10 10" fill="currentColor"><rect x="1" y="0" width="3" height="10" rx="1"/><rect x="6" y="0" width="3" height="10" rx="1"/></svg><svg class="icon-play" aria-hidden="true" width="9" height="9" viewBox="0 0 10 10" fill="currentColor"><path d="M1 0.5l8 4.5-8 4.5z"/></svg></button></div>
+                <div class="step__content">
+                  <h3 class="step__title">Begin the Learning Adventure</h3>
+                  <p class="step__inline-desc">Your child starts working with a dedicated therapy team — in your home, at a CSD center, at school, or virtually — with progress tracked and shared with you every step of the way.</p>
+                  <div class="step__progress" aria-hidden="true">
+                    <div class="step__progress-bar"></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Live region for screen reader announcements (WCAG 4.1.3) -->
+            <div id="step-announcement" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+          </div>
+
+          <!-- Right: image -->
+          <div class="get-started__image fade-in fade-in--delay-1">
+            <div class="fpo" aria-hidden="true">
+
+              <!-- Step description panels — cross-fade, zero layout shift -->
+              <div class="step-panels" aria-hidden="true">
+                <div class="step-panel" id="step-panel-0">
+                  <p class="step-panel__label">Step 1 — Contact Us</p>
+                  <p class="step-panel__text">Reach out by phone, online, or through a referral. Our care team will get back to you within one business day to answer your questions and confirm your insurance coverage.</p>
+                </div>
+                <div class="step-panel" id="step-panel-1">
+                  <p class="step-panel__label">Step 2 — Assessment &amp; Care Plan</p>
+                  <p class="step-panel__text">A Board Certified Behavior Analyst (BCBA) conducts a comprehensive evaluation of your child's strengths and goals, then builds a fully individualized treatment plan.</p>
+                </div>
+                <div class="step-panel" id="step-panel-2">
+                  <p class="step-panel__label">Step 3 — Begin the Learning Adventure</p>
+                  <p class="step-panel__text">Your child starts working with a dedicated therapy team — in your home, at a CSD center, at school, or virtually — with progress tracked and shared with you every step of the way.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Full-width CTA banner -->
+        <div class="get-started__cta">
+          <div class="get-started__cta-image" role="img" aria-label="FPO: Family celebrating a milestone moment">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+            <span>FPO — CTA Image</span>
+            <strong>Family celebrating a milestone moment</strong>
+          </div>
+          <div class="get-started__cta-body">
+            <div class="get-started__cta-copy">
+              <p class="get-started__cta-headline">Ready to take the first step toward your child's future?</p>
+              <p class="get-started__cta-sub">Most families hear back from our care team within one business day.</p>
+            </div>
+            <a href="#" class="btn btn-primary get-started__cta-btn">Get Started Today</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       10. FOOTER
+       ============================================================ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer__top">
+
+        <!-- Brand column -->
+        <div>
+          <div class="footer__brand-logo">
+            <div>
+              <span class="footer__logo-text">Center for Social Dynamics</span>
+              <span class="footer__logo-sub">Autism &amp; ABA Therapy</span>
+            </div>
+          </div>
+          <p class="footer__tagline">
+            Opening a world of possibilities—by making the world possible—for children with autism and their families.
+          </p>
+          <address class="footer__contact" style="font-style: normal;">
+            <a href="tel:+18779106538" aria-label="Phone: 877-910-6538">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+              (877) 910-6538
+            </a>
+            <a href="mailto:info@csdautismservices.com">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              info@csdautismservices.com
+            </a>
+          </address>
+          <div class="footer__badges" aria-label="Accreditation and certification badges (placeholders)">
+            <div class="footer__badge-fpo">BACB Accredited</div>
+            <div class="footer__badge-fpo">BHCOE Certified</div>
+            <div class="footer__badge-fpo">CARF</div>
+          </div>
+        </div>
+
+        <!-- Services column -->
+        <nav aria-label="Services navigation">
+          <h2 class="footer__col-heading">Services</h2>
+          <ul class="footer__col-links" role="list">
+            <li><a href="#">Virtual &amp; VR Therapy</a></li>
+            <li><a href="#">In-Home Therapy</a></li>
+            <li><a href="#">Center-Based Therapy</a></li>
+            <li><a href="#">School-Based Therapy</a></li>
+            <li><a href="#">Request Services</a></li>
+          </ul>
+        </nav>
+
+        <!-- Company column -->
+        <nav aria-label="Company navigation">
+          <h2 class="footer__col-heading">Company</h2>
+          <ul class="footer__col-links" role="list">
+            <li><a href="#">About CSD</a></li>
+            <li><a href="csd-careers-wireframe.html">Careers</a></li>
+            <li><a href="csd-locations-wireframe.html">Locations</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Newsroom</a></li>
+          </ul>
+        </nav>
+
+        <!-- Connect column -->
+        <div>
+          <h2 class="footer__col-heading">Connect</h2>
+          <ul class="footer__col-links" role="list">
+            <li><a href="#">Family Resources</a></li>
+            <li><a href="#">Insurance &amp; Coverage</a></li>
+            <li><a href="#">CSD University</a></li>
+            <li><a href="#">Referral Partners</a></li>
+          </ul>
+          <div class="footer__social" aria-label="CSD Social Media">
+            <a href="#" class="footer__social-btn" aria-label="CSD on Facebook">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="footer__social-btn" aria-label="CSD on Instagram">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="footer__social-btn" aria-label="CSD on LinkedIn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" class="footer__social-btn" aria-label="CSD on YouTube">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2025 Center for Social Dynamics. All rights reserved.</p>
+        <nav class="footer__legal-links" aria-label="Legal navigation">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Notice of Privacy Practices</a>
+          <a href="#">Accessibility</a>
+        </nav>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCROLL ANIMATION SCRIPT
+       ============================================================ -->
+  <script>
+    // ---- Mega menu ----
+    const moreBtn = document.getElementById('nav-more-btn');
+    const megaMenu = document.getElementById('nav-mega');
+
+    function openMega() {
+      megaMenu.classList.add('is-open');
+      moreBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeMega() {
+      megaMenu.classList.remove('is-open');
+      moreBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    moreBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      megaMenu.classList.contains('is-open') ? closeMega() : openMega();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!moreBtn.contains(e.target) && !megaMenu.contains(e.target)) closeMega();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMega();
+    });
+
+    // ---- Mobile hamburger ----
+    const hamburger = document.getElementById('nav-hamburger');
+    const drawer = document.getElementById('nav-drawer');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = drawer.classList.toggle('is-open');
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+      hamburger.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    // Close drawer when a link inside it is clicked
+    drawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        drawer.classList.remove('is-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open navigation menu');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Observe elements with .fade-in and add .visible when they enter viewport
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    document.querySelectorAll('.fade-in').forEach((el) => {
+      observer.observe(el);
+    });
+
+    // ── Scattered service cards: reveal on scroll ─────────────────────────
+    (function () {
+      var serviceCards = document.querySelectorAll('.service-scroll-card');
+      if (!serviceCards.length) return;
+      var cardObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            cardObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+      serviceCards.forEach(function (card) { cardObserver.observe(card); });
+    })();
+
+    // ── Scroll-Driven Stat Card Deck ─────────────────────────────────────
+    (function () {
+      var track = document.getElementById('proof-deck-track');
+      if (!track) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var cards = Array.from(track.querySelectorAll('.stat-deck-card'));
+      var dots  = Array.from(document.querySelectorAll('.deck-dot'));
+      var segs  = cards.length - 1;
+
+      var stack = [
+        { x:   0, y:  0, rot: -2,  scale: 1    },
+        { x:  -7, y:  5, rot:  4,  scale: 0.97 },
+        { x: -13, y: 10, rot:  9,  scale: 0.94 },
+        { x: -19, y: 15, rot: 14,  scale: 0.91 }
+      ];
+
+      var discard = [
+        { x:   0, y: -620, rot: -3 },
+        { x:   0, y: -620, rot:  2 },
+        { x:   0, y: -620, rot: -2 }
+      ];
+
+      function lerp(a, b, t) { return a + (b - a) * t; }
+      function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+      function ease(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+
+      function render() {
+        var rect   = track.getBoundingClientRect();
+        var trackH = track.offsetHeight;
+        var viewH  = window.innerHeight;
+        var P      = clamp(-rect.top / (trackH - viewH), 0, 1);
+
+        var segLen = 1 / segs;
+        var tIdx   = Math.min(Math.floor(P / segLen), segs - 1);
+        var tProg  = ease(clamp((P - tIdx * segLen) / segLen, 0, 1));
+
+        cards.forEach(function (card, i) {
+          var x, y, rot, scale;
+
+          if (i < tIdx) {
+            var d = discard[i];
+            x = d.x; y = d.y; rot = d.rot; scale = 0.85;
+
+          } else if (i === tIdx) {
+            var s = stack[0];
+            var d = discard[i];
+            x     = lerp(s.x,     d.x,   tProg);
+            y     = lerp(s.y,     d.y,   tProg);
+            rot   = lerp(s.rot,   d.rot, tProg);
+            scale = lerp(s.scale, 0.85,  tProg);
+
+          } else {
+            var fromPos = i - tIdx;
+            var toPos   = Math.max(0, fromPos - 1);
+            var s0 = stack[Math.min(fromPos, stack.length - 1)];
+            var s1 = stack[Math.min(toPos,   stack.length - 1)];
+            x     = lerp(s0.x,     s1.x,     tProg);
+            y     = lerp(s0.y,     s1.y,     tProg);
+            rot   = lerp(s0.rot,   s1.rot,   tProg);
+            scale = lerp(s0.scale, s1.scale, tProg);
+          }
+
+          card.style.transform =
+            'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) ' +
+            'rotate(' + rot.toFixed(2) + 'deg) ' +
+            'scale(' + scale.toFixed(3) + ')';
+        });
+
+        var active = (tProg > 0.6) ? Math.min(tIdx + 1, cards.length - 1) : tIdx;
+        dots.forEach(function (dot, i) {
+          dot.classList.toggle('deck-dot--active', i === active);
+        });
+
+        var hint = track.querySelector('.stat-deck-card__hint');
+        if (hint) hint.style.opacity = String(clamp(0.4 - P * 6, 0, 0.4));
+      }
+
+      window.addEventListener('scroll', render, { passive: true });
+      window.addEventListener('resize', render);
+      render();
+    }());
+
+    // ---- Timed accordion — Get Started steps (WCAG 2.1.1, 2.2.2, 4.1.2, 4.1.3) ----
+    (function () {
+      var DURATION = 10000;
+      var steps       = Array.from(document.querySelectorAll('.get-started .step'));
+      var pauseBtns   = Array.from(document.querySelectorAll('.get-started .step__pause-btn'));
+      var liveRegion  = document.getElementById('step-announcement');
+      if (!steps.length) return;
+
+      var currentIndex = 0;
+      var timer        = null;
+      var isPaused     = false;
+
+      // Respect reduced-motion: start paused, skip bar animation
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* ---- core: activate a step ---- */
+      var panels = Array.from(document.querySelectorAll('.get-started .step-panel'));
+
+      function activateStep(index) {
+        // Deactivate all — reset ARIA and ring progress instantly
+        steps.forEach(function (s) {
+          s.classList.remove('is-active');
+          s.setAttribute('aria-expanded', 'false');
+          var ring = s.querySelector('.ring-fill');
+          if (ring) {
+            ring.classList.remove('is-running');
+            ring.style.transition = 'none';
+            ring.style.strokeDashoffset = '125.66';
+          }
+        });
+
+        // Cross-fade right-column panels
+        panels.forEach(function (p) { p.classList.remove('is-active'); });
+        if (panels[index]) { panels[index].classList.add('is-active'); }
+
+        // Move tabindex to the active step's pause button and reset inline opacity
+        pauseBtns.forEach(function (b) {
+          b.setAttribute('tabindex', '-1');
+          b.style.opacity = '';
+        });
+
+        currentIndex = index;
+        var active = steps[currentIndex];
+        active.classList.add('is-active');
+        active.setAttribute('aria-expanded', 'true');
+        var activeBtn = active.querySelector('.step__pause-btn');
+        if (activeBtn) { activeBtn.setAttribute('tabindex', '0'); }
+
+        // Announce to screen readers
+        if (liveRegion) {
+          var title = active.querySelector('.step__title');
+          liveRegion.textContent = ''; // clear first so repeat announcements fire
+          liveRegion.textContent = 'Step ' + (currentIndex + 1) + ': ' + (title ? title.textContent : '');
+        }
+
+        // Ring progress animation (synchronous reflow flush — works in background tabs)
+        if (!prefersReduced) {
+          var ring = active.querySelector('.ring-fill');
+          if (ring) {
+            void ring.getBoundingClientRect(); // force reflow
+            ring.style.transition = '';
+            ring.style.strokeDashoffset = '';
+            ring.classList.add('is-running');
+          }
+        }
+
+        // Schedule auto-advance unless paused
+        clearTimeout(timer);
+        if (!isPaused) {
+          timer = setTimeout(function () {
+            activateStep((currentIndex + 1) % steps.length);
+          }, DURATION);
+        }
+      }
+
+      /* ---- pause / resume (WCAG 2.2.2) ---- */
+      function setPaused(paused) {
+        isPaused = paused;
+        pauseBtns.forEach(function (b) {
+          b.setAttribute('aria-pressed', paused ? 'true' : 'false');
+          b.setAttribute('aria-label', paused ? 'Resume step rotation' : 'Pause step rotation');
+        });
+        if (paused) {
+          clearTimeout(timer);
+          // Also freeze the progress bar in place
+          var ring = steps[currentIndex] ? steps[currentIndex].querySelector('.ring-fill') : null;
+          if (ring && ring.classList.contains('is-running')) {
+            var computedOffset = window.getComputedStyle(ring).strokeDashoffset;
+            ring.classList.remove('is-running');
+            ring.style.transition = 'none';
+            ring.style.strokeDashoffset = computedOffset; // hold at current position
+          }
+        } else {
+          // Restart timer and bar from current position
+          activateStep(currentIndex);
+        }
+      }
+
+      pauseBtns.forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation(); // don't bubble to step's own click handler
+          setPaused(!isPaused);
+        });
+      });
+
+      /* ---- click & keyboard activation (WCAG 2.1.1) ---- */
+      steps.forEach(function (step, i) {
+        // Click
+        step.addEventListener('click', function () {
+          if (isPaused) { activateStep(i); return; }
+          clearTimeout(timer);
+          activateStep(i);
+        });
+        // Enter / Space (role="button" keyboard contract)
+        step.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            if (isPaused) { activateStep(i); return; }
+            clearTimeout(timer);
+            activateStep(i);
+          }
+        });
+      });
+
+      /* ---- init ---- */
+      // If user prefers reduced motion, start paused so nothing moves
+      if (prefersReduced) {
+        isPaused = true;
+        pauseBtns.forEach(function (b) {
+          b.setAttribute('aria-pressed', 'true');
+          b.setAttribute('aria-label', 'Resume step rotation');
+        });
+      }
+      activateStep(0);
+    }());
+  </script>
+
+</body>
+</html>

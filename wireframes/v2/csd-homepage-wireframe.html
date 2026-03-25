@@ -1,0 +1,2740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSD Homepage — Wireframe V2</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN SYSTEM — CSS VARIABLES
+       ============================================================ */
+    :root {
+      --color-bg:         #F4F4F4;
+      --color-bg-warm:    #E8E8E8;
+      --color-navy:       #1A1A1A;
+      --color-navy-light: #2D2D2D;
+      --color-teal:       #444444;
+      --color-teal-light: #DEDEDE;
+      --color-amber:      #2B2B2B;
+      --color-amber-bg:   #E4E4E4;
+      --color-sage:       #555555;
+      --color-sage-light: #E4E4E4;
+      --color-text:       #1A1A1A;
+      --color-text-muted: #5C5C5C;
+      --color-border:     #C0C0C0;
+      --color-white:      #FFFFFF;
+
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, -apple-system, sans-serif;
+
+      --space-xs:  0.5rem;
+      --space-sm:  1rem;
+      --space-md:  1.5rem;
+      --space-lg:  2.5rem;
+      --space-xl:  4rem;
+      --space-2xl: 6rem;
+      --space-3xl: 8rem;
+
+      --max-width: 1200px;
+      --radius-sm: 3px;
+      --radius-md: 4px;
+      --radius-lg: 6px;
+      --radius-xl: 8px;
+
+      --transition: 0.25s ease;
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--color-text);
+      background-color: var(--color-bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+
+    /* ============================================================
+       ACCESSIBILITY
+       ============================================================ */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      padding: 0.75rem 1.25rem;
+      background: var(--color-navy);
+      color: var(--color-white);
+      font-family: var(--font-body);
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      z-index: 9999;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    :focus-visible {
+      outline: 3px solid #555555;
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .fade-in { opacity: 1 !important; transform: none !important; }
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ============================================================
+       TYPOGRAPHY UTILITIES
+       ============================================================ */
+    .eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-teal);
+    }
+    .eyebrow--light { color: rgba(255,255,255,0.88); }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
+    h2 { font-size: clamp(1.8rem, 3.5vw, 2.75rem); }
+    h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); }
+
+    .lead {
+      font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+      line-height: 1.7;
+      color: var(--color-text-muted);
+    }
+
+    /* ============================================================
+       LAYOUT UTILITIES
+       ============================================================ */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+    }
+
+    .section { padding-block: var(--space-3xl); }
+    .section--sm { padding-block: var(--space-2xl); }
+
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.875rem 1.75rem;
+      min-height: 48px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), transform var(--transition);
+      border: 2px solid transparent;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-primary {
+      background: #2B2B2B;
+      color: #FFFFFF;
+      border-color: #2B2B2B;
+    }
+    .btn-primary:hover {
+      background: #444444;
+      border-color: #444444;
+      color: #FFFFFF;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-navy);
+      border-color: var(--color-navy);
+    }
+    .btn-outline:hover {
+      background: var(--color-navy);
+      color: var(--color-white);
+    }
+
+    .btn-outline--light {
+      background: transparent;
+      color: var(--color-white);
+      border-color: rgba(255,255,255,0.5);
+    }
+    .btn-outline--light:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: var(--color-white);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-navy);
+      border-color: transparent;
+      padding-inline: 0;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .btn-ghost:hover { color: var(--color-text-muted); transform: none; }
+
+    /* ============================================================
+       FPO IMAGE PLACEHOLDERS
+       ============================================================ */
+    .fpo {
+      background: var(--color-teal-light);
+      border: 2px dashed var(--color-teal);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--color-teal);
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-align: center;
+      padding: 1.5rem;
+      overflow: hidden;
+    }
+    .fpo__label {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+    .fpo__desc {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-navy);
+    }
+    .fpo svg { opacity: 0.4; }
+
+    /* ============================================================
+       SCROLL ANIMATIONS
+       ============================================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in--delay-1 { transition-delay: 0.1s; }
+    .fade-in--delay-2 { transition-delay: 0.2s; }
+    .fade-in--delay-3 { transition-delay: 0.3s; }
+    .fade-in--delay-4 { transition-delay: 0.4s; }
+
+    /* ============================================================
+       WIREFRAME ANNOTATION BADGE
+       ============================================================ */
+    .wireframe-badge {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 999;
+      font-family: var(--font-body);
+    }
+
+    .wireframe-badge__toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--color-navy);
+      color: var(--color-white);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+
+    .wireframe-badge__toggle:hover,
+    .wireframe-badge.is-open .wireframe-badge__toggle {
+      opacity: 1;
+    }
+
+    .wireframe-badge__toggle svg {
+      transition: transform 0.2s ease;
+    }
+
+    .wireframe-badge.is-open .wireframe-badge__toggle svg {
+      transform: rotate(180deg);
+    }
+
+    .wireframe-badge__menu {
+      position: absolute;
+      bottom: calc(100% + 0.5rem);
+      right: 0;
+      background: var(--color-navy);
+      border-radius: 10px;
+      padding: 0.35rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.15rem;
+      min-width: 160px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .wireframe-badge.is-open .wireframe-badge__menu {
+      display: flex;
+    }
+
+    .wireframe-badge__item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.65rem;
+      border-radius: 7px;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .wireframe-badge__item:hover {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+
+    .wireframe-badge__item.is-current {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+    }
+
+    .wireframe-badge__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      flex-shrink: 0;
+    }
+
+    .wireframe-badge__item.is-current .wireframe-badge__dot {
+      background: var(--color-teal, #5EC6C6);
+    }
+
+    .wireframe-badge__home {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 0.15rem;
+      padding-top: 0.3rem;
+    }
+
+    .wireframe-badge__home a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.65rem;
+      border-radius: 7px;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .wireframe-badge__home a:hover {
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ============================================================
+       1. NAVIGATION
+       ============================================================ */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      gap: var(--space-md);
+    }
+
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .nav__logo-mark {
+      width: 44px;
+      height: 44px;
+      background: var(--color-navy);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+    .nav__logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .nav__logo-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--color-navy);
+    }
+    .nav__logo-sub {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+    .nav__links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      transition: color var(--transition);
+      padding-block: 0.25rem;
+    }
+    .nav__links a:hover { color: var(--color-navy); }
+    .nav__links a[aria-current="page"] {
+      color: var(--color-navy);
+      font-weight: 600;
+      border-bottom: 2px solid currentColor;
+    }
+
+    .nav__right {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-shrink: 0;
+    }
+    .nav__phone {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-teal);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .nav__phone:hover { color: var(--color-navy); }
+
+    /* More / Mega Menu */
+    .nav__more-wrap { position: relative; }
+    .nav__more-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding-block: 0.25rem;
+      font-family: var(--font-body);
+      transition: color var(--transition);
+    }
+    .nav__more-btn:hover,
+    .nav__more-btn[aria-expanded="true"] { color: var(--color-navy); }
+    .nav__more-chevron { transition: transform 0.2s ease; }
+    .nav__more-btn[aria-expanded="true"] .nav__more-chevron { transform: rotate(180deg); }
+
+    .nav__mega {
+      display: none;
+      position: absolute;
+      top: calc(100% + 1rem);
+      right: -1rem;
+      width: 580px;
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      z-index: 200;
+    }
+    .nav__mega.is-open {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+    }
+    .nav__mega-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.7rem 0.75rem;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: background var(--transition);
+    }
+    .nav__mega-item:hover { background: var(--color-bg); }
+    .nav__mega-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--color-bg-warm);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-teal);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .nav__mega-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-navy);
+      line-height: 1.3;
+    }
+    .nav__mega-desc {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      line-height: 1.4;
+      margin-top: 0.15rem;
+    }
+
+    /* Hamburger / Mobile */
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      padding: 0 10px;
+      flex-shrink: 0;
+    }
+    .nav__hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--color-navy);
+      border-radius: 2px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .nav__hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav__hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav__hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .nav__drawer {
+      display: none;
+      position: fixed;
+      inset: 72px 0 0 0;
+      background: var(--color-white);
+      z-index: 150;
+      overflow-y: auto;
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-md);
+    }
+    .nav__drawer.is-open { display: block; }
+    .nav__drawer-links { margin: 0 0 var(--space-md) 0; padding: 0; }
+    .nav__drawer-links li a {
+      display: block;
+      padding: 0.85rem 0;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--color-navy);
+      border-bottom: 1px solid var(--color-border);
+      text-decoration: none;
+    }
+    .nav__drawer-links li a:hover { color: var(--color-teal); }
+    .nav__drawer-section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin: var(--space-sm) 0 var(--space-xs);
+    }
+    .nav__drawer-more {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-md);
+    }
+    .nav__drawer-more a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 0.75rem;
+      background: var(--color-bg);
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--color-navy);
+      text-decoration: none;
+      border: 1px solid var(--color-border);
+    }
+    .nav__drawer-more a:hover { background: var(--color-bg-warm); }
+    .nav__drawer-cta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      padding-top: var(--space-sm);
+      border-top: 1px solid var(--color-border);
+    }
+    .nav__drawer-cta .btn { width: 100%; justify-content: center; }
+
+    @media (max-width: 768px) {
+      .nav__links, .nav__phone { display: none; }
+      .nav__hamburger { display: flex; }
+    }
+
+    /* ============================================================
+       2. HERO — Full-width cinematic
+       ============================================================ */
+    .hero {
+      background: var(--color-bg);
+      padding-top: var(--space-3xl);
+      padding-bottom: var(--space-3xl);
+    }
+
+    .hero__split {
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .hero__left {}
+
+    .hero__headline {
+      color: var(--color-navy);
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: 0;
+    }
+    .hero__headline em {
+      font-style: italic;
+      color: var(--color-text-muted);
+    }
+
+    .hero__right {
+      padding-bottom: 0.5rem;
+    }
+
+    .hero__subhead {
+      font-size: clamp(1rem, 1.3vw, 1.15rem);
+      color: var(--color-text-muted);
+      line-height: 1.65;
+      margin-bottom: var(--space-xs);
+    }
+
+    .hero__secondary {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero__ctas {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .hero__image-wrap {
+      position: relative;
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 5vw, 3rem);
+      margin-top: var(--space-xl);
+    }
+
+    .hero__image-wrap .fpo {
+      width: 100%;
+      height: 420px;
+      border-radius: var(--radius-xl);
+    }
+
+    .hero__float-chip {
+      position: absolute;
+      bottom: 2rem;
+      right: clamp(2.25rem, 6vw, 4rem);
+      z-index: 3;
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: 200px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+    .hero__float-chip-icon {
+      width: 40px;
+      height: 40px;
+      background: #E4E4E4;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .hero__float-chip-text { display: flex; flex-direction: column; }
+    .hero__float-chip-stat {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      line-height: 1;
+    }
+    .hero__float-chip-label {
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+      font-weight: 500;
+      line-height: 1.3;
+      margin-top: 0.15rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero__split {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+      .hero__headline { font-size: clamp(2.2rem, 8vw, 3rem); }
+      .hero__image-wrap .fpo { height: 280px; }
+      .hero__float-chip {
+        bottom: 1rem;
+        right: 2rem;
+      }
+    }
+
+    /* ============================================================
+       3. APPROACH / MISSION — Statement band + callout cards
+       ============================================================ */
+    .approach {
+      position: relative;
+      overflow: visible;
+      background: #555555;
+      color: var(--color-white);
+      padding-bottom: 0;
+    }
+
+    .approach__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .approach__bg .fpo {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      border: none;
+      opacity: 0.08;
+      background: var(--color-teal-light);
+    }
+
+    .approach__statement {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 880px;
+      margin-inline: auto;
+      padding-bottom: var(--space-xl);
+    }
+
+    .approach__heading {
+      color: var(--color-white);
+      font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+      margin-bottom: var(--space-lg);
+    }
+    .approach__heading em {
+      font-style: italic;
+      color: #DDDDDD;
+    }
+
+    .approach__body {
+      color: rgba(255,255,255,0.78);
+      font-size: clamp(1rem, 1.3vw, 1.1rem);
+      line-height: 1.75;
+      margin-bottom: var(--space-sm);
+    }
+
+    .approach__highlight {
+      margin-top: var(--space-sm);
+      font-weight: 500;
+      color: rgba(255,255,255,0.92);
+      font-size: 1.05rem;
+    }
+
+    .approach__cards-wrap {
+      position: relative;
+      z-index: 2;
+      margin-top: var(--space-xl);
+    }
+
+    .approach__cards {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+    }
+
+    .approach__cards-bg {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+      height: 50%;
+      background: var(--color-bg);
+      z-index: 0;
+    }
+
+    .approach-card {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+    }
+
+    .approach-card__image {
+      height: 180px;
+      background: var(--color-teal-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .approach-card__image .fpo {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      border: none;
+    }
+
+    .approach-card__content {
+      padding: var(--space-md) var(--space-lg);
+    }
+
+    .approach-card__title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--color-navy);
+      margin-bottom: 0.35rem;
+    }
+
+    .approach-card__body {
+      font-size: 0.87rem;
+      color: var(--color-text-muted);
+      line-height: 1.55;
+    }
+
+    /* No extra padding needed — the bg div handles the overlap visually */
+
+    @media (max-width: 768px) {
+      .approach__cards { grid-template-columns: 1fr; }
+      .approach-card__image { height: 140px; }
+    }
+
+    /* ============================================================
+       4. SERVICES — Tabbed interface
+       ============================================================ */
+    .services {
+      background: var(--color-bg);
+    }
+
+    .services__intro {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .services__heading {
+      color: var(--color-navy);
+      margin-top: var(--space-xs);
+      margin-bottom: var(--space-sm);
+    }
+
+    .services__subhead {
+      color: var(--color-text-muted);
+      max-width: 560px;
+      margin-inline: auto;
+    }
+
+    .services__tabs {
+      display: flex;
+      border-bottom: 2px solid var(--color-border);
+      gap: 0;
+    }
+
+    .services__tab {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      cursor: pointer;
+      transition: color var(--transition), border-color var(--transition), background var(--transition);
+      text-align: center;
+    }
+    .services__tab:hover {
+      color: var(--color-navy);
+      background: rgba(0,0,0,0.02);
+    }
+    .services__tab.is-active {
+      color: var(--color-navy);
+      border-bottom-color: var(--color-navy);
+    }
+
+    .services__panel {
+      display: none;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+      padding-top: var(--space-xl);
+    }
+    .services__panel.is-active {
+      display: grid;
+    }
+
+    .services__panel-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .services__panel-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #E4E4E4;
+      color: var(--color-teal);
+      margin-bottom: var(--space-xs);
+    }
+
+    .services__panel-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+      font-weight: 600;
+      color: var(--color-navy);
+    }
+
+    .services__panel-body {
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    .services__panel-image .fpo {
+      height: 380px;
+      border-radius: var(--radius-lg);
+    }
+
+    .services__cta {
+      text-align: center;
+      padding-top: var(--space-xl);
+    }
+
+    @media (max-width: 768px) {
+      .services__tabs { flex-wrap: wrap; }
+      .services__tab { flex: 1 1 50%; font-size: 0.8rem; padding: 0.75rem 0.5rem; }
+      .services__panel.is-active { grid-template-columns: 1fr; }
+      .services__panel-image { order: -1; }
+      .services__panel-image .fpo { height: 240px; }
+    }
+
+    /* ============================================================
+       4b. SERVICES SHOWCASE — Loom-style immersive card
+       ============================================================ */
+    .services-showcase {
+      padding-block: var(--space-3xl);
+    }
+
+    .showcase-card {
+      position: relative;
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .showcase-card__inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      padding: var(--space-xl) clamp(var(--space-lg), 4vw, var(--space-2xl));
+    }
+
+    .showcase-header {
+      margin-bottom: var(--space-lg);
+    }
+
+    /* Tab switcher row with divider line */
+    .showcase-tabs-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: var(--space-xl);
+    }
+    .showcase-tabs-row::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--color-border);
+    }
+    .showcase-tabs {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      padding: 4px;
+      flex-shrink: 0;
+    }
+    .showcase-tab {
+      padding: 0.5rem 1.25rem;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      border-radius: 999px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.25s;
+    }
+    .showcase-tab.is-active {
+      background: var(--color-navy);
+      color: var(--color-white);
+    }
+
+    /* Content area: 2-col */
+    .showcase-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      flex: 1;
+    }
+
+    .showcase-content__left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .showcase-content__right {
+      position: relative;
+    }
+    .showcase-content__right .fpo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: var(--radius-md);
+    }
+
+    .showcase-content__headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+      font-weight: 600;
+      color: var(--color-navy);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-sm);
+    }
+
+    .showcase-content__desc {
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+      line-height: 1.65;
+      margin-bottom: var(--space-lg);
+      max-width: 420px;
+    }
+
+    /* Feature list */
+    .showcase-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem 2rem;
+      align-self: start;
+      justify-self: start;
+      margin-top: var(--space-sm);
+    }
+
+    .showcase-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--color-text);
+      white-space: nowrap;
+    }
+    .showcase-feature__icon {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--color-teal);
+    }
+
+    .showcase-viewall {
+      margin-top: var(--space-md);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      grid-column: 1 / -1;
+    }
+
+    @media (max-width: 768px) {
+      .showcase-card { min-height: auto; }
+      .showcase-content { grid-template-columns: 1fr; gap: var(--space-lg); }
+      .showcase-content__right { min-height: 300px; }
+      .showcase-content__right .fpo { position: relative; height: 300px; }
+      .showcase-features { grid-template-columns: 1fr; }
+      .showcase-tabs { flex-wrap: wrap; border-radius: var(--radius-md); }
+    }
+
+    /* ============================================================
+       5. PROOF — Combined stats + testimonials (2-col)
+       ============================================================ */
+    .proof-section {
+      background: #2B2B2B;
+      color: var(--color-white);
+      padding-block: var(--space-3xl);
+    }
+
+    .proof-section .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+    }
+
+    /* Col 1: Header + testimonial cards */
+    .proof__col-left {}
+
+    .proof__header {
+      margin-bottom: var(--space-xl);
+    }
+    .proof__header .eyebrow {
+      color: rgba(255,255,255,0.5);
+    }
+    .proof__heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--color-white);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-top: var(--space-xs);
+      margin-bottom: var(--space-sm);
+    }
+    .proof__subhead {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+    }
+
+    .testimonial-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+    }
+    .testimonial-card__quote {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.55;
+      margin-bottom: var(--space-sm);
+    }
+    .testimonial-card__footer {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .testimonial-card__avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      border: 1px dashed rgba(255,255,255,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .testimonial-card__name {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--color-white);
+    }
+    .testimonial-card__role {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+    }
+    .testimonial-dots {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: var(--space-md);
+    }
+    .testimonial-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      border: none;
+    }
+    .testimonial-dot.is-active {
+      background: var(--color-white);
+    }
+
+    /* Col 2: Stacked stats */
+    .proof__col-right {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .stat-item {
+      padding: var(--space-lg) 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat-item:first-child {
+      padding-top: 0;
+    }
+    .stat-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .stat-item__number {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: var(--color-white);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .stat-item__label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 0.2rem;
+    }
+    .stat-item__desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.5;
+      max-width: 320px;
+    }
+
+    @media (max-width: 900px) {
+      .proof-section .container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================================
+       5b. PROOF V2 — Stats interleaved with testimonials
+       ============================================================ */
+    .proof-v2 {
+      background: #2B2B2B;
+      color: var(--color-white);
+      padding-block: var(--space-3xl);
+    }
+    .proof-v2 .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+    }
+
+    .proof-v2__left {
+      position: sticky;
+      top: calc(var(--space-3xl) + 60px);
+      align-self: start;
+    }
+    .proof-v2__header {
+      margin-bottom: var(--space-xl);
+    }
+    .proof-v2__header .eyebrow {
+      color: rgba(255,255,255,0.5);
+    }
+    .proof-v2__heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--color-white);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-top: var(--space-xs);
+      margin-bottom: var(--space-sm);
+    }
+    .proof-v2__subhead {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+    }
+
+    /* Right col: interleaved stats + testimonials */
+    .proof-v2__stream {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .proof-v2__stat {
+      padding: var(--space-lg) 0;
+    }
+    .proof-v2__stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: var(--color-white);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .proof-v2__stat-label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 0.2rem;
+    }
+    .proof-v2__stat-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.5;
+      max-width: 320px;
+    }
+
+    .proof-v2__testimonial {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      margin-block: var(--space-xs);
+    }
+    .proof-v2__testimonial-quote {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.55;
+      margin-bottom: 0.75rem;
+    }
+    .proof-v2__testimonial-footer {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .proof-v2__testimonial-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      border: 1px dashed rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .proof-v2__testimonial-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-white);
+    }
+    .proof-v2__testimonial-role {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    @media (max-width: 900px) {
+      .proof-v2 .container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================================
+       7. HOW IT WORKS — Vertical timeline
+       ============================================================ */
+    .timeline {
+      background: var(--color-bg-warm);
+    }
+
+    .timeline__header {
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+    .timeline__heading {
+      color: var(--color-navy);
+      margin-top: var(--space-xs);
+      margin-bottom: var(--space-sm);
+    }
+    .timeline__subhead {
+      color: var(--color-text-muted);
+      max-width: 600px;
+      margin-inline: auto;
+    }
+
+    .timeline__track {
+      position: relative;
+      max-width: 900px;
+      margin-inline: auto;
+    }
+
+    /* Vertical line */
+    .timeline__track::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      background: var(--color-border);
+    }
+
+    .timeline-step {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      align-items: center;
+      gap: 0;
+      margin-bottom: var(--space-2xl);
+    }
+    .timeline-step:last-child { margin-bottom: 0; }
+
+    .timeline-step__number {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--color-navy);
+      color: var(--color-white);
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      justify-self: center;
+    }
+
+    .timeline-step__content {
+      padding: var(--space-md) var(--space-lg);
+    }
+    .timeline-step__title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-navy);
+      margin-bottom: 0.5rem;
+    }
+    .timeline-step__body {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      line-height: 1.65;
+    }
+
+    .timeline-step__image .fpo {
+      height: 200px;
+      border-radius: var(--radius-lg);
+    }
+
+    /* Alternating: odd = content left, even = content right */
+    .timeline-step--left .timeline-step__content { grid-column: 1; grid-row: 1; text-align: right; }
+    .timeline-step--left .timeline-step__number { grid-column: 2; grid-row: 1; }
+    .timeline-step--left .timeline-step__image { grid-column: 3; grid-row: 1; }
+
+    .timeline-step--right .timeline-step__image { grid-column: 1; grid-row: 1; }
+    .timeline-step--right .timeline-step__number { grid-column: 2; grid-row: 1; }
+    .timeline-step--right .timeline-step__content { grid-column: 3; grid-row: 1; text-align: left; }
+
+    @media (max-width: 768px) {
+      .timeline__track::before { left: 26px; }
+      .timeline-step {
+        grid-template-columns: 52px 1fr;
+        gap: 0;
+      }
+      .timeline-step__number { grid-column: 1; grid-row: 1; }
+      .timeline-step--left .timeline-step__content,
+      .timeline-step--right .timeline-step__content {
+        grid-column: 2;
+        grid-row: 1;
+        text-align: left;
+        padding: var(--space-sm) var(--space-md);
+      }
+      .timeline-step--left .timeline-step__image,
+      .timeline-step--right .timeline-step__image {
+        grid-column: 2;
+        grid-row: 2;
+        padding-left: var(--space-md);
+        padding-bottom: var(--space-md);
+      }
+    }
+
+    /* ============================================================
+       8. FINAL CTA — 2-column
+       ============================================================ */
+    .final-cta {
+      background: #555555;
+      color: var(--color-white);
+    }
+
+    .final-cta__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+      align-items: center;
+    }
+
+    .final-cta__heading {
+      color: var(--color-white);
+      margin-bottom: var(--space-md);
+    }
+
+    .final-cta__body {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      margin-bottom: var(--space-sm);
+    }
+
+    .final-cta__sub {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: var(--space-lg);
+    }
+
+    .final-cta .btn-primary {
+      background: #FFFFFF;
+      color: #1A1A1A;
+      border-color: #FFFFFF;
+    }
+    .final-cta .btn-primary:hover {
+      background: #E0E0E0;
+      border-color: #E0E0E0;
+      color: #1A1A1A;
+    }
+
+    .final-cta__image .fpo {
+      height: 420px;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.5);
+    }
+    .final-cta__image .fpo .fpo__desc {
+      color: rgba(255,255,255,0.8);
+    }
+
+    @media (max-width: 768px) {
+      .final-cta__inner { grid-template-columns: 1fr; }
+      .final-cta__image .fpo { height: 280px; }
+    }
+
+    /* ============================================================
+       9. FOOTER
+       ============================================================ */
+    .site-footer {
+      background: #1A1A1A;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .footer__top {
+      padding-block: var(--space-2xl);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap: var(--space-xl);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer__brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: var(--space-md);
+    }
+    .footer__logo-mark {
+      width: 44px;
+      height: 44px;
+      background: #444444;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .footer__logo-text {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-white);
+      line-height: 1.2;
+    }
+    .footer__logo-sub {
+      font-family: var(--font-body);
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      display: block;
+    }
+    .footer__tagline {
+      font-size: 0.87rem;
+      line-height: 1.6;
+      margin-bottom: var(--space-md);
+      color: rgba(255,255,255,0.55);
+    }
+    .footer__contact a {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.35rem;
+      transition: color var(--transition);
+      font-style: normal;
+    }
+    .footer__contact a:hover { color: var(--color-white); }
+    .footer__badges {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: var(--space-md);
+    }
+    .footer__badge-fpo {
+      background: rgba(255,255,255,0.06);
+      border: 1px dashed rgba(255,255,255,0.2);
+      border-radius: var(--radius-sm);
+      padding: 0.35rem 0.6rem;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.4);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .footer__col-heading {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: var(--space-sm);
+    }
+    .footer__col-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .footer__col-links a {
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.6);
+      transition: color var(--transition);
+    }
+    .footer__col-links a:hover { color: var(--color-white); }
+    .footer__social {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: var(--space-sm);
+    }
+    .footer__social-btn {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.07);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      transition: background var(--transition), color var(--transition);
+      text-decoration: none;
+    }
+    .footer__social-btn:hover {
+      background: #444444;
+      color: var(--color-white);
+    }
+    .footer__bottom {
+      padding-block: var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .footer__copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer__legal-links {
+      display: flex;
+      gap: var(--space-md);
+    }
+    .footer__legal-links a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      transition: color var(--transition);
+    }
+    .footer__legal-links a:hover { color: rgba(255,255,255,0.7); }
+
+    @media (max-width: 900px) {
+      .footer__top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 540px) {
+      .footer__top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Skip navigation -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Wireframe version switcher -->
+  <div class="wireframe-badge" id="wireframe-badge">
+    <div class="wireframe-badge__menu">
+      <a href="/wireframes/v3/csd-homepage-wireframe.html" class="wireframe-badge__item"><span class="wireframe-badge__dot"></span>Version 3</a>
+      <a href="/wireframes/v2/csd-homepage-wireframe.html" class="wireframe-badge__item is-current"><span class="wireframe-badge__dot"></span>Version 2</a>
+      <a href="/wireframes/v1/csd-homepage-wireframe.html" class="wireframe-badge__item"><span class="wireframe-badge__dot"></span>Version 1</a>
+      <div class="wireframe-badge__home"><a href="/"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Project Home</a></div>
+    </div>
+    <button class="wireframe-badge__toggle" aria-label="Switch wireframe version">
+      V2.0
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+  </div>
+  <script>
+  (function() {
+    var badge = document.getElementById('wireframe-badge');
+    var toggle = badge.querySelector('.wireframe-badge__toggle');
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      badge.classList.toggle('is-open');
+    });
+    document.addEventListener('click', function() {
+      badge.classList.remove('is-open');
+    });
+    badge.querySelector('.wireframe-badge__menu').addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+  })();
+  </script>
+
+  <!-- ============================================================
+       1. NAVIGATION
+       ============================================================ -->
+  <header class="site-header" role="banner">
+    <nav class="nav container" aria-label="Main navigation">
+
+      <a href="/" class="nav__logo" aria-label="Center for Social Dynamics — Home">
+        <div class="nav__logo-mark" aria-hidden="true"></div>
+        <div class="nav__logo-text">
+          <span class="nav__logo-name">Center for Social Dynamics</span>
+          <span class="nav__logo-sub">Autism &amp; ABA Therapy</span>
+        </div>
+      </a>
+
+      <ul class="nav__links" role="list">
+        <li><a href="csd-homepage-wireframe.html" aria-current="page">Home</a></li>
+        <li><a href="csd-careers-wireframe.html">Careers</a></li>
+        <li><a href="csd-locations-wireframe.html">Locations</a></li>
+        <li class="nav__more-wrap">
+          <button class="nav__more-btn" aria-expanded="false" aria-controls="nav-mega" id="nav-more-btn">
+            More
+            <svg class="nav__more-chevron" aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="nav__mega" id="nav-mega" role="region" aria-label="More navigation links">
+            <a href="javascript:void(0)" class="nav__mega-item">
+              <div class="nav__mega-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <div>
+                <div class="nav__mega-label">Resources for Families</div>
+                <div class="nav__mega-desc">Blog, guides &amp; support articles</div>
+              </div>
+            </a>
+            <a href="javascript:void(0)" class="nav__mega-item">
+              <div class="nav__mega-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div>
+                <div class="nav__mega-label">For Referring Providers</div>
+                <div class="nav__mega-desc">Partner referral tools &amp; info</div>
+              </div>
+            </a>
+            <a href="javascript:void(0)" class="nav__mega-item">
+              <div class="nav__mega-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div>
+                <div class="nav__mega-label">For Health Plans</div>
+                <div class="nav__mega-desc">Coverage &amp; payer partnerships</div>
+              </div>
+            </a>
+            <a href="javascript:void(0)" class="nav__mega-item">
+              <div class="nav__mega-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <div>
+                <div class="nav__mega-label">For School Districts</div>
+                <div class="nav__mega-desc">School-based program resources</div>
+              </div>
+            </a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="nav__right">
+        <a href="tel:+18779106538" class="nav__phone" aria-label="Call us: 877-910-6538">
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+          (877) 910-6538
+        </a>
+        <button class="nav__hamburger" aria-expanded="false" aria-controls="nav-drawer" aria-label="Open navigation menu" id="nav-hamburger">
+          <span></span><span></span><span></span>
+        </button>
+        <a href="javascript:void(0)" class="btn btn-primary">Get Started</a>
+      </div>
+
+    </nav>
+
+    <!-- Mobile drawer -->
+    <div class="nav__drawer" id="nav-drawer" aria-label="Mobile navigation">
+      <ul class="nav__drawer-links" role="list">
+        <li><a href="csd-homepage-wireframe.html" aria-current="page">Home</a></li>
+        <li><a href="csd-careers-wireframe.html">Careers</a></li>
+        <li><a href="csd-locations-wireframe.html">Locations</a></li>
+      </ul>
+      <p class="nav__drawer-section-label">More</p>
+      <div class="nav__drawer-more">
+        <a href="javascript:void(0)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          Resources for Families
+        </a>
+        <a href="javascript:void(0)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          For Referring Providers
+        </a>
+        <a href="javascript:void(0)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          For Health Plans
+        </a>
+        <a href="javascript:void(0)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          For School Districts
+        </a>
+      </div>
+      <div class="nav__drawer-cta">
+        <a href="tel:+18779106538" class="btn btn-outline">
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+          (877) 910-6538
+        </a>
+        <a href="javascript:void(0)" class="btn btn-primary">Get Started</a>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- ============================================================
+       MAIN CONTENT
+       ============================================================ -->
+  <main id="main-content">
+
+    <!-- ============================================================
+         2. HERO — Full-width cinematic
+         ============================================================ -->
+    <section class="hero" aria-labelledby="hero-heading">
+
+      <div class="hero__split fade-in">
+        <div class="hero__left">
+          <h1 class="hero__headline" id="hero-heading">
+            Breakthrough Autism Therapy to <em>Shape Your Child's Future</em>
+          </h1>
+        </div>
+        <div class="hero__right">
+          <p class="hero__subhead">
+            ABA therapy that meets your child exactly where they are—and helps them get where they're going.
+          </p>
+          <p class="hero__secondary">
+            In-home, in-center, at school, or through our virtual immersion program. We're with you, wherever you are.
+          </p>
+          <div class="hero__ctas">
+            <a href="javascript:void(0)" class="btn btn-primary">Start your child's journey today</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__image-wrap fade-in fade-in--delay-1">
+        <div class="fpo" role="img" aria-label="FPO: Child and clinician in a warm, joyful therapy session">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M7 21c0-2.761 2.239-5 5-5s5 2.239 5 5"/></svg>
+          <span class="fpo__label">FPO — Hero Image</span>
+          <span class="fpo__desc">Child + clinician, warm &amp; joyful virtual therapy session</span>
+        </div>
+
+        <div class="hero__float-chip" aria-label="17 percent higher goal progress with our virtual platform">
+          <div class="hero__float-chip-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="hero__float-chip-text">
+            <div class="hero__float-chip-stat">17%</div>
+            <div class="hero__float-chip-label">Higher goal progress<br/>with virtual platform</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============================================================
+         3. OUR APPROACH — Statement band + callout cards
+         ============================================================ -->
+    <section class="approach section" aria-labelledby="approach-heading">
+
+      <!-- Subtle background FPO -->
+      <div class="approach__bg" aria-hidden="true">
+        <div class="fpo" style="border: none;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+      </div>
+
+      <div class="container">
+
+        <div class="approach__statement fade-in">
+          <p class="eyebrow eyebrow--light">Our Approach</p>
+          <h2 class="approach__heading" id="approach-heading">
+            Innovation Grounded in <em>Empathy</em>
+          </h2>
+          <p class="approach__body">
+            We are architects of possibility. We don't believe in one-size-fits-all therapy. For too long, autism therapy has felt overwhelming and overly clinical. CSD is changing that. We stand at the intersection of compassion and evidence, where human connection meets clinical excellence.
+          </p>
+          <p class="approach__body">
+            We believe in your child—their interests, their pace, their potential. Our clinically rigorous, individually tailored ABA programs are built around what makes your child light up, not a rigid playbook. From our pioneering virtual platform to the living room or therapy center floor, we bring the science of behavior analysis to life with heart, warmth, flexibility, and an unwavering commitment to your family's success.
+          </p>
+          <p class="approach__highlight">
+            We bring hope, joy, and a clear roadmap to guide your family.
+          </p>
+        </div>
+
+        <div class="approach__cards-wrap">
+          <div class="approach__cards-bg" aria-hidden="true"></div>
+          <div class="approach__cards">
+            <div class="approach-card">
+              <div class="approach-card__image">
+                <div class="fpo" role="img" aria-label="FPO: Child starting virtual therapy session from home">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span class="fpo__label">FPO</span>
+                  <span class="fpo__desc">Child starting therapy from home</span>
+                </div>
+              </div>
+              <div class="approach-card__content">
+                <div class="approach-card__title">No waitlist. No barriers.</div>
+                <div class="approach-card__body">Our virtual platform connects your family with skilled clinicians in as few as 7 days—because breakthroughs and skills learning shouldn't wait.</div>
+              </div>
+            </div>
+            <div class="approach-card">
+              <div class="approach-card__image">
+                <div class="fpo" role="img" aria-label="FPO: CSD clinician in training session at CSD University">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                  <span class="fpo__label">FPO</span>
+                  <span class="fpo__desc">CSD University training session</span>
+                </div>
+              </div>
+              <div class="approach-card__content">
+                <div class="approach-card__title">Industry Leader</div>
+                <div class="approach-card__body">Our CSD University trains clinicians and therapists who stay and grow. Your child gains comfort with familiarity, and your family has a partner you can trust.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. OUR SERVICES — Tabbed interface (REMOVED — replaced by showcase below)
+         ============================================================ -->
+    <section class="services section" id="services" aria-labelledby="services-heading" style="display:none;">
+      <div class="container">
+
+        <header class="services__intro fade-in">
+          <p class="eyebrow">Our Services</p>
+          <h2 class="services__heading" id="services-heading">Therapy Where Life Happens</h2>
+          <p class="services__subhead lead">
+            Choose the setting that works best for your family—or combine them. CSD is designed to grow alongside your child.
+          </p>
+        </header>
+
+        <!-- Tabs -->
+        <div class="services__tabs" role="tablist" aria-label="Service types">
+          <button class="services__tab is-active" role="tab" aria-selected="true" aria-controls="panel-virtual" id="tab-virtual">Virtual &amp; VR</button>
+          <button class="services__tab" role="tab" aria-selected="false" aria-controls="panel-home" id="tab-home">In-Home</button>
+          <button class="services__tab" role="tab" aria-selected="false" aria-controls="panel-center" id="tab-center">Center-Based</button>
+          <button class="services__tab" role="tab" aria-selected="false" aria-controls="panel-school" id="tab-school">School-Based</button>
+        </div>
+
+        <!-- Panels -->
+        <div class="services__panel is-active" role="tabpanel" id="panel-virtual" aria-labelledby="tab-virtual">
+          <div class="services__panel-content fade-in">
+            <div class="services__panel-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3 class="services__panel-title">Virtual &amp; VR Therapy</h3>
+            <p class="services__panel-body">We lead in ABA innovation with our virtual program, brought to life by gamification and VR technology—always with live onscreen guidance from your therapist. Flexible scheduling fits around classes and family routines.</p>
+          </div>
+          <div class="services__panel-image">
+            <div class="fpo" role="img" aria-label="FPO: Child engaged in virtual therapy session with clinician on screen">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <span class="fpo__label">FPO — Virtual Therapy</span>
+              <span class="fpo__desc">Child engaged in VR therapy session</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="services__panel" role="tabpanel" id="panel-home" aria-labelledby="tab-home" hidden>
+          <div class="services__panel-content">
+            <div class="services__panel-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h3 class="services__panel-title">In-Home Therapy</h3>
+            <p class="services__panel-body">Familiar spaces fuel confidence. Our clinicians come to you, embedding skill-building into your child's natural routines and environment, helping them integrate with family dynamics for a more cohesive home life.</p>
+          </div>
+          <div class="services__panel-image">
+            <div class="fpo" role="img" aria-label="FPO: Clinician working with child in a home setting">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              <span class="fpo__label">FPO — In-Home Therapy</span>
+              <span class="fpo__desc">Clinician + child in home setting</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="services__panel" role="tabpanel" id="panel-center" aria-labelledby="tab-center" hidden>
+          <div class="services__panel-content">
+            <div class="services__panel-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg>
+            </div>
+            <h3 class="services__panel-title">Center-Based Therapy</h3>
+            <p class="services__panel-body">Safe, structured spaces designed for focus and growth—where your child can learn, practice, play, and progress individually and alongside peers. Parents and caregivers have support from people who understand their world.</p>
+          </div>
+          <div class="services__panel-image">
+            <div class="fpo" role="img" aria-label="FPO: CSD therapy center with child and clinician">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg>
+              <span class="fpo__label">FPO — Center-Based Therapy</span>
+              <span class="fpo__desc">Bright therapy center environment</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="services__panel" role="tabpanel" id="panel-school" aria-labelledby="tab-school" hidden>
+          <div class="services__panel-content">
+            <div class="services__panel-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <h3 class="services__panel-title">School-Based Therapy</h3>
+            <p class="services__panel-body">When your school engages CSD's programs, we meet your child in the classroom, building communication and adaptive skills where they're needed most—right at school, in the flow of their daily life.</p>
+          </div>
+          <div class="services__panel-image">
+            <div class="fpo" role="img" aria-label="FPO: Clinician supporting a child in a classroom setting">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              <span class="fpo__label">FPO — School-Based Therapy</span>
+              <span class="fpo__desc">Classroom support environment</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="services__cta fade-in">
+          <a href="javascript:void(0)" class="btn btn-outline">Connect with a team member</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4b. SERVICES SHOWCASE — Loom-style immersive card
+         ============================================================ -->
+    <section class="services-showcase section" id="services-showcase">
+      <div class="container">
+        <div class="showcase-card fade-in">
+
+          <div class="showcase-card__inner">
+
+            <!-- Section header -->
+            <div class="showcase-header">
+              <p class="eyebrow">Our Services</p>
+              <h2 style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;color:var(--color-navy);line-height:1.15;letter-spacing:-0.03em;margin-top:var(--space-xs);margin-bottom:0.5rem;">Therapy Where Life Happens</h2>
+              <p style="font-size:0.95rem;color:var(--color-text-muted);line-height:1.65;max-width:480px;">Choose the setting that works best for your family—or combine them. CSD is designed to grow alongside your child.</p>
+            </div>
+
+            <!-- Tab switcher (left-aligned) with divider line -->
+            <div class="showcase-tabs-row">
+              <div class="showcase-tabs" role="tablist" aria-label="Service type">
+                <button class="showcase-tab is-active" role="tab" aria-selected="true" data-showcase="virtual">Virtual &amp; VR</button>
+                <button class="showcase-tab" role="tab" aria-selected="false" data-showcase="inhome">In-Home</button>
+                <button class="showcase-tab" role="tab" aria-selected="false" data-showcase="center">Center-Based</button>
+                <button class="showcase-tab" role="tab" aria-selected="false" data-showcase="school">School-Based</button>
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="showcase-content">
+
+              <!-- Left: Headline + features + CTA -->
+              <div class="showcase-content__left">
+                <h3 class="showcase-content__headline" id="showcase-headline">Virtual Immersion Program</h3>
+                <p class="showcase-content__desc" id="showcase-desc">
+                  Real therapy, real breakthroughs — from anywhere. Our virtual program brings the full CSD experience to your home through gamification and VR technology, always with live guidance from your therapist.
+                </p>
+                <div class="showcase-features" id="showcase-features">
+                  <div class="showcase-feature"><span class="showcase-feature__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> Live 1:1 sessions</div>
+                  <div class="showcase-feature"><span class="showcase-feature__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> Gamification &amp; VR tools</div>
+                  <div class="showcase-feature"><span class="showcase-feature__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> BCBA-supervised</div>
+                  <div class="showcase-feature"><span class="showcase-feature__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> 17% higher goal progress</div>
+                  <div class="showcase-feature"><span class="showcase-feature__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> Start in as few as 7 days</div>
+                  <div class="showcase-feature"><span class="showcase-feature__icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span> No waitlist</div>
+                </div>
+                <div style="margin-top:var(--space-lg);">
+                  <a href="javascript:void(0)" class="btn btn-primary" id="showcase-cta">Learn More About Virtual</a>
+                </div>
+              </div>
+
+              <!-- Right: Full-height FPO image -->
+              <div class="showcase-content__right">
+                <div class="fpo" role="img" aria-label="FPO: Child engaging in virtual therapy session" id="showcase-image">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M7 21c0-2.761 2.239-5 5-5s5 2.239 5 5"/></svg>
+                  <span class="fpo__label">FPO — Service Image</span>
+                  <span class="fpo__desc" id="showcase-image-desc">Child in virtual therapy session</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+    // Showcase tab switching
+    (function() {
+      var data = {
+        virtual: {
+          headline: 'Virtual Immersion Program',
+          desc: 'Real therapy, real breakthroughs — from anywhere. Our virtual program brings the full CSD experience to your home through gamification and VR technology, always with live guidance from your therapist.',
+          features: ['Live 1:1 sessions', 'Gamification & VR tools', 'BCBA-supervised', '17% higher goal progress', 'Start in as few as 7 days', 'No waitlist'],
+          cta: 'Learn More About Virtual',
+          image: 'Child in virtual therapy session'
+        },
+        inhome: {
+          headline: 'In-Home ABA Therapy',
+          desc: 'Therapy in your child\'s most comfortable environment. Our clinicians come to you — building skills in the context where they\'ll be used every day.',
+          features: ['Familiar environment', 'Parent coaching included', 'Flexible scheduling', '1:1 dedicated therapist', 'Individualized goals', 'Family-centered approach'],
+          cta: 'Learn More About In-Home',
+          image: 'Therapist working with child at home'
+        },
+        center: {
+          headline: 'Center-Based Therapy',
+          desc: 'Purpose-built spaces designed for breakthroughs. Our centers provide structured environments with peer interaction, sensory rooms, and dedicated therapy areas.',
+          features: ['Structured environment', 'Social skills groups', 'Sensory-friendly spaces', 'Peer interaction', 'Full-day programs available', 'On-site BCBA supervision'],
+          cta: 'Learn More About Centers',
+          image: 'Children at CSD therapy center'
+        },
+        school: {
+          headline: 'School-Based Services',
+          desc: 'Supporting your child\'s learning right where it happens. We partner with schools to deliver ABA therapy that integrates seamlessly with the academic day.',
+          features: ['Classroom integration', 'Teacher collaboration', 'IEP alignment', 'Social skills support', 'Behavior intervention', 'Transition planning'],
+          cta: 'Learn More About School',
+          image: 'Therapist supporting child in classroom'
+        }
+      };
+      var checkSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
+      document.querySelectorAll('.showcase-tab').forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          document.querySelectorAll('.showcase-tab').forEach(function(t) { t.classList.remove('is-active'); t.setAttribute('aria-selected','false'); });
+          tab.classList.add('is-active');
+          tab.setAttribute('aria-selected','true');
+          var key = tab.getAttribute('data-showcase');
+          var d = data[key];
+          document.getElementById('showcase-headline').textContent = d.headline;
+          document.getElementById('showcase-desc').textContent = d.desc;
+          document.getElementById('showcase-cta').textContent = d.cta;
+          document.getElementById('showcase-image-desc').textContent = d.image;
+          var featEl = document.getElementById('showcase-features');
+          featEl.innerHTML = d.features.map(function(f) {
+            return '<div class="showcase-feature"><span class="showcase-feature__icon">' + checkSvg + '</span> ' + f + '</div>';
+          }).join('');
+        });
+      });
+    })();
+    </script>
+
+    <!-- ============================================================
+         5. PROOF — Combined stats + testimonials (2-col)
+         ============================================================ -->
+    <section class="proof-section" aria-labelledby="proof-heading" style="display:none;">
+      <div class="container">
+
+        <!-- Col 1: Header + testimonial -->
+        <div class="proof__col-left fade-in">
+          <div class="proof__header">
+            <p class="eyebrow">Proven Impact</p>
+            <h2 class="proof__heading" id="proof-heading">Outcomes That Matter, Connecting Data to Life</h2>
+            <p class="proof__subhead">
+              We don't just track success metrics. We measure the moments that matter most—better days, less stress, and more joy for your entire family.
+            </p>
+          </div>
+
+          <div class="testimonial-card">
+            <blockquote class="testimonial-card__quote">
+              &ldquo;CSD didn't just give my son skills—they gave him a voice. The flexibility of in-home sessions made it possible for me to manage work and therapy without feeling completely overwhelmed.&rdquo;
+            </blockquote>
+            <div class="testimonial-card__footer">
+              <div class="testimonial-card__avatar" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <div>
+                <div class="testimonial-card__name">Sarah L.</div>
+                <div class="testimonial-card__role">Parent</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-dots" aria-label="Testimonial navigation (visual only)">
+            <div class="testimonial-dot is-active" aria-hidden="true"></div>
+            <div class="testimonial-dot" aria-hidden="true"></div>
+            <div class="testimonial-dot" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <!-- Col 2: Stacked stats -->
+        <div class="proof__col-right fade-in fade-in--delay-1">
+
+          <div class="stat-item">
+            <div class="stat-item__number">93%</div>
+            <div class="stat-item__label">Family Satisfaction</div>
+            <div class="stat-item__desc">Of families rate their experience with CSD as excellent or very good.</div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-item__number">Top 10%</div>
+            <div class="stat-item__label">Nationwide Performance</div>
+            <div class="stat-item__desc">In Vineland-3 results, supervision hours, and family utilization.</div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-item__number">1:1</div>
+            <div class="stat-item__label">Dedicated Care</div>
+            <div class="stat-item__desc">Every child works with a dedicated therapist and individualized plan.</div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-item__number">17%</div>
+            <div class="stat-item__label">Higher Goal Progress</div>
+            <div class="stat-item__desc">Children using our virtual platform achieve 17% higher progress toward goals.</div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5b. PROOF V2 — Stats interleaved with testimonials
+         ============================================================ -->
+    <section class="proof-v2" aria-labelledby="proof-v2-heading">
+      <div class="container">
+
+        <!-- Col 1: Header (sticky) -->
+        <div class="proof-v2__left fade-in">
+          <div class="proof-v2__header">
+            <p class="eyebrow">Proven Impact</p>
+            <h2 class="proof-v2__heading" id="proof-v2-heading">Outcomes That Matter, Connecting Data to Life</h2>
+            <p class="proof-v2__subhead">
+              We don't just track success metrics. We measure the moments that matter most—better days, less stress, and more joy for your entire family.
+            </p>
+          </div>
+        </div>
+
+        <!-- Col 2: Interleaved stats + testimonials -->
+        <div class="proof-v2__stream fade-in fade-in--delay-1">
+
+          <div class="proof-v2__stat">
+            <div class="proof-v2__stat-number">93%</div>
+            <div class="proof-v2__stat-label">Family Satisfaction</div>
+            <div class="proof-v2__stat-desc">Of families rate their experience with CSD as excellent or very good.</div>
+          </div>
+
+          <div class="proof-v2__testimonial">
+            <blockquote class="proof-v2__testimonial-quote">&ldquo;CSD didn't just give my son skills—they gave him a voice. The flexibility of in-home sessions made it possible for me to manage work and therapy without feeling completely overwhelmed.&rdquo;</blockquote>
+            <div class="proof-v2__testimonial-footer">
+              <div class="proof-v2__testimonial-avatar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+              <div><div class="proof-v2__testimonial-name">Sarah L.</div><div class="proof-v2__testimonial-role">Parent</div></div>
+            </div>
+          </div>
+
+          <div class="proof-v2__stat">
+            <div class="proof-v2__stat-number">Top 10%</div>
+            <div class="proof-v2__stat-label">Nationwide Performance</div>
+            <div class="proof-v2__stat-desc">In Vineland-3 results, supervision hours, and family utilization.</div>
+          </div>
+
+          <div class="proof-v2__testimonial">
+            <blockquote class="proof-v2__testimonial-quote">&ldquo;My client's mother initially requested in-center support for her son. But after seeing him respond to the virtual program trial session, she cried. He attended to games and used language she had never heard him use!&rdquo;</blockquote>
+            <div class="proof-v2__testimonial-footer">
+              <div class="proof-v2__testimonial-avatar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+              <div><div class="proof-v2__testimonial-name">CSD Virtual Behavior Specialist</div><div class="proof-v2__testimonial-role">CSD Global Services</div></div>
+            </div>
+          </div>
+
+          <div class="proof-v2__stat">
+            <div class="proof-v2__stat-number">1:1</div>
+            <div class="proof-v2__stat-label">Dedicated Care</div>
+            <div class="proof-v2__stat-desc">Every child works with a dedicated therapist and individualized plan.</div>
+          </div>
+
+          <div class="proof-v2__testimonial">
+            <blockquote class="proof-v2__testimonial-quote">&ldquo;The care felt customized, not cookie-cutter. CSD celebrated every small win, and seeing the genuine excitement of my son's therapist for his progress made all the difference.&rdquo;</blockquote>
+            <div class="proof-v2__testimonial-footer">
+              <div class="proof-v2__testimonial-avatar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+              <div><div class="proof-v2__testimonial-name">Mike T.</div><div class="proof-v2__testimonial-role">Parent</div></div>
+            </div>
+          </div>
+
+          <div class="proof-v2__stat">
+            <div class="proof-v2__stat-number">17%</div>
+            <div class="proof-v2__stat-label">Higher Goal Progress</div>
+            <div class="proof-v2__stat-desc">Children using our virtual platform achieve 17% higher progress toward goals.</div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7. HOW IT WORKS — Vertical timeline
+         ============================================================ -->
+    <section class="timeline section" aria-labelledby="timeline-heading">
+      <div class="container">
+
+        <header class="timeline__header fade-in">
+          <p class="eyebrow">Where Do I Start?</p>
+          <h2 class="timeline__heading" id="timeline-heading">Here's What to Expect</h2>
+          <p class="timeline__subhead lead">
+            If you feel overwhelmed by the path ahead, know that you don't have to go it alone. We'll be right there in partnership beside you.
+          </p>
+        </header>
+
+        <div class="timeline__track">
+
+          <!-- Step 1 — Left -->
+          <div class="timeline-step timeline-step--left fade-in">
+            <div class="timeline-step__content">
+              <h3 class="timeline-step__title">Contact Us</h3>
+              <p class="timeline-step__body">Reach out by phone, online, or through a referral. Our care team will get back to you within one business day to answer your questions and confirm your insurance coverage.</p>
+            </div>
+            <div class="timeline-step__number" aria-hidden="true">1</div>
+            <div class="timeline-step__image">
+              <div class="fpo" role="img" aria-label="FPO: Family making initial phone call">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+                <span class="fpo__label">FPO</span>
+                <span class="fpo__desc">Family reaching out</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 — Right -->
+          <div class="timeline-step timeline-step--right fade-in fade-in--delay-1">
+            <div class="timeline-step__image">
+              <div class="fpo" role="img" aria-label="FPO: BCBA conducting comprehensive assessment">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                <span class="fpo__label">FPO</span>
+                <span class="fpo__desc">Assessment session</span>
+              </div>
+            </div>
+            <div class="timeline-step__number" aria-hidden="true">2</div>
+            <div class="timeline-step__content">
+              <h3 class="timeline-step__title">Assessment &amp; Personalized Care Plan</h3>
+              <p class="timeline-step__body">A Board Certified Behavior Analyst (BCBA) conducts a comprehensive evaluation of your child's strengths and goals, then builds a fully individualized treatment plan.</p>
+            </div>
+          </div>
+
+          <!-- Step 3 — Left -->
+          <div class="timeline-step timeline-step--left fade-in fade-in--delay-2">
+            <div class="timeline-step__content">
+              <h3 class="timeline-step__title">Begin the Learning Adventure</h3>
+              <p class="timeline-step__body">Your child starts working with a dedicated therapy team — in your home, at a CSD center, at school, or virtually — with progress tracked and shared with you every step of the way.</p>
+            </div>
+            <div class="timeline-step__number" aria-hidden="true">3</div>
+            <div class="timeline-step__image">
+              <div class="fpo" role="img" aria-label="FPO: Child beginning therapy sessions">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span class="fpo__label">FPO</span>
+                <span class="fpo__desc">Child starting therapy</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. FINAL CTA — 2-column
+         ============================================================ -->
+    <section class="final-cta section" id="get-started" aria-labelledby="cta-heading">
+      <div class="container">
+        <div class="final-cta__inner">
+
+          <div class="final-cta__content fade-in">
+            <p class="eyebrow eyebrow--light">Take the First Step</p>
+            <h2 class="final-cta__heading" id="cta-heading">Ready to take the first step toward your child's future?</h2>
+            <p class="final-cta__body">
+              CSD opens a world of possibilities—by making the world possible—for children with autism and their families.
+            </p>
+            <p class="final-cta__sub">
+              Most families hear back from our care team within one business day.
+            </p>
+            <a href="javascript:void(0)" class="btn btn-primary">Get Started Today</a>
+          </div>
+
+          <div class="final-cta__image fade-in fade-in--delay-1">
+            <div class="fpo" role="img" aria-label="FPO: Family celebrating a milestone moment together">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span class="fpo__label" style="color: rgba(255,255,255,0.35);">FPO — CTA Image</span>
+              <span class="fpo__desc">Family celebrating a milestone moment</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       9. FOOTER
+       ============================================================ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer__top">
+
+        <!-- Brand column -->
+        <div>
+          <div class="footer__brand-logo">
+            <div class="footer__logo-mark" aria-hidden="true">CSD</div>
+            <div>
+              <span class="footer__logo-text">Center for Social Dynamics</span>
+              <span class="footer__logo-sub">Autism &amp; ABA Therapy</span>
+            </div>
+          </div>
+          <p class="footer__tagline">
+            Opening a world of possibilities—by making the world possible—for children with autism and their families.
+          </p>
+          <address class="footer__contact" style="font-style: normal;">
+            <a href="tel:+18779106538" aria-label="Phone: 877-910-6538">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+              (877) 910-6538
+            </a>
+            <a href="mailto:info@csdautismservices.com">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              info@csdautismservices.com
+            </a>
+          </address>
+          <div class="footer__badges" aria-label="Accreditation and certification badges (placeholders)">
+            <div class="footer__badge-fpo">BACB Accredited</div>
+            <div class="footer__badge-fpo">BHCOE Certified</div>
+            <div class="footer__badge-fpo">CARF</div>
+          </div>
+        </div>
+
+        <!-- Services column -->
+        <nav aria-label="Services navigation">
+          <h2 class="footer__col-heading">Services</h2>
+          <ul class="footer__col-links" role="list">
+            <li><a href="javascript:void(0)">Virtual &amp; VR Therapy</a></li>
+            <li><a href="javascript:void(0)">In-Home Therapy</a></li>
+            <li><a href="javascript:void(0)">Center-Based Therapy</a></li>
+            <li><a href="javascript:void(0)">School-Based Therapy</a></li>
+            <li><a href="javascript:void(0)">Request Services</a></li>
+          </ul>
+        </nav>
+
+        <!-- Company column -->
+        <nav aria-label="Company navigation">
+          <h2 class="footer__col-heading">Company</h2>
+          <ul class="footer__col-links" role="list">
+            <li><a href="javascript:void(0)">About CSD</a></li>
+            <li><a href="csd-careers-wireframe.html">Careers</a></li>
+            <li><a href="csd-locations-wireframe.html">Locations</a></li>
+            <li><a href="javascript:void(0)">Contact</a></li>
+            <li><a href="javascript:void(0)">Newsroom</a></li>
+          </ul>
+        </nav>
+
+        <!-- Connect column -->
+        <div>
+          <h2 class="footer__col-heading">Connect</h2>
+          <ul class="footer__col-links" role="list">
+            <li><a href="javascript:void(0)">Family Resources</a></li>
+            <li><a href="javascript:void(0)">Insurance &amp; Coverage</a></li>
+            <li><a href="javascript:void(0)">CSD University</a></li>
+            <li><a href="javascript:void(0)">Referral Partners</a></li>
+          </ul>
+          <div class="footer__social" aria-label="CSD Social Media">
+            <a href="javascript:void(0)" class="footer__social-btn" aria-label="CSD on Facebook">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="javascript:void(0)" class="footer__social-btn" aria-label="CSD on Instagram">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="javascript:void(0)" class="footer__social-btn" aria-label="CSD on LinkedIn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="javascript:void(0)" class="footer__social-btn" aria-label="CSD on YouTube">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2025 Center for Social Dynamics. All rights reserved.</p>
+        <nav class="footer__legal-links" aria-label="Legal navigation">
+          <a href="javascript:void(0)">Privacy Policy</a>
+          <a href="javascript:void(0)">Notice of Privacy Practices</a>
+          <a href="javascript:void(0)">Accessibility</a>
+        </nav>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <script>
+    // ---- Mega menu ----
+    const moreBtn = document.getElementById('nav-more-btn');
+    const megaMenu = document.getElementById('nav-mega');
+
+    function openMega() {
+      megaMenu.classList.add('is-open');
+      moreBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeMega() {
+      megaMenu.classList.remove('is-open');
+      moreBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    moreBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      megaMenu.classList.contains('is-open') ? closeMega() : openMega();
+    });
+    document.addEventListener('click', (e) => {
+      if (!moreBtn.contains(e.target) && !megaMenu.contains(e.target)) closeMega();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMega();
+    });
+
+    // ---- Mobile hamburger ----
+    const hamburger = document.getElementById('nav-hamburger');
+    const drawer = document.getElementById('nav-drawer');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = drawer.classList.toggle('is-open');
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+      hamburger.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    drawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        drawer.classList.remove('is-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open navigation menu');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ---- Service Tabs ----
+    (function () {
+      const tabs = document.querySelectorAll('.services__tab');
+      const panels = document.querySelectorAll('.services__panel');
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          // Deactivate all
+          tabs.forEach((t) => {
+            t.classList.remove('is-active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          panels.forEach((p) => {
+            p.classList.remove('is-active');
+            p.setAttribute('hidden', '');
+          });
+
+          // Activate clicked
+          tab.classList.add('is-active');
+          tab.setAttribute('aria-selected', 'true');
+          const panelId = tab.getAttribute('aria-controls');
+          const panel = document.getElementById(panelId);
+          if (panel) {
+            panel.classList.add('is-active');
+            panel.removeAttribute('hidden');
+          }
+        });
+
+        // Keyboard navigation within tablist
+        tab.addEventListener('keydown', (e) => {
+          const tabArr = Array.from(tabs);
+          const idx = tabArr.indexOf(tab);
+          let nextIdx = idx;
+
+          if (e.key === 'ArrowRight') {
+            nextIdx = (idx + 1) % tabArr.length;
+          } else if (e.key === 'ArrowLeft') {
+            nextIdx = (idx - 1 + tabArr.length) % tabArr.length;
+          } else if (e.key === 'Home') {
+            nextIdx = 0;
+          } else if (e.key === 'End') {
+            nextIdx = tabArr.length - 1;
+          } else {
+            return;
+          }
+
+          e.preventDefault();
+          tabArr[nextIdx].click();
+          tabArr[nextIdx].focus();
+        });
+      });
+    })();
+
+    // ---- Scroll fade-in (IntersectionObserver) ----
+    (function () {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      );
+
+      document.querySelectorAll('.fade-in').forEach((el) => {
+        observer.observe(el);
+      });
+    })();
+  </script>
+
+</body>
+</html>
