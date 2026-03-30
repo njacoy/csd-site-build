@@ -1,0 +1,2060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Center for Social Dynamics — Breakthrough Autism Therapy</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+
+  <style>
+    @font-face { font-family: 'National 2 Narrow'; src: url('../../brand/fonts/national-2-narrow/test-national-2-narrow-thin.woff2') format('woff2'); font-weight: 100; font-style: normal; }
+    @font-face { font-family: 'National 2 Narrow'; src: url('../../brand/fonts/national-2-narrow/test-national-2-narrow-light.woff2') format('woff2'); font-weight: 300; font-style: normal; }
+    @font-face { font-family: 'National 2 Narrow'; src: url('../../brand/fonts/national-2-narrow/test-national-2-narrow-regular.woff2') format('woff2'); font-weight: 400; font-style: normal; }
+    @font-face { font-family: 'National 2 Narrow'; src: url('../../brand/fonts/national-2-narrow/test-national-2-narrow-medium.woff2') format('woff2'); font-weight: 500; font-style: normal; }
+    @font-face { font-family: 'National 2 Narrow'; src: url('../../brand/fonts/national-2-narrow/test-national-2-narrow-bold.woff2') format('woff2'); font-weight: 700; font-style: normal; }
+    @font-face { font-family: 'National 2 Narrow'; src: url('../../brand/fonts/national-2-narrow/test-national-2-narrow-extrabold.woff2') format('woff2'); font-weight: 800; font-style: normal; }
+    @font-face { font-family: 'National 2 Narrow'; src: url('../../brand/fonts/national-2-narrow/test-national-2-narrow-black.woff2') format('woff2'); font-weight: 900; font-style: normal; }
+
+    /* ── Reset & Tokens ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-bg:          #F9F7F3;
+      --color-bg-warm:     #F0EBE1;
+      --color-navy:        #1A2F3F;
+      --color-navy-mid:    #2A4458;
+      --color-teal:        #33DFDF;
+      --color-teal-dark:   #0EB8B8;
+      --color-teal-light:  #E0FAFA;
+      --color-amber:       #FFD746;
+      --color-text:        #1A2F3F;
+      --color-text-muted:  #576574;
+      --color-border:      #D6CFBF;
+      --color-white:       #FFFFFF;
+
+      --font-display: 'National 2 Narrow', system-ui, sans-serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+
+      --radius-sm:  4px;
+      --radius-md:  10px;
+      --radius-lg:  16px;
+      --radius-xl:  24px;
+      --radius-pill: 999px;
+
+      --max-w: 1200px;
+      --gutter: clamp(1.25rem, 5vw, 3rem);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--color-text);
+      background: var(--color-bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    .container {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    /* ── Buttons ─────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1;
+      text-decoration: none;
+      border: 2px solid transparent;
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1.6rem;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s, border-color 0.18s, box-shadow 0.18s;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--color-navy);
+      color: var(--color-white);
+      border-color: var(--color-navy);
+    }
+    .btn-primary:hover {
+      background: var(--color-navy-mid);
+      border-color: var(--color-navy-mid);
+      box-shadow: 0 4px 16px rgba(26,47,63,0.25);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-navy);
+      border-color: var(--color-border);
+    }
+    .btn-outline:hover {
+      border-color: var(--color-navy);
+      background: rgba(26,47,63,0.04);
+    }
+
+    .btn-teal {
+      background: var(--color-teal);
+      color: var(--color-navy);
+      border-color: var(--color-teal);
+    }
+    .btn-teal:hover {
+      background: var(--color-teal-dark);
+      border-color: var(--color-teal-dark);
+      box-shadow: 0 4px 16px rgba(51,223,223,0.3);
+    }
+
+    /* ── Navigation ──────────────────────────────────────────── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(249,247,243,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      height: 72px;
+    }
+
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav__logo-mark {
+      width: 38px;
+      height: 38px;
+      background: var(--color-navy);
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav__logo-mark::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 38%;
+      background: var(--color-teal);
+      opacity: 0.7;
+    }
+
+    .nav__logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .nav__logo-name {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      letter-spacing: -0.01em;
+    }
+
+    .nav__logo-sub {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex: 1;
+    }
+
+    .nav__links a {
+      display: block;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .nav__links a:hover,
+    .nav__links a[aria-current="page"] {
+      color: var(--color-navy);
+      background: rgba(26,47,63,0.05);
+    }
+
+    .nav__right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-left: auto;
+    }
+
+    .nav__phone {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav__phone:hover { color: var(--color-navy); }
+
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0 8px;
+    }
+
+    .nav__hamburger span {
+      display: block;
+      height: 2px;
+      background: var(--color-navy);
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .nav__links, .nav__phone { display: none; }
+      .nav__hamburger { display: flex; }
+    }
+
+    /* ── Hero ────────────────────────────────────────────────── */
+    .hero {
+      background: var(--color-bg);
+      padding-block: 5rem 3rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Subtle ambient glow */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -150px;
+      width: 650px;
+      height: 650px;
+      background: radial-gradient(circle, rgba(51,223,223,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,215,70,0.05) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* Eyebrow pill */
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--color-teal-light);
+      color: var(--color-teal-dark);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: var(--radius-pill);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero__eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--color-teal-dark);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    /* Split layout: headline left, body+CTA right */
+    .hero__split {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero__headline {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 5.5vw, 72px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--color-navy);
+      margin: 0;
+    }
+
+    .hero__headline em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--color-text-muted);
+    }
+
+    .hero__right {
+      padding-top: 0.35rem;
+    }
+
+    .hero__subhead {
+      font-size: 22px;
+      line-height: 1.55;
+      color: var(--color-text);
+      margin-bottom: 0.85rem;
+      font-weight: 400;
+    }
+
+    .hero__secondary {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--color-text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .hero__ctas {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Full-width hero image */
+    .hero__image-wrap {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      margin-top: 3.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero__image {
+      width: 100%;
+      height: 480px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, #2A4458 0%, #1A2F3F 40%, #0d1e2a 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Warm overlay texture */
+    .hero__image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(51,223,223,0.12) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 30%, rgba(255,215,70,0.08) 0%, transparent 45%);
+    }
+
+    .hero__image-placeholder {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .hero__image-placeholder svg {
+      opacity: 0.4;
+    }
+
+    .hero__image-placeholder span {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* Floating stat chip */
+    .hero__chip {
+      position: absolute;
+      bottom: 2rem;
+      right: clamp(2.25rem, 6vw, 4rem);
+      background: var(--color-white);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      box-shadow: 0 8px 32px rgba(11,45,72,0.18), 0 2px 8px rgba(11,45,72,0.08);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: 210px;
+      z-index: 2;
+    }
+
+    .hero__chip-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--color-teal-light);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      flex-shrink: 0;
+    }
+
+    .hero__chip-stat {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      line-height: 1;
+    }
+
+    .hero__chip-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      line-height: 1.3;
+      margin-top: 0.2rem;
+    }
+
+    /* ── Approach Section ────────────────────────────────────── */
+    .approach {
+      background: var(--color-navy);
+      padding-block: 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .approach::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(51,223,223,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .approach__inner {
+      max-width: 720px;
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .eyebrow--light {
+      color: var(--color-teal);
+    }
+
+    .approach__heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 4.5vw, 56px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--color-white);
+      margin-bottom: 2rem;
+    }
+
+    .approach__heading em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--color-amber);
+    }
+
+    .approach__body {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 1.25rem;
+    }
+
+    .approach__body:last-of-type {
+      margin-bottom: 2.5rem;
+    }
+
+    .approach__highlight {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.5vw, 1.75rem);
+      font-weight: 700;
+      color: var(--color-white);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      padding: 1.5rem 2rem;
+      border-left: 3px solid var(--color-teal);
+      text-align: left;
+      background: rgba(255,255,255,0.04);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    }
+
+    /* ── Services Section ────────────────────────────────────── */
+    .services {
+      background: var(--color-bg);
+      padding-block: 6rem;
+    }
+
+    .services__header {
+      max-width: 640px;
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .eyebrow--dark {
+      color: var(--color-teal-dark);
+    }
+
+    .services__heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 4vw, 52px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--color-navy);
+      margin-bottom: 1rem;
+    }
+
+    .services__intro {
+      font-size: 22px;
+      line-height: 1.55;
+      color: var(--color-text-muted);
+    }
+
+    /* Staggered scroll cards */
+    .services__cards {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .service-card {
+      display: flex;
+      align-items: center;
+      gap: 3.5rem;
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      padding: 2.75rem 3rem;
+      box-shadow: 0 2px 12px rgba(26,47,63,0.07), 0 1px 3px rgba(26,47,63,0.05);
+      border: 1px solid var(--color-border);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .service-card:hover {
+      box-shadow: 0 8px 32px rgba(26,47,63,0.12), 0 2px 8px rgba(26,47,63,0.06);
+      transform: translateY(-2px);
+    }
+
+    /* Alternate alignment for stagger effect */
+    .service-card:nth-child(even) {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+    }
+
+    .service-card:nth-child(odd) {
+      align-self: flex-start;
+    }
+
+    .service-card:nth-child(odd),
+    .service-card:nth-child(even) {
+      width: 88%;
+    }
+
+    .service-card__icon-wrap {
+      flex-shrink: 0;
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    .service-card__icon-wrap--teal   { background: var(--color-teal-light); }
+    .service-card__icon-wrap--amber  { background: rgba(255,215,70,0.15); }
+    .service-card__icon-wrap--navy   { background: rgba(26,47,63,0.08); }
+    .service-card__icon-wrap--green  { background: rgba(72,199,142,0.12); }
+
+    .service-card__content {
+      flex: 1;
+    }
+
+    .service-card__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.5vw, 1.9rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--color-navy);
+      margin-bottom: 0.65rem;
+      line-height: 1.1;
+    }
+
+    .service-card__body {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--color-text-muted);
+      margin-bottom: 1.1rem;
+    }
+
+    .service-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--color-teal-dark);
+      text-decoration: none;
+      transition: gap 0.15s;
+    }
+
+    .service-card__link:hover { gap: 0.6rem; }
+
+    .service-card__link svg { flex-shrink: 0; }
+
+    .services__cta {
+      text-align: center;
+      margin-top: 3.5rem;
+    }
+
+    /* ── Responsive ──────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero__split {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .hero__image { height: 320px; }
+
+      .hero__chip {
+        right: 1.5rem;
+        bottom: 1rem;
+      }
+
+      .service-card,
+      .service-card:nth-child(odd),
+      .service-card:nth-child(even) {
+        width: 100%;
+        flex-direction: column;
+        align-self: auto;
+        gap: 1.5rem;
+        padding: 2rem 1.75rem;
+      }
+
+      .approach__highlight { padding: 1.25rem 1.5rem; }
+
+      .proof__cols { grid-template-columns: 1fr; }
+      .proof__left { position: static; }
+
+      .how__inner { grid-template-columns: 1fr; }
+      .how__left { position: static; }
+
+      .gs__inner { grid-template-columns: 1fr; }
+      .gs__image { display: none; }
+
+      .gs__cta-body { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+
+      .footer__top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    }
+
+    @media (max-width: 560px) {
+      .footer__top { grid-template-columns: 1fr; }
+    }
+
+    /* ── Pull Quote / Mission ─────────────────────────────────── */
+    .mission {
+      background: var(--color-navy);
+      padding-block: 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mission::after {
+      content: '';
+      position: absolute;
+      bottom: -150px;
+      left: -150px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,215,70,0.05) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .mission__inner {
+      max-width: 780px;
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mission__eyebrow {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-amber);
+      display: block;
+      margin-bottom: 1.25rem;
+    }
+
+    .mission__heading {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.8vw, 48px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: var(--color-white);
+      margin-bottom: 3rem;
+    }
+
+    .mission__callouts {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 2rem;
+      align-items: start;
+      text-align: left;
+      margin-bottom: 3rem;
+    }
+
+    .callout-strip {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .callout-strip__icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(255,255,255,0.07);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-teal);
+      flex-shrink: 0;
+    }
+
+    .callout-strip__title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--color-white);
+      margin-bottom: 0.35rem;
+    }
+
+    .callout-strip__body {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .callout-divider {
+      width: 1px;
+      background: rgba(255,255,255,0.1);
+      align-self: stretch;
+      min-height: 80px;
+    }
+
+    .mission__image {
+      width: 100%;
+      height: 320px;
+      border-radius: var(--radius-xl);
+      background: rgba(255,255,255,0.05);
+      border: 1px dashed rgba(255,255,255,0.12);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .mission__image span {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .mission__image strong {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ── Proof / Outcomes ─────────────────────────────────────── */
+    .proof {
+      background: var(--color-bg-warm);
+      padding-block: 6rem;
+    }
+
+    .proof__cols {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .proof__left {
+      position: sticky;
+      top: 5rem;
+    }
+
+    .proof__heading {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 44px);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--color-navy);
+      margin-bottom: 1rem;
+      margin-top: 0.75rem;
+    }
+
+    .proof__subhead {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--color-text-muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .proof__photo {
+      width: 100%;
+      height: 200px;
+      border-radius: var(--radius-lg);
+      background: var(--color-border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--color-text-muted);
+      border: 1px dashed var(--color-border);
+    }
+
+    .proof__photo span {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Stream: interleaved stats + testimonials */
+    .proof__stream {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .proof-stat {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 2rem;
+      border: 1px solid var(--color-border);
+    }
+
+    .proof-stat__number {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--color-navy);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+
+    .proof-stat__label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-teal-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .proof-stat__desc {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--color-text-muted);
+    }
+
+    .proof-testimonial {
+      background: var(--color-navy);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 2rem;
+    }
+
+    .proof-testimonial__quote {
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.82);
+      font-style: italic;
+      margin-bottom: 1.1rem;
+    }
+
+    .proof-testimonial__footer {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .proof-testimonial__avatar {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.5);
+      flex-shrink: 0;
+    }
+
+    .proof-testimonial__name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-white);
+    }
+
+    .proof-testimonial__role {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ── How We Do It ─────────────────────────────────────────── */
+    .how {
+      background: var(--color-bg);
+      padding-block: 6rem;
+    }
+
+    .how__inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .how__left {
+      position: sticky;
+      top: 5rem;
+    }
+
+    .how__heading {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 44px);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--color-navy);
+      margin-bottom: 1rem;
+      margin-top: 0.75rem;
+    }
+
+    .how__subhead {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--color-text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .how__pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .how-pillar {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      padding-block: 2rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .how-pillar:first-child { padding-top: 0; }
+    .how-pillar:last-child { border-bottom: none; }
+
+    .how-pillar__icon {
+      width: 48px;
+      height: 48px;
+      background: var(--color-teal-light);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-teal-dark);
+      flex-shrink: 0;
+    }
+
+    .how-pillar__title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.01em;
+    }
+
+    .how-pillar__body {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--color-text-muted);
+    }
+
+    /* ── Get Started ──────────────────────────────────────────── */
+    .get-started {
+      background: var(--color-navy);
+      padding-block: 6rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .get-started::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(51,223,223,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .gs__inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      padding-bottom: 5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .gs__eyebrow {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-teal);
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .gs__heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 4vw, 52px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--color-white);
+      margin-bottom: 1.1rem;
+    }
+
+    .gs__subhead {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 2.5rem;
+    }
+
+    /* Steps */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .step {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      padding-block: 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      cursor: pointer;
+    }
+
+    .step:last-child { border-bottom: none; }
+
+    .step__num {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1.5px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-teal);
+      flex-shrink: 0;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .step.is-active .step__num {
+      background: var(--color-teal);
+      border-color: var(--color-teal);
+      color: var(--color-navy);
+    }
+
+    .step__title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 0.3rem;
+      transition: color 0.2s;
+    }
+
+    .step.is-active .step__title { color: var(--color-white); }
+
+    .step__desc {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.5);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, opacity 0.25s;
+      opacity: 0;
+    }
+
+    .step.is-active .step__desc {
+      max-height: 200px;
+      opacity: 1;
+    }
+
+    /* Get started image panel */
+    .gs__image {
+      position: sticky;
+      top: 5rem;
+    }
+
+    .gs__image-box {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: var(--radius-xl);
+      background: rgba(255,255,255,0.05);
+      border: 1px dashed rgba(255,255,255,0.12);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      color: rgba(255,255,255,0.3);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gs__image-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(51,223,223,0.08) 0%, transparent 60%);
+    }
+
+    .gs__step-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .gs__step-text {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      max-width: 260px;
+      line-height: 1.55;
+      padding-inline: 1.5rem;
+    }
+
+    /* CTA Banner */
+    .gs__cta {
+      background: var(--color-teal);
+      padding: 2.5rem var(--gutter);
+      display: flex;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .gs__cta-body {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .gs__cta-headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+      font-weight: 700;
+      color: var(--color-navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+    }
+
+    .gs__cta-sub {
+      font-size: 0.92rem;
+      color: rgba(26,47,63,0.7);
+    }
+
+    .btn-navy {
+      background: var(--color-navy);
+      color: var(--color-white);
+      border-color: var(--color-navy);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .btn-navy:hover {
+      background: var(--color-navy-mid);
+      border-color: var(--color-navy-mid);
+      box-shadow: 0 4px 16px rgba(26,47,63,0.25);
+    }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    .site-footer {
+      background: var(--color-bg-warm);
+      border-top: 1px solid var(--color-border);
+      padding-top: 4rem;
+    }
+
+    .footer__top {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+    }
+
+    .footer__brand-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--color-navy);
+      border-radius: var(--radius-sm);
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .footer__brand-mark::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 38%;
+      background: var(--color-teal);
+      opacity: 0.7;
+    }
+
+    .footer__brand-row {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer__brand-name {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      display: block;
+      line-height: 1.15;
+    }
+
+    .footer__brand-sub {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    .footer__tagline {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--color-text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .footer__contact {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer__contact a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer__contact a:hover { color: var(--color-navy); }
+
+    .footer__badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .footer__badge {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 0.25rem 0.6rem;
+    }
+
+    .footer__col-heading {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-navy);
+      margin-bottom: 1rem;
+    }
+
+    .footer__col-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer__col-links a {
+      font-size: 0.88rem;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer__col-links a:hover { color: var(--color-navy); }
+
+    .footer__social {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .footer__social-btn {
+      width: 36px;
+      height: 36px;
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+
+    .footer__social-btn:hover {
+      color: var(--color-navy);
+      border-color: var(--color-navy);
+      background: var(--color-bg);
+    }
+
+    .footer__bottom {
+      border-top: 1px solid var(--color-border);
+      padding-block: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    .footer__copy {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+
+    .footer__legal {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .footer__legal a {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer__legal a:hover { color: var(--color-navy); }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════
+       NAVIGATION
+       ══════════════════════════════════════════════════════════ -->
+  <header class="site-header" role="banner">
+    <nav class="nav container" aria-label="Main navigation">
+
+      <a href="/" class="nav__logo" aria-label="Center for Social Dynamics — Home">
+        <div class="nav__logo-mark" aria-hidden="true"></div>
+        <div class="nav__logo-text">
+          <span class="nav__logo-name">Center for Social Dynamics</span>
+          <span class="nav__logo-sub">Autism &amp; ABA Therapy</span>
+        </div>
+      </a>
+
+      <ul class="nav__links" role="list">
+        <li><a href="#" aria-current="page">Home</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Locations</a></li>
+        <li><a href="#">More</a></li>
+      </ul>
+
+      <div class="nav__right">
+        <a href="tel:+18779106538" class="nav__phone" aria-label="Call us: 877-910-6538">
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+          (877) 910-6538
+        </a>
+        <button class="nav__hamburger" aria-label="Open navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+        <a href="#get-started" class="btn btn-primary">Get Started</a>
+      </div>
+
+    </nav>
+  </header>
+
+  <!-- ══════════════════════════════════════════════════════════
+       HERO
+       ══════════════════════════════════════════════════════════ -->
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-heading">
+
+      <!-- Split: headline left / body + CTA right -->
+      <div class="hero__split">
+
+        <div class="hero__left">
+          <div class="hero__eyebrow" aria-hidden="true">
+            <span class="hero__eyebrow-dot"></span>
+            Now Accepting New Patients
+          </div>
+          <h1 class="hero__headline" id="hero-heading">
+            Breakthrough Autism Therapy to <em>Shape Your Child's Future</em>
+          </h1>
+        </div>
+
+        <div class="hero__right">
+          <p class="hero__subhead">
+            ABA therapy that meets your child exactly where they are—and helps them get where they're going.
+          </p>
+          <p class="hero__secondary">
+            In-home, in-center, at school, or through our virtual immersion program. We're with you, wherever you are.
+          </p>
+          <div class="hero__ctas">
+            <a href="#get-started" class="btn btn-primary">Start your child's journey today</a>
+            <a href="#" class="btn btn-outline">Learn how it works</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Full-width hero image -->
+      <div class="hero__image-wrap">
+        <div class="hero__image" role="img" aria-label="Child and clinician in a warm, joyful therapy session">
+          <div class="hero__image-placeholder">
+            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span>Hero Photography</span>
+          </div>
+
+          <!-- Floating stat chip -->
+          <div class="hero__chip" aria-label="70% of children show measurable progress within 90 days">
+            <div class="hero__chip-icon" aria-hidden="true">🌱</div>
+            <div>
+              <div class="hero__chip-stat">70%</div>
+              <div class="hero__chip-label">of children show measurable<br>progress within 90 days</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         OUR APPROACH
+         ══════════════════════════════════════════════════════════ -->
+    <section class="approach" aria-labelledby="approach-heading">
+      <div class="approach__inner">
+
+        <p class="eyebrow eyebrow--light" aria-hidden="true">Our Approach</p>
+
+        <h2 class="approach__heading" id="approach-heading">
+          Innovation Grounded in <em>Empathy</em>
+        </h2>
+
+        <p class="approach__body">
+          We design therapy around your child's unique profile—blending the science of ABA with the warmth and creativity that make real progress possible. Every plan is tailored, every session intentional.
+        </p>
+        <p class="approach__body">
+          Our clinicians don't just follow a program. They build relationships, read the room, and adapt in the moment—because meaningful growth happens when children feel safe, seen, and celebrated.
+        </p>
+
+        <blockquote class="approach__highlight">
+          We bring hope, joy, and a clear roadmap to guide your family.
+        </blockquote>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SERVICES
+         ══════════════════════════════════════════════════════════ -->
+    <section class="services" aria-labelledby="services-heading">
+
+      <div class="services__header">
+        <p class="eyebrow eyebrow--dark" aria-hidden="true">Our Services</p>
+        <h2 class="services__heading" id="services-heading">Therapy Where Life Happens</h2>
+        <p class="services__intro">Wherever your child thrives best, we're there. Choose the setting that works for your family—or blend them together.</p>
+      </div>
+
+      <div class="services__cards">
+
+        <!-- Card 1: Virtual & VR -->
+        <article class="service-card">
+          <div class="service-card__icon-wrap service-card__icon-wrap--teal" aria-hidden="true">🥽</div>
+          <div class="service-card__content">
+            <h3 class="service-card__title">Virtual &amp; VR Therapy</h3>
+            <p class="service-card__body">
+              Our virtual immersion program combines live telehealth sessions with guided VR environments—giving your child access to consistent, high-quality care no matter where you are.
+            </p>
+            <a href="#" class="service-card__link">
+              Learn more
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 2: In-Home -->
+        <article class="service-card">
+          <div class="service-card__icon-wrap service-card__icon-wrap--amber" aria-hidden="true">🏠</div>
+          <div class="service-card__content">
+            <h3 class="service-card__title">In-Home Therapy</h3>
+            <p class="service-card__body">
+              Learning happens best in familiar surroundings. Our clinicians come to you, working with your child in the environment they know—turning everyday routines into opportunities for growth.
+            </p>
+            <a href="#" class="service-card__link">
+              Learn more
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 3: Center-Based -->
+        <article class="service-card">
+          <div class="service-card__icon-wrap service-card__icon-wrap--navy" aria-hidden="true">🏥</div>
+          <div class="service-card__content">
+            <h3 class="service-card__title">Center-Based Therapy</h3>
+            <p class="service-card__body">
+              Our purpose-built centers are designed for focused learning and peer interaction. A structured environment with all the right tools—and a team that knows how to use them.
+            </p>
+            <a href="#" class="service-card__link">
+              Learn more
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 4: School-Based -->
+        <article class="service-card">
+          <div class="service-card__icon-wrap service-card__icon-wrap--green" aria-hidden="true">🎒</div>
+          <div class="service-card__content">
+            <h3 class="service-card__title">School-Based Therapy</h3>
+            <p class="service-card__body">
+              We collaborate directly with teachers and support staff to bring consistent ABA strategies into the classroom—bridging home and school so your child never has to start over.
+            </p>
+            <a href="#" class="service-card__link">
+              Learn more
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="services__cta">
+        <a href="#get-started" class="btn btn-primary">Connect with a team member</a>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         MISSION / PULL QUOTE
+         ══════════════════════════════════════════════════════════ -->
+    <section class="mission" aria-label="CSD mission statement">
+      <div class="mission__inner">
+
+        <span class="mission__eyebrow">Your Child's Progress Is Our Purpose</span>
+
+        <h2 class="mission__heading">
+          CSD opens a world of possibilities—by making the world possible—for children with autism and their families.
+        </h2>
+
+        <div class="mission__callouts">
+
+          <div class="callout-strip">
+            <div class="callout-strip__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="callout-strip__title">No waitlist. No barriers.</div>
+              <div class="callout-strip__body">Our virtual platform connects your family with skilled clinicians in as few as 7 days—because breakthroughs shouldn't wait.</div>
+            </div>
+          </div>
+
+          <div class="callout-divider" aria-hidden="true"></div>
+
+          <div class="callout-strip">
+            <div class="callout-strip__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div>
+              <div class="callout-strip__title">Industry Leader</div>
+              <div class="callout-strip__body">Our CSD University trains clinicians who stay and grow. Your family gains a trusted partner—not a revolving door.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="mission__image" role="img" aria-label="Children and therapists in a warm, joyful therapy setting">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity:0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Section Photography</span>
+          <strong>Children and therapists in a warm, joyful therapy setting</strong>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         PROVEN IMPACT — Stats + Testimonials
+         ══════════════════════════════════════════════════════════ -->
+    <section class="proof" aria-labelledby="proof-heading">
+      <div class="proof__cols">
+
+        <!-- Left: sticky header -->
+        <div class="proof__left">
+          <p class="eyebrow eyebrow--dark">Proven Impact</p>
+          <h2 class="proof__heading" id="proof-heading">Outcomes That Matter, Connecting Data to Life</h2>
+          <p class="proof__subhead">We don't just track success metrics. We measure the moments that matter most—better days, less stress, and more joy for your entire family.</p>
+          <div class="proof__photo" role="img" aria-label="Family photography placeholder">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>Family Photography</span>
+          </div>
+        </div>
+
+        <!-- Right: interleaved stream -->
+        <div class="proof__stream">
+
+          <div class="proof-stat">
+            <div class="proof-stat__number">93%</div>
+            <div class="proof-stat__label">Family Satisfaction</div>
+            <div class="proof-stat__desc">Of families rate their experience with CSD as excellent or very good.</div>
+          </div>
+
+          <div class="proof-testimonial">
+            <blockquote class="proof-testimonial__quote">&ldquo;CSD didn't just give my son skills—they gave him a voice. The flexibility of in-home sessions made it possible for me to manage work and therapy without feeling completely overwhelmed.&rdquo;</blockquote>
+            <div class="proof-testimonial__footer">
+              <div class="proof-testimonial__avatar" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <div>
+                <div class="proof-testimonial__name">Sarah L.</div>
+                <div class="proof-testimonial__role">Parent</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="proof-stat">
+            <div class="proof-stat__number">Top 10%</div>
+            <div class="proof-stat__label">Nationwide Performance</div>
+            <div class="proof-stat__desc">In Vineland-3 results, supervision hours, and family utilization.</div>
+          </div>
+
+          <div class="proof-testimonial">
+            <blockquote class="proof-testimonial__quote">&ldquo;My client's mother initially requested in-center support for her son. After seeing him respond to the virtual session trial, she cried. He used language she had never heard him use before.&rdquo;</blockquote>
+            <div class="proof-testimonial__footer">
+              <div class="proof-testimonial__avatar" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <div>
+                <div class="proof-testimonial__name">CSD Virtual Behavior Specialist</div>
+                <div class="proof-testimonial__role">CSD Global Services</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="proof-stat">
+            <div class="proof-stat__number">1:1</div>
+            <div class="proof-stat__label">Dedicated Care</div>
+            <div class="proof-stat__desc">Every child works with a dedicated therapist and a fully individualized treatment plan.</div>
+          </div>
+
+          <div class="proof-testimonial">
+            <blockquote class="proof-testimonial__quote">&ldquo;The care felt customized, not cookie-cutter. CSD celebrated every small win, and seeing the genuine excitement of my son's therapist made all the difference.&rdquo;</blockquote>
+            <div class="proof-testimonial__footer">
+              <div class="proof-testimonial__avatar" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <div>
+                <div class="proof-testimonial__name">Mike T.</div>
+                <div class="proof-testimonial__role">Parent</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="proof-stat">
+            <div class="proof-stat__number">17%</div>
+            <div class="proof-stat__label">Higher Goal Progress</div>
+            <div class="proof-stat__desc">Children using our virtual platform achieve 17% higher progress toward goals vs. comparable peers.</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         HOW WE DO IT
+         ══════════════════════════════════════════════════════════ -->
+    <section class="how" aria-labelledby="how-heading">
+      <div class="how__inner">
+
+        <!-- Left: sticky -->
+        <div class="how__left">
+          <p class="eyebrow eyebrow--dark">How We Do It</p>
+          <h2 class="how__heading" id="how-heading">Big Enough to Reach You. Connected Enough to Know You.</h2>
+          <p class="how__subhead">We back our commitment with the resources and compassion to ensure your child's—and your whole family's—success.</p>
+          <a href="#get-started" class="btn btn-primary">Get started</a>
+        </div>
+
+        <!-- Right: pillars -->
+        <div class="how__pillars">
+
+          <div class="how-pillar">
+            <div class="how-pillar__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="how-pillar__text">
+              <h3 class="how-pillar__title">Care Wherever You Need It</h3>
+              <p class="how-pillar__body">Access to therapy in the setting that works best for your family's life—in-home, center-based, school-based, or virtual.</p>
+            </div>
+          </div>
+
+          <div class="how-pillar">
+            <div class="how-pillar__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="how-pillar__text">
+              <h3 class="how-pillar__title">Focus on the Whole Family</h3>
+              <p class="how-pillar__body">We provide the support, partnership, and resources for families and caregivers to thrive alongside their child—not just survive.</p>
+            </div>
+          </div>
+
+          <div class="how-pillar">
+            <div class="how-pillar__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <div class="how-pillar__text">
+              <h3 class="how-pillar__title">Whoever You Are</h3>
+              <p class="how-pillar__body">We have multilingual clinicians who embrace, adapt, and integrate cultural approaches to learning with respect and deep understanding.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         GET STARTED — 3-Step Process
+         ══════════════════════════════════════════════════════════ -->
+    <section class="get-started" id="get-started" aria-labelledby="gs-heading">
+
+      <div class="gs__inner">
+
+        <!-- Left: steps -->
+        <div>
+          <span class="gs__eyebrow">Where Do I Start?</span>
+          <h2 class="gs__heading" id="gs-heading">Here's What to Expect</h2>
+          <p class="gs__subhead">If you feel overwhelmed by the path ahead, know that you don't have to go it alone. We'll be right there in partnership beside you—every step of the way.</p>
+
+          <div class="steps" aria-label="Three steps to get started with CSD">
+
+            <div class="step is-active" id="step-0">
+              <div class="step__num" aria-hidden="true">1</div>
+              <div>
+                <h3 class="step__title">Contact Us</h3>
+                <p class="step__desc">Reach out by phone, online, or through a referral. Our care team will get back to you within one business day to answer your questions and confirm your insurance coverage.</p>
+              </div>
+            </div>
+
+            <div class="step" id="step-1">
+              <div class="step__num" aria-hidden="true">2</div>
+              <div>
+                <h3 class="step__title">Assessment &amp; Personalized Care Plan</h3>
+                <p class="step__desc">A Board Certified Behavior Analyst (BCBA) conducts a comprehensive evaluation of your child's strengths and goals, then builds a fully individualized treatment plan.</p>
+              </div>
+            </div>
+
+            <div class="step" id="step-2">
+              <div class="step__num" aria-hidden="true">3</div>
+              <div>
+                <h3 class="step__title">Begin the Learning Adventure</h3>
+                <p class="step__desc">Your child starts working with a dedicated therapy team—in your home, at a CSD center, at school, or virtually—with progress tracked and shared with you every step of the way.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right: image panel -->
+        <div class="gs__image">
+          <div class="gs__image-box" role="img" aria-label="Step illustration placeholder">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity:0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="gs__step-label" id="gs-step-label">Step 1 — Contact Us</span>
+            <p class="gs__step-text" id="gs-step-text">Reach out by phone, online, or through a referral. Our care team will get back to you within one business day.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CTA Banner -->
+      <div class="gs__cta">
+        <div class="gs__cta-body">
+          <div>
+            <p class="gs__cta-headline">Ready to take the first step toward your child's future?</p>
+            <p class="gs__cta-sub">Most families hear back from our care team within one business day.</p>
+          </div>
+          <a href="#" class="btn btn-navy">Get Started Today</a>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+
+    <div class="footer__top">
+
+      <!-- Brand -->
+      <div>
+        <div class="footer__brand-row">
+          <div class="footer__brand-mark" aria-hidden="true"></div>
+          <div>
+            <span class="footer__brand-name">Center for Social Dynamics</span>
+            <span class="footer__brand-sub">Autism &amp; ABA Therapy</span>
+          </div>
+        </div>
+        <p class="footer__tagline">Opening a world of possibilities—by making the world possible—for children with autism and their families.</p>
+        <address class="footer__contact" style="font-style:normal;">
+          <a href="tel:+18779106538" aria-label="Phone: 877-910-6538">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+            (877) 910-6538
+          </a>
+          <a href="mailto:info@csdautismservices.com">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            info@csdautismservices.com
+          </a>
+        </address>
+        <div class="footer__badges" aria-label="Accreditation badges">
+          <span class="footer__badge">BACB Accredited</span>
+          <span class="footer__badge">BHCOE Certified</span>
+          <span class="footer__badge">CARF</span>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <nav aria-label="Services navigation">
+        <h2 class="footer__col-heading">Services</h2>
+        <ul class="footer__col-links" role="list">
+          <li><a href="#">Virtual &amp; VR Therapy</a></li>
+          <li><a href="#">In-Home Therapy</a></li>
+          <li><a href="#">Center-Based Therapy</a></li>
+          <li><a href="#">School-Based Therapy</a></li>
+          <li><a href="#">Request Services</a></li>
+        </ul>
+      </nav>
+
+      <!-- Company -->
+      <nav aria-label="Company navigation">
+        <h2 class="footer__col-heading">Company</h2>
+        <ul class="footer__col-links" role="list">
+          <li><a href="#">About CSD</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Locations</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Newsroom</a></li>
+        </ul>
+      </nav>
+
+      <!-- Connect -->
+      <div>
+        <h2 class="footer__col-heading">Connect</h2>
+        <ul class="footer__col-links" role="list">
+          <li><a href="#">Family Resources</a></li>
+          <li><a href="#">Insurance &amp; Coverage</a></li>
+          <li><a href="#">CSD University</a></li>
+          <li><a href="#">Referral Partners</a></li>
+        </ul>
+        <div class="footer__social" aria-label="CSD Social Media">
+          <a href="#" class="footer__social-btn" aria-label="CSD on Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="footer__social-btn" aria-label="CSD on Instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="footer__social-btn" aria-label="CSD on LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="footer__social-btn" aria-label="CSD on YouTube">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2025 Center for Social Dynamics. All rights reserved.</p>
+      <nav class="footer__legal" aria-label="Legal navigation">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Notice of Privacy Practices</a>
+        <a href="#">Accessibility</a>
+      </nav>
+    </div>
+
+  </footer>
+
+  <script>
+    // Step interaction
+    const steps = document.querySelectorAll('.step');
+    const stepLabels = ['Step 1 — Contact Us', 'Step 2 — Assessment & Care Plan', 'Step 3 — Begin the Learning Adventure'];
+    const stepTexts = [
+      'Reach out by phone, online, or through a referral. Our care team will get back to you within one business day.',
+      'A BCBA conducts a comprehensive evaluation of your child\'s strengths and goals, then builds a fully individualized treatment plan.',
+      'Your child starts working with a dedicated therapy team — with progress tracked and shared with you every step of the way.'
+    ];
+
+    steps.forEach((step, i) => {
+      step.addEventListener('click', () => {
+        steps.forEach(s => s.classList.remove('is-active'));
+        step.classList.add('is-active');
+        const label = document.getElementById('gs-step-label');
+        const text = document.getElementById('gs-step-text');
+        if (label) label.textContent = stepLabels[i];
+        if (text) text.textContent = stepTexts[i];
+      });
+    });
+  </script>
+
+</body>
+</html>

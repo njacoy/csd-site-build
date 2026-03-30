@@ -3,42 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CSD Brand & Style Guide</title>
+  <title>CSD Brand & Style Guide — Option D: National + DM Sans</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
 
   <style>
+    @font-face { font-family: 'National 2 Narrow'; src: url('fonts/national-2-narrow/test-national-2-narrow-thin.woff2') format('woff2'); font-weight: 100; font-style: normal; }
+    @font-face { font-family: 'National 2 Narrow'; src: url('fonts/national-2-narrow/test-national-2-narrow-extralight.woff2') format('woff2'); font-weight: 200; font-style: normal; }
+    @font-face { font-family: 'National 2 Narrow'; src: url('fonts/national-2-narrow/test-national-2-narrow-light.woff2') format('woff2'); font-weight: 300; font-style: normal; }
+    @font-face { font-family: 'National 2 Narrow'; src: url('fonts/national-2-narrow/test-national-2-narrow-regular.woff2') format('woff2'); font-weight: 400; font-style: normal; }
+    @font-face { font-family: 'National 2 Narrow'; src: url('fonts/national-2-narrow/test-national-2-narrow-medium.woff2') format('woff2'); font-weight: 500; font-style: normal; }
+    @font-face { font-family: 'National 2 Narrow'; src: url('fonts/national-2-narrow/test-national-2-narrow-bold.woff2') format('woff2'); font-weight: 700; font-style: normal; }
+    @font-face { font-family: 'National 2 Narrow'; src: url('fonts/national-2-narrow/test-national-2-narrow-extrabold.woff2') format('woff2'); font-weight: 800; font-style: normal; }
+    @font-face { font-family: 'National 2 Narrow'; src: url('fonts/national-2-narrow/test-national-2-narrow-black.woff2') format('woff2'); font-weight: 900; font-style: normal; }
+
     /* ============================================================
-       DESIGN TOKENS
+       DESIGN TOKENS — OPTION D: NATIONAL 2 NARROW + DM SANS
        ============================================================ */
     :root {
-      --color-bg:           #FAFAF7;
-      --color-bg-warm:      #F5F0E8;
-      --color-navy:         #0B2D48;
-      --color-navy-light:   #143D5E;
-      --color-teal:         #0E7490;
-      --color-teal-light:   #E0F2F7;
-      --color-amber:        #D97706;
-      --color-amber-bg:     #FEF3C7;
-      --color-coral:        #E8735A;
-      --color-coral-light:  #FEE8E3;
-      --color-sage:         #3A7D5B;
-      --color-sage-light:   #D1FAE5;
-      --color-text:         #1C2B3A;
-      --color-text-muted:   #4A5568;
-      --color-border:       #D4CBBF;
+      --color-bg:           #F9F7F3;
+      --color-bg-warm:      #F0EBE1;
+      --color-navy:         #1A2F3F;
+      --color-navy-light:   #2A4458;
+      --color-teal:         #33DFDF;
+      --color-teal-light:   #E0FAFA;
+      --color-amber:        #FFD746;
+      --color-amber-bg:     #FFF8E0;
+      --color-coral:        #FF5758;
+      --color-coral-light:  #FFE5E5;
+      --color-sage:         #00BE4A;
+      --color-sage-light:   #E0F8E8;
+      --color-text:         #1A2F3F;
+      --color-text-muted:   #576574;
+      --color-border:       #D6CFBF;
       --color-white:        #FFFFFF;
-      --color-dark-footer:  #071B2C;
+      --color-dark-footer:  #0E1E2D;
 
-      --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --color-blue:         #5E9CF4;
+      --color-blue-light:   #E8F0FE;
+
+      --font-display: 'National 2 Narrow', system-ui, sans-serif;
       --font-body:    'DM Sans', system-ui, sans-serif;
 
-      --radius-sm: 6px;
-      --radius-md: 12px;
-      --radius-lg: 20px;
-      --radius-xl: 32px;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 14px;
+      --radius-xl: 24px;
     }
 
     /* ============================================================
@@ -103,7 +115,7 @@
     .sidebar__title {
       font-family: var(--font-display);
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 700;
       color: white;
       line-height: 1.2;
     }
@@ -164,9 +176,9 @@
     .sg-section__title {
       font-family: var(--font-display);
       font-size: 1.75rem;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--color-navy);
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
       margin-bottom: 0.35rem;
     }
 
@@ -261,7 +273,7 @@
     }
 
     .type-specimen__tag span {
-      color: var(--color-teal);
+      color: var(--color-text-muted);
       font-family: monospace;
     }
 
@@ -292,7 +304,7 @@
       font-family: var(--font-body);
       font-size: 1rem;
       font-weight: 600;
-      border-radius: var(--radius-sm);
+      border-radius: 999px;
       cursor: pointer;
       transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
       border: 2px solid transparent;
@@ -340,7 +352,7 @@
 
     .btn-ghost {
       background: transparent;
-      color: var(--color-teal);
+      color: var(--color-navy);
       border-color: transparent;
       padding-inline: 0;
       min-height: unset;
@@ -520,7 +532,7 @@
     .sample-card__title {
       font-family: var(--font-display);
       font-size: 1.1rem;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--color-navy);
       margin-bottom: 0.4rem;
     }
@@ -537,7 +549,6 @@
       border-radius: var(--radius-md);
       padding: 1.5rem 1rem;
       text-align: center;
-      border-bottom: 4px solid var(--color-teal);
       box-shadow: 0 2px 12px rgba(11,45,72,0.06);
       max-width: 200px;
     }
@@ -567,6 +578,7 @@
     }
 
     .sample-testimonial__quote {
+      font-family: var(--font-body);
       font-size: 0.9rem;
       line-height: 1.7;
       color: var(--color-text);
@@ -610,22 +622,22 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      background: var(--color-teal-light);
+      background: var(--color-navy);
       color: var(--color-teal);
-      font-size: 0.72rem;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
       font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      letter-spacing: 0.04em;
       padding: 0.3rem 0.75rem;
       border-radius: 999px;
     }
 
     .eyebrow-text {
-      font-size: 0.72rem;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
       font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--color-teal);
+      letter-spacing: 0.06em;
+      color: var(--color-navy);
     }
 
     /* ============================================================
@@ -913,12 +925,12 @@
 
     <div class="version-switcher" id="versionSwitcher">
       <button class="version-switcher__trigger" onclick="toggleVersionDropdown()">
-        <span class="version-badge">A</span>
-        <span class="version-label">Style Guide A</span>
+        <span class="version-badge">D</span>
+        <span class="version-label">Style Guide D</span>
         <span class="version-caret">▾</span>
       </button>
       <div class="version-switcher__menu" id="versionMenu">
-        <a href="/brand/index.html" class="version-option version-option--active">
+        <a href="/brand/index.html" class="version-option">
           <span class="version-badge">A</span> Light / Airy
         </a>
         <a href="/brand/brand-alt.html" class="version-option">
@@ -927,7 +939,7 @@
         <a href="/brand/brand-c.html" class="version-option">
           <span class="version-badge">C</span> Refined / Editorial
         </a>
-        <a href="/brand/brand-d.html" class="version-option">
+        <a href="/brand/brand-d.html" class="version-option version-option--active">
           <span class="version-badge">D</span> National + DM Sans
         </a>
       </div>
@@ -968,7 +980,7 @@
     <!-- Page header -->
     <div style="margin-bottom: 3.5rem;">
       <p style="font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-teal); margin-bottom: 0.4rem;">Center for Social Dynamics</p>
-      <h1 style="font-family: var(--font-display); font-size: 2.5rem; font-weight: 600; color: var(--color-navy); letter-spacing: -0.02em; margin-bottom: 0.5rem;">Brand &amp; Style Guide</h1>
+      <h1 style="font-family: var(--font-display); font-size: 72px; font-weight: 700; color: var(--color-navy); letter-spacing: -0.04em; margin-bottom: 0.5rem;">Brand &amp; Style Guide</h1>
       <p style="color: var(--color-text-muted); max-width: 560px;">The visual and verbal identity for CSD's website relaunch — guided by the <strong>Navigator of Possibility</strong> framework. This guide defines the brand strategy, design tokens, components, and voice that make up the CSD experience.</p>
     </div>
 
@@ -1107,42 +1119,42 @@
     <section class="sg-section" id="colors">
       <div class="sg-section__header">
         <h2 class="sg-section__title">Color Palette</h2>
-        <p class="sg-section__desc">All colors meet WCAG 2.1 AA contrast requirements in their intended usage contexts. Each color carries specific emotional intent aligned with the Navigator of Possibility framework.</p>
+        <p class="sg-section__desc">A warm, editorial palette with vibrant accents. The warm cream background anchors the system, while teal, coral, amber, sage, and blue provide purposeful color with clear emotional intent. Vibrant accents are used for backgrounds, chips, and highlights — Navy remains the primary text color for contrast.</p>
       </div>
 
       <p class="token-label">Primary Colors</p>
       <div class="color-grid">
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: #0B2D48;"></div>
+          <div class="color-swatch__block" style="background: #1A2F3F;"></div>
           <div class="color-swatch__info">
             <span class="color-swatch__name">Navy</span>
-            <span class="color-swatch__hex">#0B2D48</span>
+            <span class="color-swatch__hex">#1A2F3F</span>
             <span class="color-swatch__var">--color-navy</span>
             <span style="font-size: 0.62rem; color: var(--color-text-muted); display: block; margin-top: 2px;">Trust, expertise, stability</span>
           </div>
         </div>
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: #143D5E;"></div>
+          <div class="color-swatch__block" style="background: #2A4458;"></div>
           <div class="color-swatch__info">
             <span class="color-swatch__name">Navy Light</span>
-            <span class="color-swatch__hex">#143D5E</span>
+            <span class="color-swatch__hex">#2A4458</span>
             <span class="color-swatch__var">--color-navy-light</span>
           </div>
         </div>
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: #0E7490;"></div>
+          <div class="color-swatch__block" style="background: #33DFDF;"></div>
           <div class="color-swatch__info">
             <span class="color-swatch__name">Teal</span>
-            <span class="color-swatch__hex">#0E7490</span>
+            <span class="color-swatch__hex">#33DFDF</span>
             <span class="color-swatch__var">--color-teal</span>
             <span style="font-size: 0.62rem; color: var(--color-text-muted); display: block; margin-top: 2px;">Discovery, innovation, energy</span>
           </div>
         </div>
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: #E0F2F7; border-bottom: 1px solid var(--color-border);"></div>
+          <div class="color-swatch__block" style="background: #E0FAFA; border-bottom: 1px solid var(--color-border);"></div>
           <div class="color-swatch__info">
             <span class="color-swatch__name">Teal Light</span>
-            <span class="color-swatch__hex">#E0F2F7</span>
+            <span class="color-swatch__hex">#E0FAFA</span>
             <span class="color-swatch__var">--color-teal-light</span>
           </div>
         </div>
@@ -1151,54 +1163,71 @@
       <p class="token-label">Accent Colors</p>
       <div class="color-grid">
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: #D97706;"></div>
+          <div class="color-swatch__block" style="background: #FFD746;"></div>
           <div class="color-swatch__info">
             <span class="color-swatch__name">Gold</span>
-            <span class="color-swatch__hex">#D97706</span>
+            <span class="color-swatch__hex">#FFD746</span>
             <span class="color-swatch__var">--color-amber</span>
             <span style="font-size: 0.62rem; color: var(--color-text-muted); display: block; margin-top: 2px;">Momentum, mastery, earned progress</span>
           </div>
         </div>
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: #FEF3C7; border-bottom: 1px solid var(--color-border);"></div>
+          <div class="color-swatch__block" style="background: #FFF8E0; border-bottom: 1px solid var(--color-border);"></div>
           <div class="color-swatch__info">
             <span class="color-swatch__name">Gold Light</span>
-            <span class="color-swatch__hex">#FEF3C7</span>
+            <span class="color-swatch__hex">#FFF8E0</span>
             <span class="color-swatch__var">--color-amber-bg</span>
           </div>
         </div>
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: #E8735A;"></div>
+          <div class="color-swatch__block" style="background: #FF5758;"></div>
           <div class="color-swatch__info">
             <span class="color-swatch__name">Coral</span>
-            <span class="color-swatch__hex">#E8735A</span>
+            <span class="color-swatch__hex">#FF5758</span>
             <span class="color-swatch__var">--color-coral</span>
             <span style="font-size: 0.62rem; color: var(--color-text-muted); display: block; margin-top: 2px;">Warmth, human connection, heart</span>
           </div>
         </div>
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: #FEE8E3; border-bottom: 1px solid var(--color-border);"></div>
+          <div class="color-swatch__block" style="background: #FFE5E5; border-bottom: 1px solid var(--color-border);"></div>
           <div class="color-swatch__info">
             <span class="color-swatch__name">Coral Light</span>
-            <span class="color-swatch__hex">#FEE8E3</span>
+            <span class="color-swatch__hex">#FFE5E5</span>
             <span class="color-swatch__var">--color-coral-light</span>
           </div>
         </div>
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: #3A7D5B;"></div>
+          <div class="color-swatch__block" style="background: #00BE4A;"></div>
           <div class="color-swatch__info">
             <span class="color-swatch__name">Sage</span>
-            <span class="color-swatch__hex">#3A7D5B</span>
+            <span class="color-swatch__hex">#00BE4A</span>
             <span class="color-swatch__var">--color-sage</span>
             <span style="font-size: 0.62rem; color: var(--color-text-muted); display: block; margin-top: 2px;">Learning, flourishing, progress</span>
           </div>
         </div>
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: #D1FAE5; border-bottom: 1px solid var(--color-border);"></div>
+          <div class="color-swatch__block" style="background: #E0F8E8; border-bottom: 1px solid var(--color-border);"></div>
           <div class="color-swatch__info">
             <span class="color-swatch__name">Sage Light</span>
-            <span class="color-swatch__hex">#D1FAE5</span>
+            <span class="color-swatch__hex">#E0F8E8</span>
             <span class="color-swatch__var">--color-sage-light</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: #5E9CF4;"></div>
+          <div class="color-swatch__info">
+            <span class="color-swatch__name">Blue</span>
+            <span class="color-swatch__hex">#5E9CF4</span>
+            <span class="color-swatch__var">--color-blue</span>
+            <span class="color-swatch__role">Links, info states, trust</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: #E8F0FE; border-bottom: 1px solid var(--color-border);"></div>
+          <div class="color-swatch__info">
+            <span class="color-swatch__name">Blue Light</span>
+            <span class="color-swatch__hex">#E8F0FE</span>
+            <span class="color-swatch__var">--color-blue-light</span>
           </div>
         </div>
       </div>
@@ -1206,50 +1235,50 @@
       <p class="token-label">Neutrals &amp; Backgrounds</p>
       <div class="color-grid">
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: #FAFAF7; border-bottom: 1px solid var(--color-border);"></div>
+          <div class="color-swatch__block" style="background: #F9F7F3; border-bottom: 1px solid var(--color-border);"></div>
           <div class="color-swatch__info">
             <span class="color-swatch__name">Background</span>
-            <span class="color-swatch__hex">#FAFAF7</span>
+            <span class="color-swatch__hex">#F9F7F3</span>
             <span class="color-swatch__var">--color-bg</span>
           </div>
         </div>
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: #F5F0E8; border-bottom: 1px solid var(--color-border);"></div>
+          <div class="color-swatch__block" style="background: #F0EBE1; border-bottom: 1px solid var(--color-border);"></div>
           <div class="color-swatch__info">
             <span class="color-swatch__name">Warm BG</span>
-            <span class="color-swatch__hex">#F5F0E8</span>
+            <span class="color-swatch__hex">#F0EBE1</span>
             <span class="color-swatch__var">--color-bg-warm</span>
           </div>
         </div>
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: #1C2B3A;"></div>
+          <div class="color-swatch__block" style="background: #1A2F3F;"></div>
           <div class="color-swatch__info">
             <span class="color-swatch__name">Text Dark</span>
-            <span class="color-swatch__hex">#1C2B3A</span>
+            <span class="color-swatch__hex">#1A2F3F</span>
             <span class="color-swatch__var">--color-text</span>
           </div>
         </div>
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: #4A5568;"></div>
+          <div class="color-swatch__block" style="background: #576574;"></div>
           <div class="color-swatch__info">
             <span class="color-swatch__name">Text Muted</span>
-            <span class="color-swatch__hex">#4A5568</span>
+            <span class="color-swatch__hex">#576574</span>
             <span class="color-swatch__var">--color-text-muted</span>
           </div>
         </div>
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: #D4CBBF; border-bottom: 1px solid var(--color-border);"></div>
+          <div class="color-swatch__block" style="background: #D6CFBF; border-bottom: 1px solid var(--color-border);"></div>
           <div class="color-swatch__info">
             <span class="color-swatch__name">Border</span>
-            <span class="color-swatch__hex">#D4CBBF</span>
+            <span class="color-swatch__hex">#D6CFBF</span>
             <span class="color-swatch__var">--color-border</span>
           </div>
         </div>
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: #071B2C;"></div>
+          <div class="color-swatch__block" style="background: #0E1E2D;"></div>
           <div class="color-swatch__info">
             <span class="color-swatch__name">Footer Dark</span>
-            <span class="color-swatch__hex">#071B2C</span>
+            <span class="color-swatch__hex">#0E1E2D</span>
             <span class="color-swatch__var">--color-dark-footer</span>
           </div>
         </div>
@@ -1274,88 +1303,95 @@
         </thead>
         <tbody>
           <tr>
-            <td><div style="background:#FFFFFF;border:1px solid var(--color-border);border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#0B2D48;">Sample</span></div></td>
-            <td><strong>Navy #0B2D48</strong></td>
+            <td><div style="background:#FFFFFF;border:1px solid var(--color-border);border-radius:4px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#1A2F3F;">Sample</span></div></td>
+            <td><strong>Navy #1A2F3F</strong></td>
             <td>White #FFFFFF</td>
-            <td>14.2:1</td>
-            <td><span class="tag-do">AAA</span></td>
-          </tr>
-          <tr>
-            <td><div style="background:#F5F0E8;border:1px solid var(--color-border);border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#0B2D48;">Sample</span></div></td>
-            <td><strong>Navy #0B2D48</strong></td>
-            <td>Warm BG #F5F0E8</td>
-            <td>12.5:1</td>
-            <td><span class="tag-do">AAA</span></td>
-          </tr>
-          <tr>
-            <td><div style="background:#FAFAF7;border:1px solid var(--color-border);border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-body);font-size:0.85rem;color:#1C2B3A;">Sample</span></div></td>
-            <td><strong>Text #1C2B3A</strong></td>
-            <td>Background #FAFAF7</td>
             <td>13.8:1</td>
             <td><span class="tag-do">AAA</span></td>
           </tr>
           <tr>
-            <td><div style="background:#FFFFFF;border:1px solid var(--color-border);border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-body);font-size:0.85rem;color:#4A5568;">Sample</span></div></td>
-            <td><strong>Muted #4A5568</strong></td>
-            <td>White #FFFFFF</td>
-            <td>7.5:1</td>
+            <td><div style="background:#F0EBE1;border:1px solid var(--color-border);border-radius:4px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#1A2F3F;">Sample</span></div></td>
+            <td><strong>Navy #1A2F3F</strong></td>
+            <td>Warm BG #F0EBE1</td>
+            <td>11.6:1</td>
             <td><span class="tag-do">AAA</span></td>
           </tr>
           <tr>
-            <td><div style="background:#FFFFFF;border:1px solid var(--color-border);border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#0E7490;">Sample</span></div></td>
-            <td><strong>Teal #0E7490</strong></td>
-            <td>White #FFFFFF</td>
-            <td>5.4:1</td>
-            <td><span class="tag-do">AA</span></td>
-          </tr>
-          <tr>
-            <td><div style="background:#0B2D48;border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#FFFFFF;">Sample</span></div></td>
-            <td><strong>White #FFFFFF</strong></td>
-            <td>Navy #0B2D48</td>
-            <td>14.2:1</td>
+            <td><div style="background:#F9F7F3;border:1px solid var(--color-border);border-radius:4px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-body);font-size:0.85rem;color:#1A2F3F;">Sample</span></div></td>
+            <td><strong>Text #1A2F3F</strong></td>
+            <td>Background #F9F7F3</td>
+            <td>12.9:1</td>
             <td><span class="tag-do">AAA</span></td>
           </tr>
           <tr>
-            <td><div style="background:#0E7490;border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#FFFFFF;">Sample</span></div></td>
-            <td><strong>White #FFFFFF</strong></td>
-            <td>Teal #0E7490</td>
-            <td>5.4:1</td>
+            <td><div style="background:#FFFFFF;border:1px solid var(--color-border);border-radius:4px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-body);font-size:0.85rem;color:#576574;">Sample</span></div></td>
+            <td><strong>Muted #576574</strong></td>
+            <td>White #FFFFFF</td>
+            <td>6.0:1</td>
             <td><span class="tag-do">AA</span></td>
           </tr>
           <tr>
-            <td><div style="background:#0B2D48;border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#D97706;">Sample</span></div></td>
-            <td><strong>Gold #D97706</strong></td>
-            <td>Navy #0B2D48</td>
-            <td>4.4:1</td>
-            <td><span class="tag-do">AA Large</span></td>
-          </tr>
-          <tr>
-            <td><div style="background:#D97706;border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#0B2D48;">Sample</span></div></td>
-            <td><strong>Navy #0B2D48</strong></td>
-            <td>Gold #D97706</td>
-            <td>4.4:1</td>
-            <td><span class="tag-do">AA Large</span></td>
-          </tr>
-          <tr>
-            <td><div style="background:#FFFFFF;border:1px solid var(--color-border);border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#3A7D5B;">Sample</span></div></td>
-            <td><strong>Sage #3A7D5B</strong></td>
+            <td><div style="background:#FFFFFF;border:1px solid var(--color-border);border-radius:4px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#33DFDF;">Sample</span></div></td>
+            <td><strong>Teal #33DFDF</strong></td>
             <td>White #FFFFFF</td>
-            <td>4.9:1</td>
-            <td><span class="tag-do">AA</span></td>
-          </tr>
-          <tr>
-            <td><div style="background:#FFFFFF;border:1px solid var(--color-border);border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#E8735A;">Sample</span></div></td>
-            <td><strong>Coral #E8735A</strong></td>
-            <td>White #FFFFFF</td>
-            <td>3.0:1</td>
+            <td>1.6:1</td>
             <td><span class="tag-dont">FAIL</span></td>
           </tr>
           <tr>
-            <td><div style="background:#FFFFFF;border:1px solid var(--color-border);border-radius:6px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#D97706;">Sample</span></div></td>
-            <td><strong>Gold #D97706</strong></td>
+            <td><div style="background:#1A2F3F;border-radius:4px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#FFFFFF;">Sample</span></div></td>
+            <td><strong>White #FFFFFF</strong></td>
+            <td>Navy #1A2F3F</td>
+            <td>13.8:1</td>
+            <td><span class="tag-do">AAA</span></td>
+          </tr>
+          <tr>
+            <td><div style="background:#33DFDF;border-radius:4px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#FFFFFF;">Sample</span></div></td>
+            <td><strong>White #FFFFFF</strong></td>
+            <td>Teal #33DFDF</td>
+            <td>1.6:1</td>
+            <td><span class="tag-dont">FAIL</span></td>
+          </tr>
+          <tr>
+            <td><div style="background:#1A2F3F;border-radius:4px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#FFD746;">Sample</span></div></td>
+            <td><strong>Gold #FFD746</strong></td>
+            <td>Navy #1A2F3F</td>
+            <td>9.9:1</td>
+            <td><span class="tag-do">AAA</span></td>
+          </tr>
+          <tr>
+            <td><div style="background:#FFD746;border-radius:4px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#1A2F3F;">Sample</span></div></td>
+            <td><strong>Navy #1A2F3F</strong></td>
+            <td>Gold #FFD746</td>
+            <td>9.9:1</td>
+            <td><span class="tag-do">AAA</span></td>
+          </tr>
+          <tr>
+            <td><div style="background:#FFFFFF;border:1px solid var(--color-border);border-radius:4px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#00BE4A;">Sample</span></div></td>
+            <td><strong>Sage #00BE4A</strong></td>
             <td>White #FFFFFF</td>
-            <td>3.5:1</td>
-            <td><span class="tag-dont">Large only</span></td>
+            <td>2.5:1</td>
+            <td><span class="tag-dont">FAIL</span></td>
+          </tr>
+          <tr>
+            <td><div style="background:#FFFFFF;border:1px solid var(--color-border);border-radius:4px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#FF5758;">Sample</span></div></td>
+            <td><strong>Coral #FF5758</strong></td>
+            <td>White #FFFFFF</td>
+            <td>3.1:1</td>
+            <td><span class="tag-do">AA Large</span></td>
+          </tr>
+          <tr>
+            <td><div style="background:#FFFFFF;border:1px solid var(--color-border);border-radius:4px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#5E9CF4;">Sample</span></div></td>
+            <td><strong>Blue #5E9CF4</strong></td>
+            <td>White #FFFFFF</td>
+            <td>2.8:1</td>
+            <td><span class="tag-dont">FAIL</span></td>
+          </tr>
+          <tr>
+            <td><div style="background:#33DFDF;border-radius:4px;padding:0.5rem 0.75rem;width:120px;"><span style="font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:#1A2F3F;">Sample</span></div></td>
+            <td><strong>Navy #1A2F3F</strong></td>
+            <td>Teal #33DFDF</td>
+            <td>8.4:1</td>
+            <td><span class="tag-do">AAA</span></td>
           </tr>
         </tbody>
       </table>
@@ -1389,29 +1425,29 @@
     <section class="sg-section" id="typography">
       <div class="sg-section__header">
         <h2 class="sg-section__title">Typography</h2>
-        <p class="sg-section__desc">Two typefaces that function as a standalone brand signal. A headline in the brand font, in brand colors, should feel unmistakably CSD — even without photography or illustration. Plus Jakarta Sans for confidence and clarity in display contexts. DM Sans for warmth and readability in body copy and UI.</p>
+        <p class="sg-section__desc">A pairing that balances editorial authority with clean approachability. National 2 Narrow for confident, structured headlines — its narrow proportions and strong weights create a distinct, professional voice. DM Sans for body text — its humanist forms and generous spacing make it highly readable across all sizes.</p>
       </div>
 
       <p class="token-label">Typefaces</p>
       <div class="sg-grid-2" style="margin-bottom: 2rem;">
         <div class="component-preview" style="text-align: center;">
-          <p style="font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 0.75rem;">Display — Plus Jakarta Sans</p>
-          <p style="font-family: var(--font-display); font-size: 2.25rem; font-weight: 700; color: var(--color-navy); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.5rem;">AaBbCc</p>
+          <p style="font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 0.75rem;">Display — National 2 Narrow</p>
+          <p style="font-family: var(--font-display); font-size: 2.25rem; font-weight: 700; color: var(--color-navy); letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 0.5rem;">AaBbCc</p>
           <p style="font-family: var(--font-display); font-size: 1rem; color: var(--color-text-muted); font-style: italic;">Confidence meets possibility.</p>
-          <p style="font-size: 0.72rem; color: var(--color-text-muted); margin-top: 0.75rem; font-family: monospace;">Google Fonts · Plus Jakarta Sans</p>
+          <p style="font-size: 0.72rem; color: var(--color-text-muted); margin-top: 0.75rem; font-family: monospace;">Local Font · National 2 Narrow</p>
         </div>
         <div class="component-preview" style="text-align: center;">
           <p style="font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 0.75rem;">Body — DM Sans</p>
-          <p style="font-family: var(--font-body); font-size: 2.25rem; font-weight: 600; color: var(--color-navy); letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 0.5rem;">AaBbCc</p>
-          <p style="font-family: var(--font-body); font-size: 1rem; color: var(--color-text-muted);">Warm, clear, accessible.</p>
+          <p style="font-family: var(--font-body); font-size: 2.25rem; font-weight: 400; color: var(--color-navy); letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 0.5rem;">AaBbCc</p>
+          <p style="font-family: var(--font-body); font-size: 1rem; color: var(--color-text-muted);">Friendly, rounded, approachable.</p>
           <p style="font-size: 0.72rem; color: var(--color-text-muted); margin-top: 0.75rem; font-family: monospace;">Google Fonts · DM Sans</p>
         </div>
       </div>
 
       <div class="component-preview" style="background: var(--color-teal-light); border: none; margin-bottom: 2rem;">
         <p style="font-size: 0.78rem; font-weight: 600; color: var(--color-teal); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.35rem;">Pairing Rationale</p>
-        <p style="font-size: 0.85rem; color: var(--color-text); line-height: 1.65;"><strong>Plus Jakarta Sans</strong> (geometric sans-serif) carries clean geometry that signals clarity and competence, while slightly rounded terminals prevent it from feeling cold. <strong>DM Sans</strong> adds warmth and readability in body copy — its open letterforms and clean proportions feel approachable without being childlike.</p>
-        <p style="font-size: 0.9rem; font-weight: 600; color: var(--color-navy); line-height: 1.65; margin-top: 0.75rem;">Together they balance Navigator (structure, confidence) and Possibility (warmth, humanity) — hitting the "confident, forward-looking" tone the brief calls for.</p>
+        <p style="font-size: 0.85rem; color: var(--color-text); line-height: 1.65;"><strong>National 2 Narrow</strong> is a condensed serif-influenced sans-serif with strong typographic presence — its narrow proportions let headlines breathe even at large sizes, while its varied weights add hierarchy and authority. <strong>DM Sans</strong> is a low-contrast geometric sans-serif optimized for readability — its open apertures and neutral forms make body text effortless to read across screen sizes.</p>
+        <p style="font-size: 0.9rem; font-weight: 600; color: var(--color-navy); line-height: 1.65; margin-top: 0.75rem;">Together, National 2 Narrow's editorial authority and DM Sans's clean legibility give Style Guide D a refined, professional personality grounded in excellent typography craft.</p>
       </div>
 
       <p class="token-label">Heading Scale</p>
@@ -1419,19 +1455,19 @@
       <div class="type-specimen">
         <div class="type-specimen__meta">
           <span class="type-specimen__tag">Element <span>&lt;h1&gt;</span></span>
-          <span class="type-specimen__tag">Font <span>Plus Jakarta Sans</span></span>
-          <span class="type-specimen__tag">Weight <span>600</span></span>
-          <span class="type-specimen__tag">Line Height <span>1.15</span></span>
-          <span class="type-specimen__tag">Letter Spacing <span>-0.02em</span></span>
+          <span class="type-specimen__tag">Font <span>National 2 Narrow</span></span>
+          <span class="type-specimen__tag">Weight <span>700</span></span>
+          <span class="type-specimen__tag">Line Height <span>1.1</span></span>
+          <span class="type-specimen__tag">Letter Spacing <span>-0.04em</span></span>
         </div>
-        <h1 style="font-size: clamp(2rem, 4vw, 3.25rem); font-family: var(--font-display); font-weight: 600; color: var(--color-navy); letter-spacing: -0.02em; line-height: 1.15;">Breakthrough Autism Therapy</h1>
+        <h1 style="font-size: 72px; font-family: var(--font-display); font-weight: 700; color: var(--color-navy); letter-spacing: -0.04em; line-height: 1.1;">Breakthrough Autism Therapy</h1>
         <table class="style-table" style="margin-top: 1rem;">
           <thead><tr><th>Viewport</th><th>Width</th><th>Font Size</th></tr></thead>
           <tbody>
-            <tr><td>Monitor</td><td>1680px +</td><td>64px</td></tr>
-            <tr><td>Desktop</td><td>1200 – 1679px</td><td>64px</td></tr>
-            <tr><td>Tablet</td><td>810 – 1199px</td><td>50px</td></tr>
-            <tr><td>Mobile</td><td>&le; 809px</td><td>38px</td></tr>
+            <tr><td>Monitor</td><td>1680px +</td><td>72px</td></tr>
+            <tr><td>Desktop</td><td>1200 – 1679px</td><td>72px</td></tr>
+            <tr><td>Tablet</td><td>810 – 1199px</td><td>72px</td></tr>
+            <tr><td>Mobile</td><td>&le; 809px</td><td>72px</td></tr>
           </tbody>
         </table>
       </div>
@@ -1439,19 +1475,19 @@
       <div class="type-specimen">
         <div class="type-specimen__meta">
           <span class="type-specimen__tag">Element <span>&lt;h2&gt;</span></span>
-          <span class="type-specimen__tag">Font <span>Plus Jakarta Sans</span></span>
-          <span class="type-specimen__tag">Weight <span>600</span></span>
+          <span class="type-specimen__tag">Font <span>National 2 Narrow</span></span>
+          <span class="type-specimen__tag">Weight <span>700</span></span>
           <span class="type-specimen__tag">Line Height <span>1.15</span></span>
-          <span class="type-specimen__tag">Letter Spacing <span>-0.02em</span></span>
+          <span class="type-specimen__tag">Letter Spacing <span>-0.03em</span></span>
         </div>
-        <h2 style="font-family: var(--font-display); font-weight: 600; color: var(--color-navy); letter-spacing: -0.02em; line-height: 1.15;">Innovation Grounded in Empathy</h2>
+        <h2 style="font-family: var(--font-display); font-size: 56px; font-weight: 700; color: var(--color-navy); letter-spacing: -0.03em; line-height: 1.15;">Innovation Grounded in Empathy</h2>
         <table class="style-table" style="margin-top: 1rem;">
           <thead><tr><th>Viewport</th><th>Width</th><th>Font Size</th></tr></thead>
           <tbody>
-            <tr><td>Monitor</td><td>1680px +</td><td>44px</td></tr>
-            <tr><td>Desktop</td><td>1200 – 1679px</td><td>44px</td></tr>
-            <tr><td>Tablet</td><td>810 – 1199px</td><td>35px</td></tr>
-            <tr><td>Mobile</td><td>&le; 809px</td><td>29px</td></tr>
+            <tr><td>Monitor</td><td>1680px +</td><td>56px</td></tr>
+            <tr><td>Desktop</td><td>1200 – 1679px</td><td>56px</td></tr>
+            <tr><td>Tablet</td><td>810 – 1199px</td><td>56px</td></tr>
+            <tr><td>Mobile</td><td>&le; 809px</td><td>56px</td></tr>
           </tbody>
         </table>
       </div>
@@ -1459,19 +1495,19 @@
       <div class="type-specimen">
         <div class="type-specimen__meta">
           <span class="type-specimen__tag">Element <span>&lt;h3&gt;</span></span>
-          <span class="type-specimen__tag">Font <span>Plus Jakarta Sans</span></span>
-          <span class="type-specimen__tag">Weight <span>600</span></span>
+          <span class="type-specimen__tag">Font <span>National 2 Narrow</span></span>
+          <span class="type-specimen__tag">Weight <span>700</span></span>
           <span class="type-specimen__tag">Line Height <span>1.15</span></span>
           <span class="type-specimen__tag">Letter Spacing <span>-0.02em</span></span>
         </div>
-        <h3 style="font-family: var(--font-display); font-weight: 600; color: var(--color-navy); letter-spacing: -0.02em; line-height: 1.15;">Virtual &amp; VR Therapy</h3>
+        <h3 style="font-family: var(--font-display); font-size: 48px; font-weight: 700; color: var(--color-navy); letter-spacing: -0.02em; line-height: 1.15;">Virtual &amp; VR Therapy</h3>
         <table class="style-table" style="margin-top: 1rem;">
           <thead><tr><th>Viewport</th><th>Width</th><th>Font Size</th></tr></thead>
           <tbody>
-            <tr><td>Monitor</td><td>1680px +</td><td>24px</td></tr>
-            <tr><td>Desktop</td><td>1200 – 1679px</td><td>24px</td></tr>
-            <tr><td>Tablet</td><td>810 – 1199px</td><td>20px</td></tr>
-            <tr><td>Mobile</td><td>&le; 809px</td><td>19px</td></tr>
+            <tr><td>Monitor</td><td>1680px +</td><td>48px</td></tr>
+            <tr><td>Desktop</td><td>1200 – 1679px</td><td>48px</td></tr>
+            <tr><td>Tablet</td><td>810 – 1199px</td><td>48px</td></tr>
+            <tr><td>Mobile</td><td>&le; 809px</td><td>48px</td></tr>
           </tbody>
         </table>
       </div>
@@ -1480,20 +1516,21 @@
 
       <div class="type-specimen">
         <div class="type-specimen__meta">
-          <span class="type-specimen__tag">Role <span>Lead / Intro</span></span>
+          <span class="type-specimen__tag">Role <span>Intro</span></span>
           <span class="type-specimen__tag">Font <span>DM Sans</span></span>
           <span class="type-specimen__tag">Weight <span>400</span></span>
+          <span class="type-specimen__tag">Size <span>22px</span></span>
           <span class="type-specimen__tag">Line Height <span>1.7</span></span>
           <span class="type-specimen__tag">Paragraph Spacing <span>16px</span></span>
         </div>
-        <p style="font-family: var(--font-body); font-size: 1.1rem; line-height: 1.7; color: var(--color-text-muted);">ABA therapy that meets your child exactly where they are—and helps them get where they're going.</p>
+        <p style="font-family: var(--font-body); font-size: 22px; line-height: 1.7; color: var(--color-text-muted);">ABA therapy that meets your child exactly where they are—and helps them get where they're going.</p>
         <table class="style-table" style="margin-top: 1rem;">
           <thead><tr><th>Viewport</th><th>Width</th><th>Font Size</th></tr></thead>
           <tbody>
-            <tr><td>Monitor</td><td>1680px +</td><td>19px</td></tr>
-            <tr><td>Desktop</td><td>1200 – 1679px</td><td>19px</td></tr>
-            <tr><td>Tablet</td><td>810 – 1199px</td><td>17px</td></tr>
-            <tr><td>Mobile</td><td>&le; 809px</td><td>17px</td></tr>
+            <tr><td>Monitor</td><td>1680px +</td><td>22px</td></tr>
+            <tr><td>Desktop</td><td>1200 – 1679px</td><td>22px</td></tr>
+            <tr><td>Tablet</td><td>810 – 1199px</td><td>22px</td></tr>
+            <tr><td>Mobile</td><td>&le; 809px</td><td>22px</td></tr>
           </tbody>
         </table>
       </div>
@@ -1524,34 +1561,34 @@
       <div class="type-specimen">
         <div class="type-specimen__meta">
           <span class="type-specimen__tag">Role <span>Eyebrow / Label</span></span>
-          <span class="type-specimen__tag">Font <span>DM Sans</span></span>
+          <span class="type-specimen__tag">Font <span>National 2 Narrow</span></span>
           <span class="type-specimen__tag">Weight <span>600</span></span>
-          <span class="type-specimen__tag">Size <span>12px</span></span>
-          <span class="type-specimen__tag">Letter Spacing <span>0.14em</span></span>
-          <span class="type-specimen__tag">Text Transform <span>UPPERCASE</span></span>
+          <span class="type-specimen__tag">Size <span>13px</span></span>
+          <span class="type-specimen__tag">Letter Spacing <span>0.06em</span></span>
+          <span class="type-specimen__tag">Text Transform <span>Title Case</span></span>
         </div>
-        <p style="font-family: var(--font-body); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-teal);">Our Services</p>
+        <p style="font-family: var(--font-display); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; color: var(--color-navy);">Our Services</p>
       </div>
 
       <div class="type-specimen">
         <div class="type-specimen__meta">
           <span class="type-specimen__tag">Role <span>Button Label</span></span>
-          <span class="type-specimen__tag">Font <span>DM Sans</span></span>
+          <span class="type-specimen__tag">Font <span>National 2 Narrow</span></span>
           <span class="type-specimen__tag">Weight <span>600</span></span>
           <span class="type-specimen__tag">Size <span>15px</span></span>
           <span class="type-specimen__tag">Letter Spacing <span>0.01em</span></span>
         </div>
-        <p style="font-family: var(--font-body); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.01em; color: var(--color-navy);">Get Started</p>
+        <p style="font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.01em; color: var(--color-navy);">Get Started</p>
       </div>
 
       <div class="type-specimen">
         <div class="type-specimen__meta">
           <span class="type-specimen__tag">Role <span>Nav Link</span></span>
-          <span class="type-specimen__tag">Font <span>DM Sans</span></span>
+          <span class="type-specimen__tag">Font <span>National 2 Narrow</span></span>
           <span class="type-specimen__tag">Weight <span>500</span></span>
           <span class="type-specimen__tag">Size <span>14px</span></span>
         </div>
-        <p style="font-family: var(--font-body); font-size: 0.9rem; font-weight: 500; color: var(--color-text);">Home &nbsp;&nbsp; Careers &nbsp;&nbsp; Locations</p>
+        <p style="font-family: var(--font-display); font-size: 0.9rem; font-weight: 500; color: var(--color-text);">Home &nbsp;&nbsp; Careers &nbsp;&nbsp; Locations</p>
       </div>
 
       <p class="token-label" style="margin-top: 2rem;">Pull Quote Style</p>
@@ -1559,7 +1596,7 @@
       <div class="type-specimen">
         <div class="type-specimen__meta">
           <span class="type-specimen__tag">Role <span>Pull Quote</span></span>
-          <span class="type-specimen__tag">Font <span>Plus Jakarta Sans</span></span>
+          <span class="type-specimen__tag">Font <span>National 2 Narrow</span></span>
           <span class="type-specimen__tag">Weight <span>400</span></span>
           <span class="type-specimen__tag">Style <span>italic</span></span>
           <span class="type-specimen__tag">Line Height <span>1.35</span></span>
@@ -1582,21 +1619,21 @@
 
       <!-- Live example: hero-style lockup -->
       <div class="component-preview" style="padding: 2.5rem; margin-bottom: 1.5rem;">
-        <p style="font-family: var(--font-body); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-teal); margin-bottom: 0.75rem;">Our Approach</p>
-        <h2 style="font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 600; color: var(--color-navy); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 0.75rem;">Every child has a<br>breakthrough waiting.</h2>
+        <p style="font-family: var(--font-display); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; color: var(--color-navy); margin-bottom: 0.75rem;">Our Approach</p>
+        <h2 style="font-family: var(--font-display); font-size: 56px; font-weight: 700; color: var(--color-navy); letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 0.75rem;">Every child has a<br>breakthrough waiting.</h2>
         <p style="font-family: var(--font-body); font-size: 1rem; line-height: 1.65; color: var(--color-text-muted); max-width: 520px;">We combine evidence-based ABA therapy with genuine human connection — meeting your child exactly where they are and helping them get where they're going.</p>
       </div>
 
       <!-- Live example: card-style lockup -->
       <div class="sg-grid-2" style="margin-bottom: 1.5rem;">
         <div class="component-preview" style="padding: 1.75rem;">
-          <p style="font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-teal); margin-bottom: 0.5rem;">Virtual Therapy</p>
-          <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--color-navy); letter-spacing: -0.01em; line-height: 1.25; margin-bottom: 0.5rem;">Therapy that fits your life</h3>
+          <p style="font-family: var(--font-display); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; color: var(--color-navy); margin-bottom: 0.5rem;">Virtual Therapy</p>
+          <h3 style="font-family: var(--font-display); font-size: 48px; font-weight: 700; color: var(--color-navy); letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 0.5rem;">Therapy that fits your life</h3>
           <p style="font-family: var(--font-body); font-size: 0.9rem; line-height: 1.6; color: var(--color-text-muted);">Sessions from anywhere, on your schedule. Same expert BCBAs, same personalized approach.</p>
         </div>
         <div class="component-preview" style="padding: 1.75rem;">
-          <p style="font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-teal); margin-bottom: 0.5rem;">In-Home ABA</p>
-          <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--color-navy); letter-spacing: -0.01em; line-height: 1.25; margin-bottom: 0.5rem;">Where comfort meets progress</h3>
+          <p style="font-family: var(--font-display); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; color: var(--color-navy); margin-bottom: 0.5rem;">In-Home ABA</p>
+          <h3 style="font-family: var(--font-display); font-size: 48px; font-weight: 700; color: var(--color-navy); letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 0.5rem;">Where comfort meets progress</h3>
           <p style="font-family: var(--font-body); font-size: 0.9rem; line-height: 1.6; color: var(--color-text-muted);">Naturalistic teaching in your child's most comfortable environment, led by expert therapists.</p>
         </div>
       </div>
@@ -1607,22 +1644,22 @@
         <div class="component-preview">
           <h3 style="font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; color: var(--color-sage); margin-bottom: 0.5rem;">Do</h3>
           <ul style="font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.8; padding-left: 1rem;">
-            <li>Use Plus Jakarta Sans for headlines, DM Sans for body — never reverse</li>
-            <li>Use DM Sans for eyebrows and labels in uppercase</li>
-            <li>Keep display font at weight 600–700, body at 400–500</li>
-            <li>Maintain clear size hierarchy: headings should be noticeably larger than body</li>
-            <li>Use the same line-height throughout a block of body copy</li>
+            <li>Use National 2 Narrow for headlines AND eyebrow labels — in title case, not uppercase</li>
+            <li>Use DM Sans for body paragraphs and descriptive text</li>
+            <li>Keep display font at weight 600–700, body at regular (400)</li>
+            <li>Eyebrows: National 2 Narrow 600 at 0.75–0.85rem with slight letter-spacing</li>
+            <li>Maintain clear size hierarchy: headings noticeably larger than body</li>
             <li>Never combine both fonts in the same sentence</li>
           </ul>
         </div>
         <div class="component-preview">
           <h3 style="font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; color: #B91C1C; margin-bottom: 0.5rem;">Don't</h3>
           <ul style="font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.8; padding-left: 1rem;">
-            <li>Use DM Sans for headlines or hero text</li>
-            <li>Use Plus Jakarta Sans for long paragraphs of body copy</li>
-            <li>Set body font larger than or equal to the display font nearby</li>
+            <li>Use DM Sans for headlines or hero text — it's a body font here</li>
+            <li>Use National 2 Narrow for long paragraphs of body copy</li>
+            <li>Use ALL CAPS for eyebrows — title case National 2 Narrow is the Style Guide D signature</li>
             <li>Mix weights randomly — stick to the defined scale</li>
-            <li>Use italic Plus Jakarta Sans for body text (reserve italic for pull quotes)</li>
+            <li>Set body font larger than or equal to the display font nearby</li>
             <li>Center-align body paragraphs — always left-align</li>
           </ul>
         </div>
@@ -1808,7 +1845,7 @@
       <div class="component-preview">
         <div class="sample-card">
           <div class="sample-card__icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E7490" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#33DFDF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
           </div>
           <div class="sample-card__title">Virtual &amp; VR Therapy</div>
           <p class="sample-card__body">We lead in ABA innovation with our virtual program, brought to life by gamification and VR technology—always with live guidance from your therapist.</p>
@@ -1844,7 +1881,7 @@
     <section class="sg-section" id="badges">
       <div class="sg-section__header">
         <h2 class="sg-section__title">Badges &amp; Eyebrows</h2>
-        <p class="sg-section__desc">Used to label sections and add visual hierarchy without heavy type weight.</p>
+        <p class="sg-section__desc">Eyebrows use National 2 Narrow in title case (not uppercase) — a signature detail of Style Guide D. This creates a refined, editorial feel distinct from the all-caps approach.</p>
       </div>
 
       <p class="token-label">Eyebrow Styles</p>
@@ -1862,7 +1899,7 @@
         </div>
         <div style="background: var(--color-navy); padding: 1rem; border-radius: var(--radius-sm); display: inline-block;">
           <p style="font-size: 0.72rem; color: rgba(255,255,255,0.5); margin-bottom: 0.4rem;">On dark background</p>
-          <p style="font-family: var(--font-body); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.88);">Where Do I Start?</p>
+          <p style="font-family: var(--font-display); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; color: rgba(255,255,255,0.88);">Where Do I Start?</p>
         </div>
       </div>
     </section>
